@@ -1,0 +1,18 @@
+.notification-icon {
+  position: relative;
+}
+.notification-icon__badge {
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1.5rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+}

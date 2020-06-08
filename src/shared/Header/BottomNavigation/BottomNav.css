@@ -1,0 +1,26 @@
+.bottom-nav {
+  height: 7rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  background-color: var(--primary-light-1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.bottom-nav button {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  font-size: 0.8rem;
+}
+
+@media only screen and (min-width: 601px) {
+  .bottom-nav {
+    display: none;
+  }
+}
