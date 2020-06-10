@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useRef } from "react";
+import { useForm, Controller } from "react-hook-form";
 import "./Post.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextareaAutosize from "react-textarea-autosize";
+
 const Post = (props) => {
-  const { register, handleSubmit, reset } = useForm();
+  const textArea = useRef(null);
+  const { handleSubmit, reset, control } = useForm();
   const [likeColor, setLikeColor] = useState("black");
   const [showComment, setshowComment] = useState(false);
 
@@ -19,22 +21,24 @@ const Post = (props) => {
     }
   };
 
+  const handleGoToComment = () => {
+    textArea.current.focus();
+  };
+
   const handleShowComment = () => {
     setshowComment(!showComment);
   };
 
   const onSubmit = (data) => {
-    // if (!data.comment) {
-    //   return;
-    // } else {
     props.onComment(props.index, data.comment);
     reset();
     if (showComment === false) {
       handleShowComment();
     }
     console.log(data);
-    // }
   };
+
+  const handleHoverComment = () => {};
 
   return (
     <div className="post">
@@ -66,7 +70,8 @@ const Post = (props) => {
             </button>
           </div>
           <div className="post-content__icons-button">
-            <button>
+            <button onClick={handleGoToComment}>
+              {/* <button> */}
               <FontAwesomeIcon
                 icon={["fas", "comment"]}
                 style={{ color: "black" }}
@@ -116,7 +121,11 @@ const Post = (props) => {
           {showComment &&
             props.comments.map((comment) => {
               return (
-                <div className="post-comment" key={Math.random()}>
+                <div
+                  className="post-comment"
+                  key={Math.random()}
+                  onMouseEnter={handleHoverComment}
+                >
                   <p className="post-content__text-author">{comment.author}</p>
                   <p className="post-content__text-message">
                     {comment.comment}
@@ -126,10 +135,17 @@ const Post = (props) => {
             })}
 
           <form onSubmit={handleSubmit(onSubmit)} className={"comment-form"}>
-            <TextareaAutosize
+            <Controller
+              as={
+                <TextareaAutosize
+                  placeholder="Please leave a comment..."
+                  ref={textArea}
+                />
+              }
+              control={control}
+              rules={{ required: true }}
               name="comment"
-              placeholder="Please leave a comment..."
-              ref={register({ required: true })}
+              defaultValue=""
             />
 
             <button>

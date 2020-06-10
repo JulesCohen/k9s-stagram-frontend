@@ -18,7 +18,9 @@ const AuthPage = () => {
 
   const [loginMode, setloginMode] = useState(true);
 
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, errors, formState } = useForm();
+  const { isValid } = formState;
+
   const onSubmit = (data) => {
     history.push("/");
     console.log(data);
@@ -91,6 +93,18 @@ const AuthPage = () => {
         <button className={"auth-form__submit"}>
           {loginMode ? "LOGIN" : "SIGNUP"}
         </button>
+
+        {/* {isValid && (
+          <button className={"auth-form__submit"}>
+            {loginMode ? "LOGIN" : "SIGNUP"}
+          </button>
+        )}
+
+        {!isValid && (
+          <button className={"auth-form__submit"} disabled>
+            {loginMode ? "LOGIN" : "SIGNUP"}
+          </button>
+        )} */}
 
         {loginMode ? (
           <p>

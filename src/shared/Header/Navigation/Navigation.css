@@ -10,7 +10,7 @@
 .navigation a:visited {
   border: 0;
   outline: none;
-  color: white;
+  color: black;
   background-color: transparent;
   font-size: 0.9rem;
   transition: all 0.2s ease-in-out;
@@ -20,7 +20,7 @@
 .navigation a:active,
 .navigation a.active {
   transform: scale(1.4);
-  color: var(--secondary);
+  color: tomato;
 }
 
 .notification-icon {
@@ -69,9 +69,9 @@
 
   .navigation a,
   .navigation a:visited {
-    border: 0;
-    outline: none;
-    color: white;
+    /* border: 0;
+    /* outline: none; */
+    /* color: white; */
     background-color: transparent;
     font-size: 0.8rem;
     transition: all 0.3s ease-in-out;

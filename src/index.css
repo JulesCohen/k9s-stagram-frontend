@@ -41,7 +41,8 @@ html {
 }
 
 body {
-  background-color: var(--primary-light-2);
+  /* background-color: var(--primary-light-2); */
+  background-color: rgb(246, 245, 245);
   margin-top: 10rem;
 }
 

@@ -5,7 +5,7 @@
   bottom: 0;
   left: 0;
   z-index: 10;
-  background-color: var(--primary-light-1);
+  background-color: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   display: flex;
   justify-content: space-around;

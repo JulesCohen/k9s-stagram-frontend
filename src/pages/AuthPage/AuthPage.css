@@ -39,7 +39,7 @@
   border: 0;
   font-size: 1.8rem;
   outline: none;
-  background-color: var(--primary-light-1);
+  background-color: tomato;
   color: white;
   margin-top: 3rem;
 }
@@ -50,7 +50,7 @@
 }
 
 .signupSwitch {
-  color: white;
+  color: tomato;
   cursor: pointer;
 }
 
