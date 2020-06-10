@@ -23,7 +23,7 @@
   box-sizing: inherit;
 }
 
-body::before {
+/* body::before {
   content: "";
   position: fixed;
   top: -10px;
@@ -32,7 +32,7 @@ body::before {
   height: 10px;
   box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
   z-index: 100;
-}
+} */
 
 html {
   box-sizing: border-box;

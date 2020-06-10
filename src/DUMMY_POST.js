@@ -1,5 +1,6 @@
 const DUMMY_POSTS = [
   {
+    id: "u1",
     name: "julescohen",
     location: "Montreal, Canada",
     image:
@@ -15,6 +16,7 @@ const DUMMY_POSTS = [
     ],
   },
   {
+    id: "u1",
     name: "julescohen",
     location: "Montreal, Canada",
     image:
@@ -25,6 +27,7 @@ const DUMMY_POSTS = [
     comments: [],
   },
   {
+    id: "u2",
     name: "julescohen",
     location: "Montreal, Canada",
     image:

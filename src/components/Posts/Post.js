@@ -70,13 +70,8 @@ const Post = (props) => {
             </button>
           </div>
           <div className="post-content__icons-button">
-            <button onClick={handleGoToComment}>
-              {/* <button> */}
-              <FontAwesomeIcon
-                icon={["fas", "comment"]}
-                style={{ color: "black" }}
-                size="2x"
-              />
+            <button onClick={handleGoToComment} className="icon_style">
+              <FontAwesomeIcon icon={["fas", "comment"]} size="2x" />
             </button>
           </div>
         </div>

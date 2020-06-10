@@ -172,6 +172,16 @@
   outline: 0;
 }
 
+/* .icon_style svg {
+  color: red;
+  stroke: black;
+  stroke-width: 2px;
+}
+
+.icon_style > svg > path {
+  stroke: black;
+} */
+
 @media only screen and (max-width: 700px) {
   .post {
     margin-bottom: 1rem;

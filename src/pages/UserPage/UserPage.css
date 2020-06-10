@@ -1,0 +1,83 @@
+.userpage {
+  width: 100%;
+  width: 100%;
+  background-color: tomato;
+  padding-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userpage__header {
+  width: 80rem;
+  height: 30rem;
+  background-color: lightgreen;
+}
+
+.userpage__grid {
+  width: 80rem;
+  /* min-height: 100%; */
+  background-color: lightblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-auto-rows: 1fr; */
+  grid-gap: 1.5rem;
+}
+
+.userpage__grid-post {
+  width: 100%;
+  height: calc(80rem / 3 - 2 * 1.5rem);
+  position: relative;
+}
+
+.userpage__grid-post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.post-overlay {
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  font-size: 5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  justify-content: center;
+}
+
+.post-overlay-content {
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2rem;
+}
+.post-overlay-content p {
+  padding-right: 1rem;
+}
+
+.userpage__grid-post:hover > .post-overlay {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 800px) {
+  .userpage__grid {
+    width: 100vw;
+    grid-gap: 0.5rem;
+  }
+  .userpage__grid-post {
+    width: 100%;
+    height: calc(100vw / 3 - 2 * 0.5rem);
+    position: relative;
+  }
+  .post-overlay {
+    display: none;
+  }
+}
