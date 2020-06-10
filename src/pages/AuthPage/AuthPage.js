@@ -19,7 +19,7 @@ const AuthPage = () => {
   const [loginMode, setloginMode] = useState(true);
 
   const { register, handleSubmit, errors } = useForm();
-  const onSubmit = data => {
+  const onSubmit = (data) => {
     history.push("/");
     console.log(data);
   };
@@ -34,13 +34,25 @@ const AuthPage = () => {
         {!loginMode && (
           <>
             <Input
+              name={"username"}
+              label={"Username"}
+              type={"text"}
+              register={register}
+              required={{ required: true, minLength: 2 }}
+            />
+            {errors.firstName && "Username is required"}
+          </>
+        )}
+        {!loginMode && (
+          <>
+            <Input
               name={"firstName"}
               label={"First Name"}
               type={"text"}
               register={register}
               required={{ required: true, minLength: 2 }}
             />
-            {errors.firstName && "First name is required"}{" "}
+            {errors.firstName && "First name is required"}
           </>
         )}
         {!loginMode && (

@@ -8,6 +8,7 @@
   --primary-light-2: rgb(158, 183, 231);
   --primary-dark-1: rgba(62, 56, 242, 1);
   --primary-dark-2: rgba(35, 10, 89, 1);
+  --secondary: #f7d92d;
 }
 
 * {
@@ -20,6 +21,17 @@
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -10px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
+  z-index: 100;
 }
 
 html {
@@ -40,7 +52,7 @@ body {
   align-items: center;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .body {
     margin-top: 0rem;
   }

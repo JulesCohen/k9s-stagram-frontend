@@ -10,6 +10,7 @@
   background: white;
   display: flex;
   flex-direction: column;
+  transition: height 2s;
 }
 
 /* AUTHOR */
@@ -153,6 +154,17 @@
   padding: 0.5rem 0.5rem;
   font-size: 1.5rem;
 }
+.comment-form textarea {
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid black;
+  margin-right: 1.5rem;
+  width: 70%;
+  padding: 0.5rem 0.5rem;
+  font-size: 1.5rem;
+  resize: none;
+  font-family: "Open-Sans", sans-serif;
+}
 
 .comment-form button {
   background-color: transparent;
@@ -160,7 +172,7 @@
   outline: 0;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 700px) {
   .post {
     margin-bottom: 1rem;
     box-shadow: none;
@@ -172,5 +184,7 @@
 
   .comment-form input {
     width: 80%;
+    font-size: 16px;
+    word-break: break-all;
   }
 }

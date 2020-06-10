@@ -10,16 +10,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const Header = () => {
   return (
     <div className="header">
-      <div className="header__search">
-        <div className="header__search__icon">
-          <FontAwesomeIcon
-            icon={["fas", "search"]}
-            style={{ color: "white" }}
-            size="2x"
-          />
-        </div>
-        <input type="text" placeholder="Search..."></input>
-      </div>
       <div className="header__title">
         <FontAwesomeIcon
           icon={["fas", "paw"]}
@@ -31,7 +21,19 @@ const Header = () => {
           <p className="header__title-text-sub ">UNLEASH YOUR PICTURES!</p>
         </div>
       </div>
-      <Navigation />
+      <div className="header__search">
+        <div className="header__search__icon">
+          <FontAwesomeIcon
+            icon={["fas", "search"]}
+            style={{ color: "white" }}
+            size="2x"
+          />
+        </div>
+        <input type="text" placeholder="Search..."></input>
+      </div>
+      <div className="top-nav">
+        <Navigation />
+      </div>
     </div>
   );
 };

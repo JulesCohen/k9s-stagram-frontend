@@ -12,14 +12,7 @@
   align-items: center;
 }
 
-.bottom-nav button {
-  background-color: transparent;
-  border: 0;
-  outline: none;
-  font-size: 0.8rem;
-}
-
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 701px) {
   .bottom-nav {
     display: none;
   }

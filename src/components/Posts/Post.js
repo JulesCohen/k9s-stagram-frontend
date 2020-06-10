@@ -3,8 +3,8 @@ import { useForm } from "react-hook-form";
 import "./Post.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const Post = props => {
+import TextareaAutosize from "react-textarea-autosize";
+const Post = (props) => {
   const { register, handleSubmit, reset } = useForm();
   const [likeColor, setLikeColor] = useState("black");
   const [showComment, setshowComment] = useState(false);
@@ -23,13 +23,17 @@ const Post = props => {
     setshowComment(!showComment);
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data) => {
+    // if (!data.comment) {
+    //   return;
+    // } else {
     props.onComment(props.index, data.comment);
     reset();
     if (showComment === false) {
       handleShowComment();
     }
     console.log(data);
+    // }
   };
 
   return (
@@ -110,7 +114,7 @@ const Post = props => {
           </div>
 
           {showComment &&
-            props.comments.map(comment => {
+            props.comments.map((comment) => {
               return (
                 <div className="post-comment" key={Math.random()}>
                   <p className="post-content__text-author">{comment.author}</p>
@@ -122,9 +126,8 @@ const Post = props => {
             })}
 
           <form onSubmit={handleSubmit(onSubmit)} className={"comment-form"}>
-            <input
+            <TextareaAutosize
               name="comment"
-              type="text"
               placeholder="Please leave a comment..."
               ref={register({ required: true })}
             />

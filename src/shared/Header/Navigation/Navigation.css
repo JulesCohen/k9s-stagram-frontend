@@ -1,8 +1,33 @@
+.navigation {
+  width: 100%;
+  padding: 0 5rem;
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.navigation a,
+.navigation a:visited {
+  border: 0;
+  outline: none;
+  color: white;
+  background-color: transparent;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.navigation a:hover,
+.navigation a:active,
+.navigation a.active {
+  transform: scale(1.4);
+  color: var(--secondary);
+}
+
 .notification-icon {
   position: relative;
 }
 .notification-icon__badge {
-  width: 1.8rem;
+  min-width: 1.8rem;
   height: 1.8rem;
   font-size: 1.5rem;
   border-radius: 50%;
@@ -15,4 +40,54 @@
   justify-content: center;
   align-items: center;
   z-index: 15;
+}
+.navigation__search {
+  display: none;
+}
+
+@media only screen and (max-width: 1100px) {
+  .navigation {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  .navigation__search {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .navigation {
+    width: 100%;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+  }
+
+  .navigation a,
+  .navigation a:visited {
+    border: 0;
+    outline: none;
+    color: white;
+    background-color: transparent;
+    font-size: 0.8rem;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .navigation a:hover,
+  .navigation a:active,
+  .navigation a.active {
+    transform: scale(1.4);
+  }
+
+  .navigation__search {
+    display: block;
+  }
+
+  .navigation__auth {
+    display: none;
+  }
 }
