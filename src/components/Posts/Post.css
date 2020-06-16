@@ -4,13 +4,12 @@
   font-family: "Open Sans", sans-serif;
   margin: 0;
   margin-bottom: 5rem;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   border-radius: 6px;
 
   background: white;
   display: flex;
   flex-direction: column;
-  transition: height 2s;
 }
 
 /* AUTHOR */

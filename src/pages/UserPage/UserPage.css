@@ -1,32 +1,88 @@
 .userpage {
   width: 100%;
   width: 100%;
-  background-color: tomato;
+  /* background-color: tomato; */
   padding-bottom: 10rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: black;
+  font-family: "Open-sans", sans-serif;
 }
 
 .userpage__header {
-  width: 80rem;
-  height: 30rem;
-  background-color: lightgreen;
+  width: 90rem;
+
+  display: flex;
+  padding-bottom: 10rem;
+}
+
+.userpage__header-logo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10rem;
+}
+
+.userpage__header-content {
+  flex: 3;
+}
+.userpage__header-content-user {
+  padding: 1.5rem 0;
+  display: flex;
+  font-size: 3rem;
+  font-weight: 300;
+}
+.userpage__header-content-user button {
+  margin: 0 2rem;
+  padding: 0 1rem;
+  background-color: white;
+  outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+}
+.userpage__header-content-numbers {
+  padding: 1.5rem 0;
+  display: flex;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.userpage__header-content-numbers p {
+  padding-right: 4rem;
+}
+
+.userpage__header-content-numbers span {
+  font-weight: 600;
+}
+.userpage__header-content-description {
+  display: flex;
+  flex-direction: column;
+}
+.userpage__header-content-description p {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+.userpage__header-content-description p:last-child {
+  font-weight: 300;
+  font-size: 1.4rem;
+  padding: 1rem 0 0 2rem;
 }
 
 .userpage__grid {
-  width: 80rem;
+  width: 90rem;
   /* min-height: 100%; */
-  background-color: lightblue;
+  /* background-color: lightblue; */
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   /* grid-auto-rows: 1fr; */
-  grid-gap: 1.5rem;
+  grid-gap: 2rem;
 }
 
 .userpage__grid-post {
   width: 100%;
-  height: calc(80rem / 3 - 2 * 1.5rem);
+  height: calc(90rem / 3 - 2 * 2rem);
   position: relative;
 }
 
@@ -34,14 +90,15 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  cursor: pointer;
 }
 
 .post-overlay {
   width: 100%;
   height: 100%;
   color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  /* opacity: 0; */
   font-size: 5rem;
   position: absolute;
   top: 0;
@@ -49,6 +106,7 @@
   transition: all 0.2s ease-in-out;
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .post-overlay-content {
@@ -58,12 +116,16 @@
   align-items: center;
   justify-content: center;
   padding-right: 2rem;
+  opacity: 0;
 }
 .post-overlay-content p {
   padding-right: 1rem;
 }
 
-.userpage__grid-post:hover > .post-overlay {
+.post-overlay:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.post-overlay:hover > .post-overlay-content {
   opacity: 1;
 }
 
