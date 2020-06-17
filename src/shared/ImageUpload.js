@@ -1,8 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
-// import Button from "./Button";
 import "./ImageUpload.css";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const ImageUpload = (props) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
@@ -34,7 +33,7 @@ const ImageUpload = (props) => {
   };
 
   return (
-    <div className="form-control">
+    <div>
       <input
         id={props.id}
         ref={filePickerRef}
@@ -43,12 +42,20 @@ const ImageUpload = (props) => {
         accept=".jpg,.png,.jpeg"
         onChange={pickedHandler}
       />
-      <div className={`image-upload`}>
-        <div className="image-upload__preview">
+
+      <div className="image-upload">
+        <div className={props.styles}>
           {previewUrl && <img src={previewUrl} alt="Preview" />}
-          {!previewUrl && <p>Please pick an image.</p>}
+
+          {!previewUrl && (
+            <FontAwesomeIcon icon={["fas", "camera"]} size="5x" />
+          )}
         </div>
-        <button type="button" onClick={pickImageHandler}>
+        <button
+          type="button"
+          onClick={pickImageHandler}
+          className="button-pick"
+        >
           PICK IMAGE
         </button>
       </div>

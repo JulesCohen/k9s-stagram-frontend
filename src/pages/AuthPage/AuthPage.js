@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from "react-router-dom";
-// import axios from "axios";
-import ImageUpload from "../../shared/ImageUpload";
 import { useHttpClient } from "../../shared/hooks/http-hook";
-import "../../shared/ImageUpload.css";
+import { AuthContext } from "../../shared/context/auth-context";
+import ImageUpload from "../../shared/ImageUpload";
+import Spinner from "../../shared/UIElements/Spinner";
+
 import "./AuthPage.css";
 
 const Input = ({ label, name, type, register, required, error }) => {
@@ -19,7 +20,7 @@ const Input = ({ label, name, type, register, required, error }) => {
 
 const AuthPage = () => {
   let history = useHistory();
-
+  const auth = useContext(AuthContext);
   const [loginMode, setloginMode] = useState(true);
   const { register, handleSubmit, errors, control, setValue } = useForm();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -30,30 +31,46 @@ const AuthPage = () => {
   };
 
   const onSubmit = async (data) => {
-    console.log(data);
+    if (loginMode) {
+      try {
+        const res = await sendRequest(
+          "http://localhost:5000/api/users/login",
+          "POST",
+          JSON.stringify({
+            email: data.email,
+            password: data.password,
+          }),
+          {
+            "Content-Type": "application/json",
+          }
+        );
 
-    try {
-      const formData = new FormData();
+        console.log(res.userId);
+        auth.login(res.userId, res.token);
+      } catch (err) {
+        alert(err);
+      }
+    } else {
+      try {
+        const formData = new FormData();
 
-      console.log(formData);
+        console.log(formData);
 
-      formData.append("userName", data.userName);
-      formData.append("firstName", data.firstName);
-      formData.append("lastName", data.lastName);
-      formData.append("email", data.email);
-      formData.append("password", data.password);
-      formData.append("image", data.image);
-      await sendRequest(
-        "http://localhost:5000/api/users/signup",
-        "POST",
-        formData
-        // {
-        //   Authorization: "Bearer " + auth.token
-        // }
-      );
-      history.push("/");
-    } catch (err) {
-      alert(err);
+        formData.append("userName", data.userName);
+        formData.append("firstName", data.firstName);
+        formData.append("lastName", data.lastName);
+        formData.append("email", data.email);
+        formData.append("password", data.password);
+        formData.append("image", data.image);
+        const res = await sendRequest(
+          "http://localhost:5000/api/users/signup",
+          "POST",
+          formData
+        );
+        auth.login(res.userId, res.token);
+      } catch (err) {
+        alert(err);
+      }
     }
   };
 
@@ -63,37 +80,57 @@ const AuthPage = () => {
 
   return (
     <div className={"auth"}>
+      {isLoading && <Spinner asOverlay />}
       <form onSubmit={handleSubmit(onSubmit)} className={"auth-form"}>
-        {!loginMode && (
-          <Input
-            name={"userName"}
-            label={"Username"}
-            type={"text"}
-            register={register}
-            required={{ required: true, minLength: 2 }}
-            error={errors.userName}
-          />
-        )}
-        {!loginMode && (
-          <Input
-            name={"firstName"}
-            label={"First Name"}
-            type={"text"}
-            register={register}
-            required={{ required: true, minLength: 2 }}
-            error={errors.firstName}
-          />
-        )}
-        {!loginMode && (
-          <Input
-            name={"lastName"}
-            label={"Last Name"}
-            type={"text"}
-            register={register}
-            required={{ required: true, minLength: 2 }}
-            error={errors.lastName}
-          />
-        )}
+        <div className="auth-form__signin">
+          {!loginMode && (
+            <>
+              <Controller
+                as={<ImageUpload styles={"image-upload__preview-round"} />}
+                name={"image"}
+                control={control}
+                defaultValue=""
+                rules={{ required: true }}
+                handleImage={handleChange}
+              />
+              {errors.image && "image is required"}
+            </>
+          )}
+
+          <div className="auth-form__signin__input">
+            {!loginMode && (
+              <Input
+                name={"userName"}
+                label={"Username"}
+                type={"text"}
+                register={register}
+                required={{ required: true, minLength: 2 }}
+                error={errors.userName}
+              />
+            )}
+            {!loginMode && (
+              <Input
+                name={"firstName"}
+                label={"First Name"}
+                type={"text"}
+                register={register}
+                required={{ required: true, minLength: 2 }}
+                error={errors.firstName}
+              />
+            )}
+            {!loginMode && (
+              <Input
+                name={"lastName"}
+                label={"Last Name"}
+                type={"text"}
+                register={register}
+                required={{ required: true, minLength: 2 }}
+                error={errors.lastName}
+              />
+            )}
+          </div>
+        </div>
+
         <Input
           name={"email"}
           label={"Email"}
@@ -110,19 +147,6 @@ const AuthPage = () => {
           required={{ required: true, minLength: 6 }}
           error={errors.password}
         />
-        {!loginMode && (
-          <>
-            <Controller
-              as={ImageUpload}
-              name={"image"}
-              control={control}
-              defaultValue=""
-              rules={{ required: true }}
-              handleImage={handleChange}
-            />
-            {errors.image && "image is required"}
-          </>
-        )}
 
         <button className={"auth-form__submit"}>
           {loginMode ? "LOGIN" : "SIGNUP"}

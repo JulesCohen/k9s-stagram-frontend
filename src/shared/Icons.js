@@ -11,6 +11,7 @@ import {
   faBone,
   faComment,
   faSignInAlt,
+  faSignOutAlt,
   faHome,
   faUser,
   faCamera,
@@ -20,6 +21,7 @@ import {
   faPaperPlane,
   faArrowDown,
   faArrowUp,
+  faCompass,
 } from "@fortawesome/free-solid-svg-icons";
 
 // import { faComment } from "@fortawesome/free-regular-svg-icons";
@@ -29,6 +31,7 @@ library.add(
   faBone,
   faComment,
   faSignInAlt,
+  faSignOutAlt,
   faHome,
   faUser,
   faCamera,
@@ -37,5 +40,6 @@ library.add(
   faPaw,
   faPaperPlane,
   faArrowDown,
-  faArrowUp
+  faArrowUp,
+  faCompass
 );
