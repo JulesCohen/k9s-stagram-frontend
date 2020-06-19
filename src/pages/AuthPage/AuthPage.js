@@ -5,18 +5,19 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import ImageUpload from "../../shared/ImageUpload";
 import Spinner from "../../shared/UIElements/Spinner";
+import Input from "../../shared/UIElements/Input";
 
 import "./AuthPage.css";
 
-const Input = ({ label, name, type, register, required, error }) => {
-  return (
-    <div className={"auth-form__input"}>
-      <label htmlFor={name}>{label}</label>
-      <input name={name} type={type} ref={register(required)} />
-      {error && `${label} is required`}
-    </div>
-  );
-};
+// const Input = ({ label, name, type, register, required, error }) => {
+//   return (
+//     <div className={"auth-form__input"}>
+//       <label htmlFor={name}>{label}</label>
+//       <input name={name} type={type} ref={register(required)} />
+//       {error && `${label} is required`}
+//     </div>
+//   );
+// };
 
 const AuthPage = () => {
   let history = useHistory();

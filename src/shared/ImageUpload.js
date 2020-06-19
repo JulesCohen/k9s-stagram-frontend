@@ -47,9 +47,10 @@ const ImageUpload = (props) => {
         <div className={props.styles}>
           {previewUrl && <img src={previewUrl} alt="Preview" />}
 
-          {!previewUrl && (
+          {!previewUrl && !props.error && (
             <FontAwesomeIcon icon={["fas", "camera"]} size="5x" />
           )}
+          {!previewUrl && props.error && "Image is required"}
         </div>
         <button
           type="button"

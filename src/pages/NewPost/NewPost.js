@@ -5,18 +5,20 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import ImageUpload from "../../shared/ImageUpload";
 import Spinner from "../../shared/UIElements/Spinner";
-
 import "./NewPost.css";
 
-const Input = ({ label, name, type, register, required, error }) => {
-  return (
-    <div className={"auth-form__input"}>
-      <label htmlFor={name}>{label}</label>
-      <input name={name} type={type} ref={register(required)} />
-      {error && `${label} is required`}
-    </div>
-  );
-};
+import Autocomplete from "./Autocomplete";
+import Input from "../../shared/UIElements/Input";
+
+// const Input = ({ label, name, type, register, required, error }) => {
+//   return (
+//     <div className={"auth-form__input"}>
+//       <label htmlFor={name}>{label}</label>
+//       <input name={name} type={type} ref={register(required)} />
+//       {error && `${label} is required`}
+//     </div>
+//   );
+// };
 
 const NewPost = () => {
   let history = useHistory();
@@ -27,6 +29,10 @@ const NewPost = () => {
   const handleChange = (event, image) => {
     console.log(event.target.files[0]);
     setValue("image", image, true);
+  };
+  const handleSelect = (address) => {
+    // console.log(address);
+    setValue("location", address, true);
   };
 
   const onSubmit = async (data) => {
@@ -54,27 +60,35 @@ const NewPost = () => {
     <div className="newpost">
       {isLoading && <Spinner asOverlay />}
       <form onSubmit={handleSubmit(onSubmit)} className={"newpost__form"}>
-        <>
-          <Controller
-            as={<ImageUpload styles={"image-upload__preview-square"} />}
-            name={"image"}
-            control={control}
-            defaultValue=""
-            rules={{ required: true }}
-            handleImage={handleChange}
-          />
-          {errors.image && "image is required"}
-        </>
+        <Controller
+          as={
+            <ImageUpload
+              styles={"image-upload__preview-square"}
+              error={errors.image}
+            />
+          }
+          name={"image"}
+          control={control}
+          defaultValue=""
+          rules={{ required: true }}
+          handleImage={handleChange}
+        />
 
         <div className={"newpost__form__input"}>
-          <Input
-            name={"location"}
-            label={"Location"}
-            type={"text"}
-            register={register}
-            required={{ required: true, minLength: 2 }}
-            error={errors.location}
+          <Controller
+            as={
+              <Autocomplete
+                onSelect={handleSelect}
+                onInput={handleSelect}
+                error={errors.location}
+              />
+            }
+            control={control}
+            rules={{ required: true, minLength: 3 }}
+            name="location"
+            defaultValue=""
           />
+
           <Input
             name={"description"}
             label={"Description"}
