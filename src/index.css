@@ -23,17 +23,6 @@
   box-sizing: inherit;
 }
 
-/* body::before {
-  content: "";
-  position: fixed;
-  top: -10px;
-  left: 0;
-  width: 100%;
-  height: 10px;
-  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.8);
-  z-index: 100;
-} */
-
 html {
   box-sizing: border-box;
   font-size: 62.5%;
@@ -41,9 +30,8 @@ html {
 }
 
 body {
-  /* background-color: var(--primary-light-2); */
-  background-color: rgb(246, 245, 245);
-  margin-top: 10rem;
+  background-color: rgb(250, 250, 250);
+  margin-top: 8rem;
 }
 
 .center {

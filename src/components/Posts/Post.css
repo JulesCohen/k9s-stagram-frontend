@@ -15,20 +15,21 @@
 /* AUTHOR */
 
 .post-author {
-  height: 5rem;
+  height: 6rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-content: space-between;
 }
 
-.post-author__icon {
+/* .post-author__icon {
   padding: 0 2rem;
   display: flex;
   align-items: center;
-}
+} */
 
 .post-author__infos {
+  padding-left: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: center;

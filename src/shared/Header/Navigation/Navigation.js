@@ -21,7 +21,7 @@ const Navigation = () => {
         <span className="info">Search</span>
       </NavLink>
 
-      <NavLink to="/explore" className="navigation__explore">
+      <NavLink to={`/explore/allPosts/all`} className="navigation__explore">
         <FontAwesomeIcon icon={["fas", "compass"]} size="3x" />
         <span className="info">Explore</span>
       </NavLink>
@@ -39,7 +39,7 @@ const Navigation = () => {
         </NavLink>
       )}
       {auth.isLoggedIn && (
-        <NavLink to="/u1/posts">
+        <NavLink to={`/${auth.userId}/posts`}>
           <FontAwesomeIcon icon={["fas", "user"]} size="3x" />
           <span className="info">Profile</span>
         </NavLink>
@@ -51,14 +51,10 @@ const Navigation = () => {
         </NavLink>
       )}
       {auth.isLoggedIn && (
-        <NavLink
-          to="/explore"
-          className="navigation__auth"
-          onClick={() => auth.logout()}
-        >
+        <button className="navigation__logout" onClick={() => auth.logout()}>
           <FontAwesomeIcon icon={["fas", "sign-out-alt"]} size="3x" />
           <span className="info">Logout</span>
-        </NavLink>
+        </button>
       )}
     </div>
   );

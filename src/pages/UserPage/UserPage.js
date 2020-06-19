@@ -4,14 +4,13 @@ import { useParams } from "react-router-dom";
 
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import img from "react-cool-img";
 import Spinner from "../../shared/UIElements/Spinner";
+import PhotoGrid from "./PhotoGrid";
+import UserInfos from "./UserInfos";
 import "./UserPage.css";
-
-const UserPage = () => {
+const UserPage = (props) => {
   const auth = useContext(AuthContext);
-  // const { uid } = useParams();
+  const { uid } = useParams();
   // const [showModal, setshowModal] = useState(false);
   // const [chosenPost, setchosenPost] = useState();
   const [userInfos, setUserInfos] = useState();
@@ -24,24 +23,33 @@ const UserPage = () => {
     const fetchInfos = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/users/${auth.userId}`
+          `http://localhost:5000/api/users/${uid}`
         );
         setUserInfos(responseData.user);
         console.log(responseData.user);
-      } catch (error) {}
+      } catch (error) {
+        alert(error);
+      }
     };
+
+    fetchInfos();
+  }, [sendRequest, uid]);
+
+  useEffect(() => {
     const fetchPosts = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/posts/users/${auth.userId}`
+          `http://localhost:5000/api/posts/users/${uid}`
         );
         setLoadedPosts(responseData.posts);
         console.log(responseData.posts);
-      } catch (error) {}
+      } catch (error) {
+        alert(error);
+      }
     };
-    fetchInfos();
+
     fetchPosts();
-  }, [sendRequest, auth.userId]);
+  }, [sendRequest, uid]);
 
   // const handleShowModal = (index) => {
   //   setchosenPost(index);
@@ -67,77 +75,17 @@ const UserPage = () => {
   };
 
   return (
-    <>
-      <div className="userpage">
-        {isLoading && <Spinner asOverlay />}
-        {!isLoading && userInfos && loadedPosts && (
-          <div className="userpage__header">
-            <div className="userpage__header-logo">
-              {/* <FontAwesomeIcon icon={["fas", "camera"]} /> */}
-              <img
-                src={userInfos.image}
-                alt={`${userInfos.firstName} ${userInfos.lastName}`}
-              />
-            </div>
-            <div className="userpage__header-content">
-              <div className="userpage__header-content-user">
-                <p>{userInfos.userName}</p>
-                <button>Profile settings</button>
-              </div>
-              <div className="userpage__header-content-numbers">
-                <p>
-                  <span>{loadedPosts.length} </span>
-                  posts
-                </p>
-                <p>
-                  <span>{userInfos.followers.length}</span> followers
-                </p>
-                <p>
-                  <span>{userInfos.followings.length}</span> following
-                </p>
-              </div>
-              <div className="userpage__header-content-description">
-                <p>
-                  {userInfos.firstName} {userInfos.lastName}
-                </p>
-                <p>Dog Lover !!</p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {!isLoading && loadedPosts && (
-          <div className="userpage__grid">
-            {loadedPosts.map((post, index) => (
-              <div className="userpage__grid-post" key={index}>
-                <div
-                  className="post-overlay"
-                  onClick={() => handleDelete(post.id)}
-                >
-                  <div className="post-overlay-content">
-                    <p>{post.likes}</p>
-                    <FontAwesomeIcon
-                      icon={["fas", "bone"]}
-                      style={{ color: "white" }}
-                      size="1x"
-                    />
-                  </div>
-                  <div className="post-overlay-content">
-                    <p>{post.comments.length} </p>
-                    <FontAwesomeIcon
-                      icon={["fas", "comment"]}
-                      style={{ color: "white" }}
-                      size="1x"
-                    />
-                  </div>
-                </div>
-                <img src={post.image} alt="post" />
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </>
+    <div className="userpage">
+      {/* <div className="userpage-content"> */}
+      {isLoading && <Spinner asOverlay />}
+      {!isLoading && userInfos && loadedPosts && (
+        <UserInfos userInfos={userInfos} length={loadedPosts.length} />
+      )}
+      {!isLoading && userInfos && loadedPosts && (
+        <PhotoGrid posts={loadedPosts} handleDelete={handleDelete} />
+      )}
+      {/* </div> */}
+    </div>
   );
 };
 

@@ -1,9 +1,10 @@
 import React, { useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
 import "./Post.css";
-
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextareaAutosize from "react-textarea-autosize";
+import ReactHashtag from "react-hashtag";
 
 const Post = (props) => {
   const textArea = useRef(null);
@@ -43,12 +44,8 @@ const Post = (props) => {
   return (
     <div className="post">
       <div className="post-author">
-        <div className="post-author__icon">
-          <FontAwesomeIcon
-            icon={["fas", "camera"]}
-            style={{ color: "black" }}
-            size="3x"
-          />
+        <div className="avatar-small">
+          <img src={props.avatar} alt={props.name} />
         </div>
         <div className="post-author__infos">
           <p className="post-author__infos-name">{props.name}</p>
@@ -76,19 +73,27 @@ const Post = (props) => {
           </div>
         </div>
         <div className="post-content__like">
-          <p>{props.likes} Bones </p>
+          <p>{props.likes.count} Bones </p>
         </div>
         <div className="post-content__text">
           <p className="post-content__text-author">{props.name}</p>
           <p className="post-content__text-message">
-            {props.text} <span className="hashtags"> {props.hashtags}</span>
+            <ReactHashtag
+              renderHashtag={(hashtagValue) => (
+                <NavLink to={`/explore/hashtag/${hashtagValue.substring(1)}`}>
+                  {hashtagValue}
+                </NavLink>
+              )}
+            >
+              {props.text}
+            </ReactHashtag>
           </p>
         </div>
         <hr />
         <div className="post-comments">
           <div className="post-comments-count">
             <p>
-              Comments ({props.comments.length}){" "}
+              Comments ({props.comments.length})
               {props.comments.length > 0 && (
                 <span
                   className="post-comments-show"

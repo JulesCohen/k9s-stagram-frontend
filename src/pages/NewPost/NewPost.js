@@ -21,7 +21,6 @@ const Input = ({ label, name, type, register, required, error }) => {
 const NewPost = () => {
   let history = useHistory();
   const auth = useContext(AuthContext);
-  const [loginMode, setloginMode] = useState(true);
   const { register, handleSubmit, errors, control, setValue } = useForm();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -39,14 +38,13 @@ const NewPost = () => {
       formData.append("userId", auth.userId);
       formData.append("location", data.location);
       formData.append("description", data.description);
-      formData.append("hashtags", data.hashtags);
       formData.append("image", data.image);
       const res = await sendRequest(
         "http://localhost:5000/api/posts",
         "POST",
         formData
       );
-      history.push("/u1/posts");
+      history.push(`/${auth.userId}/posts`);
     } catch (err) {
       alert(err);
     }
@@ -85,14 +83,7 @@ const NewPost = () => {
             required={{ required: true, minLength: 2 }}
             error={errors.description}
           />
-          <Input
-            name={"hashtags"}
-            label={"Hashtags"}
-            type={"text"}
-            register={register}
-            required={{ required: true, minLength: 2 }}
-            error={errors.hashtags}
-          />
+
           <button className={""}>Post</button>
         </div>
       </form>

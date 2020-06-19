@@ -20,6 +20,15 @@
   transform: translate(-50%, -50%);
 }
 
+.navigation__logout {
+  width: 3.5rem;
+  border: 0;
+  outline: none;
+  background-color: transparent;
+  font-size: 0.9rem;
+  transition: all 0.2s ease-in-out;
+}
+
 .navigation a,
 .navigation a:visited {
   width: 3.5rem;
@@ -36,13 +45,15 @@
 
 .navigation a:hover,
 .navigation a:active,
-.navigation a.active {
+.navigation a.active,
+.navigation__logout:hover {
   transform: scale(1.4);
   color: tomato;
 }
 
 .navigation a:hover .info,
-.navigation a:active .info {
+.navigation a:active .info,
+.navigation__logout:hover .info {
   visibility: visible;
 }
 

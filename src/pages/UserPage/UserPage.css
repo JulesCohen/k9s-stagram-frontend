@@ -2,7 +2,9 @@
   width: 100%;
   width: 100%;
   /* background-color: tomato; */
+  padding-top: 3rem;
   padding-bottom: 10rem;
+  /* margin: 0 20rem; */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,30 +13,37 @@
 }
 
 .userpage__header {
-  width: 90rem;
+  width: 95rem;
 
   display: flex;
   padding-bottom: 10rem;
 }
 
-/* .userpage__header-logo {
-  flex: 1;
+.avatar {
+  width: 30rem;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-size: 10rem;
-} */
+}
 
-.userpage__header-logo {
-  width: 25rem;
-  height: 25rem;
+.avatar-big {
+  width: 15rem;
+  height: 15rem;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 1rem;
 }
+.avatar-small {
+  width: 6rem;
+  height: 6rem;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.userpage__header-logo img {
+.avatar-big img,
+.avatar-small img {
   display: block;
   border-radius: 50%;
   width: 100%;
@@ -45,12 +54,12 @@
 
 .userpage__header-content {
   padding-left: 2rem;
-  /* flex: 3; */
 }
 .userpage__header-content-user {
-  padding: 1.5rem 0;
+  height: 4rem;
+  margin-bottom: 2rem;
   display: flex;
-  font-size: 3rem;
+  font-size: 2.8rem;
   font-weight: 300;
 }
 .userpage__header-content-user button {
@@ -62,10 +71,11 @@
   border-radius: 5px;
 }
 .userpage__header-content-numbers {
-  padding: 1.5rem 0;
+  height: 2rem;
+  margin-bottom: 2rem;
   display: flex;
-  font-size: 1.5rem;
-  font-weight: 300;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .userpage__header-content-numbers p {
@@ -78,19 +88,17 @@
 .userpage__header-content-description {
   display: flex;
   flex-direction: column;
+  font-size: 1.6rem;
 }
 .userpage__header-content-description p {
   font-weight: 700;
-  font-size: 1.5rem;
 }
 .userpage__header-content-description p:last-child {
-  font-weight: 300;
-  font-size: 1.4rem;
-  padding: 1rem 0 0 2rem;
+  font-weight: 400;
 }
 
 .userpage__grid {
-  width: 90rem;
+  width: 95rem;
   /* min-height: 100%; */
   /* background-color: lightblue; */
   display: grid;
@@ -101,7 +109,7 @@
 
 .userpage__grid-post {
   width: 100%;
-  height: calc(90rem / 3 - 2 * 2rem);
+  height: calc(95rem / 3 - 2 * 2rem);
   position: relative;
 }
 
@@ -152,6 +160,10 @@
   .userpage__grid {
     width: 100vw;
     grid-gap: 0.5rem;
+  }
+
+  .userpage__header {
+    width: 100%;
   }
   .userpage__grid-post {
     width: 100%;

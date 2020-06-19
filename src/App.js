@@ -28,7 +28,7 @@ const App = () => {
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/explore">
+        <Route path="/explore/:type/:query">
           <Explore />
         </Route>
         <Route exact path="/:uid/posts">
@@ -43,7 +43,7 @@ const App = () => {
   } else {
     routes = (
       <Switch>
-        <Route exact path="/explore">
+        <Route exact path="/explore/:type/:query">
           <Explore />
         </Route>
         <Route exact path="/auth">
@@ -66,22 +66,7 @@ const App = () => {
     >
       <Router>
         <Header />
-        {/* <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route exact path="/:uid/posts">
-            <UserPage />
-          </Route>
-          <Route exact path="/newpost">
-            <NewPost />
-          </Route>
-          <Route exact path="/auth">
-            <AuthPage />
-          </Route>
-          <Redirect to="/" />
-        </Switch> */}
-        {routes}
+        <main>{routes}</main>
         <BottomNav />
       </Router>
     </AuthContext.Provider>

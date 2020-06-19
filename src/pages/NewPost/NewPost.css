@@ -1,4 +1,5 @@
 .newpost {
+  margin: 15rem 0;
   display: flex;
   justify-content: center;
 }
