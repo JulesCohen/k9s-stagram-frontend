@@ -1,5 +1,5 @@
 .header {
-  height: 8rem;
+  height: 6rem;
   width: 100%;
   position: fixed;
   top: 0;
@@ -26,12 +26,12 @@
   padding-left: 2rem;
 }
 .header__title-text-main {
-  font-size: 3rem;
+  font-size: 2rem;
   font-weight: 500;
   letter-spacing: 10px;
 }
 .header__title-text-sub {
-  font-size: 2rem;
+  font-size: 1.5rem;
   letter-spacing: 7px;
 }
 
