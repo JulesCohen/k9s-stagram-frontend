@@ -15,7 +15,7 @@ const UserPage = (props) => {
   // const [chosenPost, setchosenPost] = useState();
   const [userInfos, setUserInfos] = useState();
   const [loadedPosts, setLoadedPosts] = useState();
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
 
   // const userId = useParams().userId;
 

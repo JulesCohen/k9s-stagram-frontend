@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
@@ -7,33 +7,22 @@ import ImageUpload from "../../shared/ImageUpload";
 import Spinner from "../../shared/UIElements/Spinner";
 import "./NewPost.css";
 
-import Autocomplete from "./Autocomplete";
+// import Autocomplete from "./Autocomplete";
 import Input from "../../shared/UIElements/Input";
-
-// const Input = ({ label, name, type, register, required, error }) => {
-//   return (
-//     <div className={"auth-form__input"}>
-//       <label htmlFor={name}>{label}</label>
-//       <input name={name} type={type} ref={register(required)} />
-//       {error && `${label} is required`}
-//     </div>
-//   );
-// };
 
 const NewPost = () => {
   let history = useHistory();
   const auth = useContext(AuthContext);
   const { register, handleSubmit, errors, control, setValue } = useForm();
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
 
   const handleChange = (event, image) => {
     console.log(event.target.files[0]);
     setValue("image", image, true);
   };
-  const handleSelect = (address) => {
-    // console.log(address);
-    setValue("location", address, true);
-  };
+  // const handleSelect = (address) => {
+  //   setValue("location", address, true);
+  // };
 
   const onSubmit = async (data) => {
     try {
@@ -45,11 +34,7 @@ const NewPost = () => {
       formData.append("location", data.location);
       formData.append("description", data.description);
       formData.append("image", data.image);
-      const res = await sendRequest(
-        "http://localhost:5000/api/posts",
-        "POST",
-        formData
-      );
+      await sendRequest("http://localhost:5000/api/posts", "POST", formData);
       history.push(`/${auth.userId}/posts`);
     } catch (err) {
       alert(err);
@@ -75,7 +60,7 @@ const NewPost = () => {
         />
 
         <div className={"newpost__form__input"}>
-          <Controller
+          {/* <Controller
             as={
               <Autocomplete
                 onSelect={handleSelect}
@@ -87,6 +72,15 @@ const NewPost = () => {
             rules={{ required: true, minLength: 3 }}
             name="location"
             defaultValue=""
+          /> */}
+
+          <Input
+            name={"location"}
+            label={"Location"}
+            type={"text"}
+            register={register}
+            required={{ required: true, minLength: 2 }}
+            error={errors.description}
           />
 
           <Input

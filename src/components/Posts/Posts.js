@@ -2,20 +2,15 @@ import React, { useState, useEffect, useContext } from "react";
 import "./Posts.css";
 import Post from "./Post";
 
-// import DUMMY_POSTS from "../../DUMMY_POST";
-
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import Spinner from "../../shared/UIElements/Spinner";
 import { AuthContext } from "../../shared/context/auth-context";
 
 const Posts = () => {
-  // const [posts, setPosts] = useState(DUMMY_POSTS);
   const auth = useContext(AuthContext);
   const [userInfos, setUserInfos] = useState();
   const [loadedPosts, setLoadedPosts] = useState();
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
-
-  // const userId = useParams().userId;
+  const { isLoading, sendRequest } = useHttpClient();
 
   useEffect(() => {
     const fetchInfos = async () => {
@@ -69,6 +64,7 @@ const Posts = () => {
           return (
             <Post
               key={post.id}
+              id={post.author.id}
               index={index}
               name={userInfos.userName}
               avatar={post.author.image}
@@ -76,7 +72,8 @@ const Posts = () => {
               image={post.image}
               likes={post.likes}
               text={post.description}
-              hashtags={post.hashtags}
+              // hashtags={post.hashtags}
+              date={post.date}
               comments={post.comments}
               onLike={handleLike}
               onDislike={handleDislike}

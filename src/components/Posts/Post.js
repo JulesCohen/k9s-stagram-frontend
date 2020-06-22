@@ -48,7 +48,15 @@ const Post = (props) => {
           <img src={props.avatar} alt={props.name} />
         </div>
         <div className="post-author__infos">
-          <p className="post-author__infos-name">{props.name}</p>
+          {/* <p className="post-author__infos-name">{props.name}</p> */}
+
+          <NavLink
+            className="post-author__infos-name"
+            to={`/${props.id}/posts`}
+          >
+            {props.name}
+          </NavLink>
+
           <p className="post-author__infos-location">{props.location}</p>
         </div>
       </div>
@@ -76,11 +84,23 @@ const Post = (props) => {
           <p>{props.likes.count} Bones </p>
         </div>
         <div className="post-content__text">
-          <p className="post-content__text-author">{props.name}</p>
+          <NavLink
+            className="post-content__text-author"
+            to={`/${props.id}/posts`}
+          >
+            {props.name}
+          </NavLink>
+
+          {/* <p className="post-content__text-author" onClick={handleGoToUserPage}>
+            {props.name}
+          </p> */}
           <p className="post-content__text-message">
             <ReactHashtag
               renderHashtag={(hashtagValue) => (
-                <NavLink to={`/explore/hashtag/${hashtagValue.substring(1)}`}>
+                <NavLink
+                  to={`/explore/hashtag/${hashtagValue.substring(1)}`}
+                  key={hashtagValue.substring(1)}
+                >
                   {hashtagValue}
                 </NavLink>
               )}
@@ -156,6 +176,9 @@ const Post = (props) => {
               />
             </button>
           </form>
+        </div>
+        <div className="post-content__date">
+          <p>{props.date}</p>
         </div>
       </div>
     </div>

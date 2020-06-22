@@ -10,7 +10,7 @@ const Explore = () => {
   const { type, query } = useParams();
   const [loadedPosts, setLoadedPosts] = useState();
 
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
   useEffect(() => {
     let request;
     if (type === "hashtag") {
@@ -29,7 +29,7 @@ const Explore = () => {
     };
 
     fetchPosts();
-  }, [sendRequest]);
+  }, [sendRequest, query, type]);
 
   return (
     <div>

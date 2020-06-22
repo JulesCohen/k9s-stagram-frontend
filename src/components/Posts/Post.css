@@ -1,12 +1,11 @@
 .post {
   max-width: 60rem;
-  /* min-height: 60rem; */
   font-family: "Open Sans", sans-serif;
   margin: 0;
   margin-bottom: 5rem;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   border-radius: 6px;
-
+  padding-bottom: 2rem;
   background: white;
   display: flex;
   flex-direction: column;
@@ -22,12 +21,6 @@
   align-content: space-between;
 }
 
-/* .post-author__icon {
-  padding: 0 2rem;
-  display: flex;
-  align-items: center;
-} */
-
 .post-author__infos {
   padding-left: 1rem;
   display: flex;
@@ -35,10 +28,17 @@
   justify-content: center;
 }
 
-.post-author__infos-name {
+.post-author__infos-name,
+.post-author__infos-name:active,
+.post-author__infos-name:visited {
   font-weight: 600;
   font-size: 1.8rem;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
 }
+
 .post-author__infos-location {
   font-weight: 400;
   font-size: 1.3rem;
@@ -75,6 +75,7 @@
   display: flex;
   align-items: center;
   padding-right: 2rem;
+  transition: all 0.2s ease-in-out;
 }
 
 .post-content__icons-button button {
@@ -94,9 +95,20 @@
   margin-bottom: 2rem;
 }
 
-.post-content__text-author {
+.post-content__text-author,
+.post-content__text-author:active,
+.post-content__text-author:visited {
   font-size: 1.6rem;
   font-weight: 600;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.post-content__text-author:hover,
+.post-author__infos-name:hover {
+  transform: scale(1.05);
 }
 
 .post-content__text-message {
@@ -138,6 +150,7 @@
   display: flex;
   padding: 1rem 0 0 0;
   padding-left: 2rem;
+  white-space: pre;
 }
 
 .comment-form {
@@ -164,6 +177,7 @@
   font-size: 16px;
   resize: none;
   font-family: "Open-Sans", sans-serif;
+  overflow: hidden;
 }
 
 .comment-form button {
@@ -172,15 +186,10 @@
   outline: 0;
 }
 
-/* .icon_style svg {
-  color: red;
-  stroke: black;
-  stroke-width: 2px;
+.post-content__date {
+  font-size: 1.4rem;
+  color: gray;
 }
-
-.icon_style > svg > path {
-  stroke: black;
-} */
 
 @media only screen and (max-width: 700px) {
   .post {

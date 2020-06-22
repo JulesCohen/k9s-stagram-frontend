@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import ImageUpload from "../../shared/ImageUpload";
@@ -9,22 +9,13 @@ import Input from "../../shared/UIElements/Input";
 
 import "./AuthPage.css";
 
-// const Input = ({ label, name, type, register, required, error }) => {
-//   return (
-//     <div className={"auth-form__input"}>
-//       <label htmlFor={name}>{label}</label>
-//       <input name={name} type={type} ref={register(required)} />
-//       {error && `${label} is required`}
-//     </div>
-//   );
-// };
-
 const AuthPage = () => {
-  let history = useHistory();
+  // let history = useHistory();
   const auth = useContext(AuthContext);
   const [loginMode, setloginMode] = useState(true);
   const { register, handleSubmit, errors, control, setValue } = useForm();
-  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const { isLoading, sendRequest } = useHttpClient();
+  // const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const handleChange = (event, image) => {
     console.log(event.target.files[0]);
