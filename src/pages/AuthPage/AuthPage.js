@@ -3,11 +3,12 @@ import { useForm, Controller } from "react-hook-form";
 // import { useHistory } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-import ImageUpload from "../../shared/ImageUpload";
-import Spinner from "../../shared/UIElements/Spinner";
-import Input from "../../shared/UIElements/Input";
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
+import Spinner from "../../shared/components/UIElements/Spinner";
+import Input from "../../shared/components/FormElements/Input";
 
 import "./AuthPage.css";
+// import Input from "../../shared/UIElements/Input";
 
 const AuthPage = () => {
   // let history = useHistory();

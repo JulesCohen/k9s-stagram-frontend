@@ -4,7 +4,7 @@ import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import { AuthContext } from "../../context/auth-context";
+import { AuthContext } from "../../../context/auth-context";
 const Navigation = () => {
   const auth = useContext(AuthContext);
 

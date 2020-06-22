@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import "./Posts.css";
-import Post from "./Post";
+import Post from "../../../shared/components/UIElements/Post";
 
-import { useHttpClient } from "../../shared/hooks/http-hook";
-import Spinner from "../../shared/UIElements/Spinner";
-import { AuthContext } from "../../shared/context/auth-context";
+import { useHttpClient } from "../../../shared/hooks/http-hook";
+import Spinner from "../../../shared/components/UIElements/Spinner";
+import { AuthContext } from "../../../shared/context/auth-context";
 
 const Posts = () => {
   const auth = useContext(AuthContext);

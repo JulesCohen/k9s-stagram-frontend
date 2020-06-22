@@ -3,9 +3,9 @@ import { useParams } from "react-router-dom";
 
 import { useHttpClient } from "../../shared/hooks/http-hook";
 
-import PhotoGrid from "../UserPage/PhotoGrid";
-import Spinner from "../../shared/UIElements/Spinner";
+import PhotoGrid from "../../shared/components/UIElements/PhotoGrid";
 
+import Spinner from "../../shared/components/UIElements/Spinner";
 const Explore = () => {
   const { type, query } = useParams();
   const [loadedPosts, setLoadedPosts] = useState();

@@ -4,10 +4,12 @@ import { useParams } from "react-router-dom";
 
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-import Spinner from "../../shared/UIElements/Spinner";
-import PhotoGrid from "./PhotoGrid";
-import UserInfos from "./UserInfos";
+import Spinner from "../../shared/components/UIElements/Spinner";
+
+import PhotoGrid from "../../shared/components/UIElements/PhotoGrid";
+import UserInfos from "./components/UserInfos";
 import "./UserPage.css";
+
 const UserPage = (props) => {
   const auth = useContext(AuthContext);
   const { uid } = useParams();

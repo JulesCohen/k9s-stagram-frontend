@@ -7,13 +7,14 @@ import {
 } from "react-router-dom";
 
 import Home from "./pages/Home/Home";
-import Header from "./shared/Header/Header";
+
+import Header from "./shared/components/Header/Header";
 import UserPage from "./pages/UserPage/UserPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import NewPost from "./pages/NewPost/NewPost";
 import Explore from "./pages/Explore/Explore";
+import BottomNav from "./shared/components/Header/BottomNavigation/BottomNav";
 
-import BottomNav from "./shared/Header/BottomNavigation/BottomNav";
 import { useAuth } from "./shared/hooks/auth-hook";
 import { AuthContext } from "./shared/context/auth-context";
 

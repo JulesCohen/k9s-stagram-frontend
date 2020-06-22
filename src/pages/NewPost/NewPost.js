@@ -3,13 +3,13 @@ import { useForm, Controller } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-import ImageUpload from "../../shared/ImageUpload";
-import Spinner from "../../shared/UIElements/Spinner";
+
+import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import "./NewPost.css";
 
 // import Autocomplete from "./Autocomplete";
-import Input from "../../shared/UIElements/Input";
-
+import Input from "../../shared/components/FormElements/Input";
+import Spinner from "../../shared/components/UIElements/Spinner";
 const NewPost = () => {
   let history = useHistory();
   const auth = useContext(AuthContext);

@@ -1,8 +1,3 @@
-// import React from "react";
-// import { IconContext } from "react-icons";
-
-// import "./Icons.css";
-
 import { library } from "@fortawesome/fontawesome-svg-core";
 
 // import your icons
@@ -23,8 +18,6 @@ import {
   faArrowUp,
   faCompass,
 } from "@fortawesome/free-solid-svg-icons";
-
-// import { faComment } from "@fortawesome/free-regular-svg-icons";
 
 library.add(
   faBell,
