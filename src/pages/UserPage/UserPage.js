@@ -19,38 +19,21 @@ const UserPage = (props) => {
   const [loadedPosts, setLoadedPosts] = useState();
   const { isLoading, sendRequest } = useHttpClient();
 
-  // const userId = useParams().userId;
-
   useEffect(() => {
-    const fetchInfos = async () => {
+    const fetchUser = async () => {
       try {
         const responseData = await sendRequest(
           `http://localhost:5000/api/users/${uid}`
         );
         setUserInfos(responseData.user);
+        setLoadedPosts(responseData.user.posts);
         console.log(responseData.user);
       } catch (error) {
         alert(error);
       }
     };
 
-    fetchInfos();
-  }, [sendRequest, uid]);
-
-  useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const responseData = await sendRequest(
-          `http://localhost:5000/api/posts/users/${uid}`
-        );
-        setLoadedPosts(responseData.posts);
-        console.log(responseData.posts);
-      } catch (error) {
-        alert(error);
-      }
-    };
-
-    fetchPosts();
+    fetchUser();
   }, [sendRequest, uid]);
 
   // const handleShowModal = (index) => {

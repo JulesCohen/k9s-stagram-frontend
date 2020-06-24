@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
+import Avatar from "../../../shared/components/UIElements/Avatar";
 
+import { AuthContext } from "../../../shared/context/auth-context";
+import "./UserInfos.css";
 const UserInfos = ({ userInfos, length }) => {
+  const auth = useContext(AuthContext);
+
   return (
     <div className="userpage__header">
-      <div className="avatar">
-        <div className="avatar-big">
-          <img
-            src={userInfos.image}
-            alt={`${userInfos.firstName} ${userInfos.lastName}`}
-          />
-        </div>
-      </div>
+      <Avatar size={"big"} img={userInfos.image} alt={userInfos.firstName} />
+
       <div className="userpage__header-content">
         <div className="userpage__header-content-user">
           <p>{userInfos.userName}</p>
-          <button>Profile settings</button>
+          {auth.userId === userInfos.id ? (
+            <button>Profile settings</button>
+          ) : (
+            <button>Follow</button>
+          )}
         </div>
         <div className="userpage__header-content-numbers">
           <p>

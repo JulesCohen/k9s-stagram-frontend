@@ -52,7 +52,7 @@ const Post = (props) => {
 
           <NavLink
             className="post-author__infos-name"
-            to={`/${props.id}/posts`}
+            to={`/${props.authorId}/posts`}
           >
             {props.name}
           </NavLink>
@@ -91,9 +91,6 @@ const Post = (props) => {
             {props.name}
           </NavLink>
 
-          {/* <p className="post-content__text-author" onClick={handleGoToUserPage}>
-            {props.name}
-          </p> */}
           <p className="post-content__text-message">
             <ReactHashtag
               renderHashtag={(hashtagValue) => (
