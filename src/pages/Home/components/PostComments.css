@@ -1,0 +1,65 @@
+.comments {
+  width: 100%;
+  padding: 1.5rem 0;
+  position: relative;
+}
+.comments__count {
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.comments__show {
+  cursor: pointer;
+  font-weight: 400;
+  margin-left: 1rem;
+}
+
+.comments__comment {
+  width: 100%;
+  display: flex;
+  padding: 1rem 0 0 0;
+  white-space: pre;
+  font-size: 1.5rem;
+}
+.comments__comment__author {
+  font-weight: 600;
+  margin: 0 2rem;
+}
+
+.comments__comment__delete {
+  background-color: transparent;
+  border: 0;
+  color: red;
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  /* align-self: flex-start; */
+}
+
+.comments__comment:hover .comments__comment__delete {
+  opacity: 1;
+}
+
+.comments__form {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.comments__form textarea {
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid black;
+  margin-right: 1.5rem;
+  width: 70%;
+  height: 3rem;
+  padding: 0.5rem 0.5rem;
+  font-size: 16px;
+  resize: none;
+  font-family: "Open-Sans", sans-serif;
+  overflow: hidden;
+}
+
+.comments__form button {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+}

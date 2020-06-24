@@ -1,0 +1,144 @@
+.post {
+  max-width: 60rem;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  margin-bottom: 5rem;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  border-radius: 6px;
+  padding-bottom: 2rem;
+  background: white;
+  display: flex;
+  flex-direction: column;
+
+  /* AUTHOR */
+}
+.post-author {
+  height: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-content: space-between;
+}
+.post-author__infos {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.post-author__infos-name,
+.post-author__infos-name:active,
+.post-author__infos-name:visited {
+  font-weight: 600;
+  font-size: 1.8rem;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.post-author__infos-location {
+  font-weight: 400;
+  font-size: 1.3rem;
+  color: #808080;
+}
+
+.post-photo {
+  width: 100%;
+  height: 70%;
+  margin-right: 1.5rem;
+}
+.post-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* CONTENT */
+
+.post-content {
+  padding: 0 1.5rem;
+}
+.post-content__icons {
+  padding: 1rem 0;
+  width: 15%;
+  display: flex;
+  /* justify-content: space-between; */
+}
+.post-content__icons-button {
+  display: flex;
+  align-items: center;
+  padding-right: 2rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.post-content__icons-button button {
+  border: 0;
+  outline: none;
+  background-color: white;
+}
+.post-content__icons-button :hover {
+  cursor: pointer;
+  transform: scale(1.02);
+}
+
+.post-content__text {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  margin-bottom: 2rem;
+}
+
+.post-content__text-author,
+.post-content__text-author:active,
+.post-content__text-author:visited {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.post-content__text-author:hover,
+.post-content-author__infos-name:hover {
+  transform: scale(1.05);
+}
+
+.post-content__text-message {
+  padding-left: 1.3rem;
+  font-size: 1.5rem;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.post-content__like p {
+  padding-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.post-content__date {
+  font-size: 1.4rem;
+  color: gray;
+}
+
+/* PHOTO */
+
+@media only screen and (max-width: 700px) {
+  .post {
+    margin-bottom: 1rem;
+    box-shadow: none;
+    border-radius: 0px;
+  }
+  .post-content__icons {
+    width: 25%;
+  }
+
+  .comment-form input {
+    width: 80%;
+    font-size: 16px;
+    word-break: break-all;
+  }
+}

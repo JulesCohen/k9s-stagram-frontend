@@ -1,25 +1,18 @@
 import React, { useState, useRef } from "react";
-import { useForm, Controller } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import TextareaAutosize from "react-textarea-autosize";
 import ReactHashtag from "react-hashtag";
 import PostComments from "./PostComments";
-import "./Post.scss";
+import Likes from "./Likes";
+
+import "./Post.css";
 
 const Post = (props) => {
   const textArea = useRef(null);
-  const { handleSubmit, reset, control } = useForm();
-  const [likeColor, setLikeColor] = useState("black");
+  const [likesCount, setLikesCount] = useState(props.post.likes.count);
 
-  const changeColor = () => {
-    if (likeColor === "red") {
-      setLikeColor("black");
-      props.onDislike(props.index);
-    } else {
-      setLikeColor("red");
-      props.onLike(props.index);
-    }
+  const handleLike = (count) => {
+    setLikesCount(count);
   };
 
   const handleGoToComment = () => {
@@ -30,34 +23,31 @@ const Post = (props) => {
     <div className="post">
       <div className="post-author">
         <div className="avatar-small">
-          <img src={props.avatar} alt={props.name} />
+          <img src={props.post.author.image} alt={props.post.author.userName} />
         </div>
         <div className="post-author__infos">
-          {/* <p className="post-author__infos-name">{props.name}</p> */}
-
           <NavLink
             className="post-author__infos-name"
-            to={`/${props.authorId}/posts`}
+            to={`/${props.post.author.id}/posts`}
           >
-            {props.name}
+            {props.post.author.userName}
           </NavLink>
 
-          <p className="post-author__infos-location">{props.location}</p>
+          <p className="post-author__infos-location">{props.post.location}</p>
         </div>
       </div>
-      <div className="post-photo" onDoubleClick={changeColor}>
-        <img src={props.image} alt="dog"></img>
+      {/* <div className="post-photo" onDoubleClick={changeColor}> */}
+      <div className="post-photo">
+        <img src={props.post.image} alt="dog"></img>
       </div>
       <div className="post-content">
         <div className="post-content__icons">
           <div className="post-content__icons-button">
-            <button onClick={changeColor}>
-              <FontAwesomeIcon
-                icon={["fas", "bone"]}
-                style={{ color: likeColor }}
-                size="2x"
-              />
-            </button>
+            <Likes
+              likes={props.post.likes}
+              postId={props.post.id}
+              handleLike={handleLike}
+            />
           </div>
           <div className="post-content__icons-button">
             <button onClick={handleGoToComment} className="icon_style">
@@ -66,14 +56,14 @@ const Post = (props) => {
           </div>
         </div>
         <div className="post-content__like">
-          <p>{props.likes.count} Bones </p>
+          <p>{likesCount} Bones </p>
         </div>
         <div className="post-content__text">
           <NavLink
             className="post-content__text-author"
-            to={`/${props.authorId}/posts`}
+            to={`/${props.post.author.id}/posts`}
           >
-            {props.name}
+            {props.post.author.userName}
           </NavLink>
 
           <p className="post-content__text-message">
@@ -87,20 +77,20 @@ const Post = (props) => {
                 </NavLink>
               )}
             >
-              {props.text}
+              {props.post.description}
             </ReactHashtag>
           </p>
         </div>
         <hr />
         <PostComments
-          comments={props.comments}
+          comments={props.post.comments}
           refTA={textArea}
-          // onComment={props.onComment}
-          index={props.index}
-          postId={props.postId}
+          // onComment={props.post.onComment}
+          index={props.post.index}
+          postId={props.post.id}
         />
         <div className="post-content__date">
-          <p>{props.date}</p>
+          <p>{props.post.date}</p>
         </div>
       </div>
     </div>

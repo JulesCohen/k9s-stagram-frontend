@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import { AuthContext } from "../../../shared/context/auth-context";
 import TextareaAutosize from "react-textarea-autosize";
-import "./PostComments.scss";
+import "./PostComments.css";
 import Spinner from "../../../shared/components/UIElements/Spinner";
 
 const PostComments = (props) => {
@@ -31,22 +31,39 @@ const PostComments = (props) => {
           "Content-Type": "application/json",
         }
       );
-
-      console.log(res.comment);
-
       let updatedComments = [...comments];
       updatedComments.push(res.comment);
-
       setcomments(updatedComments);
       reset();
     } catch (err) {
       alert(err);
     }
-
     if (showComment === false) {
       handleShowComment();
     }
     console.log(data);
+  };
+
+  const onCommentDelete = async (commentId) => {
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/posts/${props.postId}/comments`,
+        "DELETE",
+        JSON.stringify({
+          commentId: commentId,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+      let updatedComments = [...comments];
+      updatedComments = updatedComments.filter(
+        (comment) => comment.id !== commentId
+      );
+      setcomments(updatedComments);
+    } catch (err) {
+      alert(err);
+    }
   };
 
   return (
@@ -80,7 +97,10 @@ const PostComments = (props) => {
           return (
             <div className="comments__comment" key={Math.random()}>
               {auth.userId === comment.author.id && (
-                <button className="comments__comment__delete">
+                <button
+                  className="comments__comment__delete"
+                  onClick={() => onCommentDelete(comment.id)}
+                >
                   <FontAwesomeIcon icon={["fas", "trash-alt"]} />
                 </button>
               )}

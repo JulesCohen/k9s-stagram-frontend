@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
-import "./Posts.css";
-import Post from "./Post";
-
+import React, { useState, useEffect } from "react";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
+import Post from "./Post";
 import Spinner from "../../../shared/components/UIElements/Spinner";
-import { AuthContext } from "../../../shared/context/auth-context";
+import "./Posts.css";
 
 const Posts = () => {
-  const auth = useContext(AuthContext);
-  // const [userInfos, setUserInfos] = useState();
   const [loadedPosts, setLoadedPosts] = useState();
   const { isLoading, sendRequest } = useHttpClient();
 
@@ -36,31 +32,6 @@ const Posts = () => {
     setLoadedPosts(updatedPosts);
   };
 
-  // const handleComment = async (index, comment) => {
-  //   try {
-  //     const formData = new FormData();
-
-  //     // console.log(formData);
-
-  //     formData.append("userId", auth.userId);
-  //     formData.append("comment", comment);
-
-  //     const res = await sendRequest(
-  //       `http://localhost:5000/api/posts/${loadedPosts[index].id}/comments`,
-  //       "POST",
-  //       formData
-  //     );
-
-  //     let updatedPosts = [...loadedPosts];
-  //     let updatedComments = updatedPosts[index].comments;
-  //     updatedComments.push(res.comment);
-  //     updatedPosts.comments = updatedComments;
-  //     setLoadedPosts(updatedPosts);
-  //   } catch (err) {
-  //     alert(err);
-  //   }
-  // };
-
   return (
     <div className="posts">
       {isLoading && <Spinner asOverlay />}
@@ -70,21 +41,9 @@ const Posts = () => {
           return (
             <Post
               key={post.id}
-              postId={post.id}
-              authorId={post.author.id}
-              index={index}
-              name={post.author.userName}
-              avatar={post.author.image}
-              location={post.location}
-              image={post.image}
-              likes={post.likes}
-              text={post.description}
-              // hashtags={post.hashtags}
-              date={post.date}
-              comments={post.comments}
+              post={post}
               onLike={handleLike}
               onDislike={handleDislike}
-              // onComment={handleComment}
             />
           );
         })}
