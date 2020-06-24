@@ -1,16 +1,16 @@
 import React, { useState, useRef } from "react";
 import { useForm, Controller } from "react-hook-form";
-import "./Post.css";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import TextareaAutosize from "react-textarea-autosize";
 import ReactHashtag from "react-hashtag";
+import PostComments from "./PostComments";
+import "./Post.scss";
 
 const Post = (props) => {
   const textArea = useRef(null);
   const { handleSubmit, reset, control } = useForm();
   const [likeColor, setLikeColor] = useState("black");
-  const [showComment, setshowComment] = useState(false);
 
   const changeColor = () => {
     if (likeColor === "red") {
@@ -25,21 +25,6 @@ const Post = (props) => {
   const handleGoToComment = () => {
     textArea.current.focus();
   };
-
-  const handleShowComment = () => {
-    setshowComment(!showComment);
-  };
-
-  const onSubmit = (data) => {
-    props.onComment(props.index, data.comment);
-    reset();
-    if (showComment === false) {
-      handleShowComment();
-    }
-    console.log(data);
-  };
-
-  const handleHoverComment = () => {};
 
   return (
     <div className="post">
@@ -86,7 +71,7 @@ const Post = (props) => {
         <div className="post-content__text">
           <NavLink
             className="post-content__text-author"
-            to={`/${props.id}/posts`}
+            to={`/${props.authorId}/posts`}
           >
             {props.name}
           </NavLink>
@@ -107,73 +92,13 @@ const Post = (props) => {
           </p>
         </div>
         <hr />
-        <div className="post-comments">
-          <div className="post-comments-count">
-            <p>
-              Comments ({props.comments.length})
-              {props.comments.length > 0 && (
-                <span
-                  className="post-comments-show"
-                  onClick={handleShowComment}
-                >
-                  {showComment ? "See less.." : "See more.."}
-                  {showComment ? (
-                    <FontAwesomeIcon
-                      icon={["fas", "arrow-up"]}
-                      style={{ color: "black" }}
-                      size="sm"
-                    />
-                  ) : (
-                    <FontAwesomeIcon
-                      icon={["fas", "arrow-down"]}
-                      style={{ color: "black" }}
-                      size="sm"
-                    />
-                  )}
-                </span>
-              )}
-            </p>
-          </div>
-
-          {showComment &&
-            props.comments.map((comment) => {
-              return (
-                <div
-                  className="post-comment"
-                  key={Math.random()}
-                  onMouseEnter={handleHoverComment}
-                >
-                  <p className="post-content__text-author">{comment.author}</p>
-                  <p className="post-content__text-message">
-                    {comment.comment}
-                  </p>
-                </div>
-              );
-            })}
-
-          <form onSubmit={handleSubmit(onSubmit)} className={"comment-form"}>
-            <Controller
-              as={
-                <TextareaAutosize
-                  placeholder="Please leave a comment..."
-                  ref={textArea}
-                />
-              }
-              control={control}
-              rules={{ required: true }}
-              name="comment"
-              defaultValue=""
-            />
-
-            <button>
-              <FontAwesomeIcon
-                icon={["fas", "paper-plane"]}
-                style={{ color: "black" }}
-                size="lg"
-              />
-            </button>
-          </form>
-        </div>
+        <PostComments
+          comments={props.comments}
+          refTA={textArea}
+          // onComment={props.onComment}
+          index={props.index}
+          postId={props.postId}
+        />
         <div className="post-content__date">
           <p>{props.date}</p>
         </div>

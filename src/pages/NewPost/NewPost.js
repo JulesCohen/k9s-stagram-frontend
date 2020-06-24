@@ -28,7 +28,7 @@ const NewPost = () => {
     try {
       const formData = new FormData();
 
-      console.log(formData);
+      // console.log(formData);
 
       formData.append("userId", auth.userId);
       formData.append("location", data.location);
