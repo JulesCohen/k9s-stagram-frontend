@@ -2,6 +2,8 @@ import React, { useRef, useState, useEffect } from "react";
 
 import "./ImageUpload.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Button from "./Button";
+import Avatar from "../UIElements/Avatar";
 const ImageUpload = (props) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
@@ -45,20 +47,20 @@ const ImageUpload = (props) => {
 
       <div className="image-upload">
         <div className={props.styles}>
-          {previewUrl && <img src={previewUrl} alt="Preview" />}
+          {previewUrl && props.square && <img src={previewUrl} alt="Preview" />}
+          {previewUrl && !props.square && (
+            <Avatar img={previewUrl} alt="Preview" size="big" />
+          )}
 
           {!previewUrl && !props.error && (
             <FontAwesomeIcon icon={["fas", "camera"]} size="5x" />
           )}
           {!previewUrl && props.error && "Image is required"}
         </div>
-        <button
-          type="button"
-          onClick={pickImageHandler}
-          className="button-pick"
-        >
+
+        <Button type="button" onClick={pickImageHandler} size="big">
           PICK IMAGE
-        </button>
+        </Button>
       </div>
     </div>
   );

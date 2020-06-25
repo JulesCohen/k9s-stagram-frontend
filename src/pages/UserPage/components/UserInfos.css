@@ -1,12 +1,19 @@
 .userpage__header {
   width: 95rem;
-
+  color: var(--text-color-1);
   display: flex;
   padding-bottom: 10rem;
 }
 
+.userpage__header-avatar {
+  /* padding-left: 2rem; */
+  /* width: 33%; */
+  flex: 1;
+}
 .userpage__header-content {
-  padding-left: 2rem;
+  /* padding-left: 2rem; */
+  /* width: 66%; */
+  flex: 2;
 }
 .userpage__header-content-user {
   height: 4rem;
@@ -23,7 +30,7 @@
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
-  background-color: tomato;
+  background-color: var(--color-primary);
   color: white;
   font-weight: 600;
   font-size: 1.8rem;

@@ -14,12 +14,19 @@ import AuthPage from "./pages/AuthPage/AuthPage";
 import NewPost from "./pages/NewPost/NewPost";
 import Explore from "./pages/Explore/Explore";
 import BottomNav from "./shared/components/Header/BottomNavigation/BottomNav";
+import SwitchMode from "./shared/components/UIElements/SwitchMode";
 
 import { useAuth } from "./shared/hooks/auth-hook";
 import { AuthContext } from "./shared/context/auth-context";
+import { Mode, useLightSwitch } from "use-light-switch";
 
+import "./App.css";
 const App = () => {
+  const mode = useLightSwitch();
   const { token, login, logout, userId } = useAuth();
+
+  document.getElementsByTagName("body")[0].style.backgroundColor =
+    mode === Mode.Dark ? "rgb(34, 34, 34)" : "rgb(250, 250, 250)";
 
   let routes;
 
@@ -66,9 +73,16 @@ const App = () => {
       }}
     >
       <Router>
-        <Header />
-        <main>{routes}</main>
-        <BottomNav />
+        <div
+          className={mode === Mode.Dark ? "dark-theme" : "light-theme"}
+          id="app"
+        >
+          <SwitchMode />
+
+          <Header />
+          <main>{routes}</main>
+          <BottomNav />
+        </div>
       </Router>
     </AuthContext.Provider>
   );

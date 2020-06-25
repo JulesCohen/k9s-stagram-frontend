@@ -6,6 +6,7 @@ import { AuthContext } from "../../shared/context/auth-context";
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import Spinner from "../../shared/components/UIElements/Spinner";
 import Input from "../../shared/components/FormElements/Input";
+import Button from "../../shared/components/FormElements/Button";
 
 import "./AuthPage.css";
 // import Input from "../../shared/UIElements/Input";
@@ -74,6 +75,8 @@ const AuthPage = () => {
   return (
     <div className={"auth"}>
       {isLoading && <Spinner asOverlay />}
+
+      <div className="auth__header">{loginMode ? "LOGIN" : "SIGNUP"}</div>
       <form onSubmit={handleSubmit(onSubmit)} className={"auth-form"}>
         <div className="auth-form__signin">
           {!loginMode && (
@@ -141,22 +144,20 @@ const AuthPage = () => {
           error={errors.password}
         />
 
-        <button className={"auth-form__submit"}>
-          {loginMode ? "LOGIN" : "SIGNUP"}
-        </button>
+        <Button size="big">{loginMode ? "LOGIN" : "SIGNUP"}</Button>
 
         {loginMode ? (
           <p>
             You don't have an account? Please{" "}
             <span onClick={switchMode} className={"signupSwitch"}>
-              Sign Up.
+              SIGNUP.
             </span>
           </p>
         ) : (
           <p>
             Already have an account? Please{" "}
             <span onClick={switchMode} className={"signupSwitch"}>
-              Log in.
+              LOGIN.
             </span>
           </p>
         )}

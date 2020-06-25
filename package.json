@@ -23,7 +23,8 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-textarea-autosize": "^8.0.1",
-    "react-transition-group": "^4.4.1"
+    "react-transition-group": "^4.4.1",
+    "use-light-switch": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",

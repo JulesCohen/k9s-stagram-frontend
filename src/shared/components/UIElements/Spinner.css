@@ -4,7 +4,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--bg--spinner);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,10 +24,10 @@
   width: 64px;
   height: 64px;
   margin: 8px;
-  border: 8px solid tomato;
+  border: 8px solid var(--color-primary);
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: tomato transparent transparent transparent;
+  border-color: var(--color-primary) transparent transparent transparent;
 }
 .lds-ring div:nth-child(1) {
   animation-delay: -0.45s;

@@ -34,7 +34,7 @@ const Like = (props) => {
     <button onClick={onLike}>
       <FontAwesomeIcon
         icon={["fas", "bone"]}
-        style={{ color: isLike ? "red" : "black" }}
+        style={{ color: isLike ? "red" : "inherit" }}
         size="2x"
       />
     </button>

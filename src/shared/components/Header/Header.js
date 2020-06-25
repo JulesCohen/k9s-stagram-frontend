@@ -13,8 +13,8 @@ const Header = () => {
       <div className="header__title">
         <FontAwesomeIcon
           icon={["fas", "paw"]}
-          style={{ color: "black" }}
-          size="6x"
+          // style={{ color: "black" }}
+          // size="6x"
         />
         <div className="header__title-text">
           <p className="header__title-text-main ">K9'STAGRAM </p>
@@ -26,7 +26,7 @@ const Header = () => {
           <FontAwesomeIcon
             icon={["fas", "search"]}
             // style={{ color: "white" }}
-            size="2x"
+            // size="2x"
           />
         </div>
         <input type="text" placeholder="Search..."></input>

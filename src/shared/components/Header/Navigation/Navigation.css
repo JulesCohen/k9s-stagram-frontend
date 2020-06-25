@@ -6,24 +6,11 @@
   align-content: center;
 }
 
-.info {
-  visibility: hidden;
-  background-color: black;
-  color: white;
-  font-weight: 400;
-  padding: 0.5rem 0.5rem;
-  /* margin-top: 0.5rem; */
-  border-radius: 10px;
-  position: absolute;
-  top: 150%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .navigation__logout {
   width: 3.5rem;
   border: 0;
   outline: none;
+  color: var(--text-color-1);
   background-color: transparent;
   font-size: 0.9rem;
   transition: all 0.2s ease-in-out;
@@ -34,7 +21,7 @@
   width: 3.5rem;
   border: 0;
   outline: none;
-  color: black;
+  color: var(--text-color-1);
   text-decoration: none;
   background-color: transparent;
   font-size: 0.9rem;
@@ -48,12 +35,24 @@
 .navigation a.active,
 .navigation__logout:hover {
   transform: scale(1.4);
-  color: tomato;
+  color: var(--color-primary);
 }
 
-.navigation a:hover .info,
-.navigation a:active .info,
-.navigation__logout:hover .info {
+.tooltip {
+  visibility: hidden;
+  background-color: var(--text-color-1);
+  color: var(--text-color-2);
+  font-weight: 400;
+  padding: 0.5rem 0.5rem;
+  border-radius: 10px;
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navigation a:hover .tooltip,
+.navigation a:active .tooltip,
+.navigation__logout:hover .tooltip {
   visibility: visible;
 }
 
@@ -126,6 +125,10 @@
   }
 
   .navigation__auth {
+    display: none;
+  }
+
+  .tooltip {
     display: none;
   }
 }

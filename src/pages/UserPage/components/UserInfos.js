@@ -8,7 +8,9 @@ const UserInfos = ({ userInfos, length }) => {
 
   return (
     <div className="userpage__header">
-      <Avatar size={"big"} img={userInfos.image} alt={userInfos.firstName} />
+      <div className="userpage__header-avatar">
+        <Avatar size={"big"} img={userInfos.image} alt={userInfos.firstName} />
+      </div>
 
       <div className="userpage__header-content">
         <div className="userpage__header-content-user">

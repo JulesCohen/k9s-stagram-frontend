@@ -5,6 +5,7 @@ import ReactHashtag from "react-hashtag";
 import PostComments from "./PostComments";
 import Likes from "./Likes";
 
+import Avatar from "../../../shared/components/UIElements/Avatar";
 import "./Post.css";
 
 const Post = (props) => {
@@ -22,9 +23,12 @@ const Post = (props) => {
   return (
     <div className="post">
       <div className="post-author">
-        <div className="avatar-small">
-          <img src={props.post.author.image} alt={props.post.author.userName} />
-        </div>
+        <Avatar
+          size="small"
+          img={props.post.author.image}
+          alt={props.post.author.userName}
+        />
+
         <div className="post-author__infos">
           <NavLink
             className="post-author__infos-name"

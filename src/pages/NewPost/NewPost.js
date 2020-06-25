@@ -3,13 +3,15 @@ import { useForm, Controller } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
-
+import Input from "../../shared/components/FormElements/Input";
+import Spinner from "../../shared/components/UIElements/Spinner";
+import Button from "../../shared/components/FormElements/Button";
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
+import TextareaAutosize from "react-textarea-autosize";
+
 import "./NewPost.css";
 
 // import Autocomplete from "./Autocomplete";
-import Input from "../../shared/components/FormElements/Input";
-import Spinner from "../../shared/components/UIElements/Spinner";
 const NewPost = () => {
   let history = useHistory();
   const auth = useContext(AuthContext);
@@ -50,6 +52,7 @@ const NewPost = () => {
             <ImageUpload
               styles={"image-upload__preview-square"}
               error={errors.image}
+              square
             />
           }
           name={"image"}
@@ -83,16 +86,45 @@ const NewPost = () => {
             error={errors.description}
           />
 
-          <Input
+          {/* <Input
             name={"description"}
             label={"Description"}
             type={"text"}
             register={register}
             required={{ required: true, minLength: 2 }}
             error={errors.description}
-          />
+          /> */}
 
-          <button className={""}>Post</button>
+          <div className="text-area">
+            <p>Description</p>
+            <TextareaAutosize
+              name={"description"}
+              label={"Description"}
+              // type={"text"}
+              ref={register({ required: true, minLength: 2 })}
+            />
+            {errors.description && "Description is required"}
+          </div>
+
+          {/* <Controller
+            as={
+              <TextareaAutosize
+                // placeholder="Please leave a comment..."
+                // ref={props.refTA}
+                label={"test"}
+              />
+            }
+            control={control}
+            rules={{ required: true }}
+            name="description"
+            defaultValue=""
+          /> */}
+          {/* {errors.description && "Description is required"} */}
+
+          <Button size="big" type="submit">
+            POST
+          </Button>
+          {/* <button className={""}>Post</button> */}
         </div>
       </form>
     </div>

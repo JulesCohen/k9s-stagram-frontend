@@ -130,11 +130,7 @@ const PostComments = (props) => {
           <Spinner asOverlay />
         ) : (
           <button>
-            <FontAwesomeIcon
-              icon={["fas", "paper-plane"]}
-              style={{ color: "black" }}
-              size="lg"
-            />
+            <FontAwesomeIcon icon={["fas", "paper-plane"]} size="lg" />
           </button>
         )}
       </form>

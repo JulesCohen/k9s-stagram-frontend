@@ -1,11 +1,25 @@
-.light-theme {
-  --text-color-primary: black;
-  --text-color-secondary: black;
+/* .light-theme {
+  --color-primary: rgb(94, 170, 224);
+  --color-primary-dark-1: rgb(64, 116, 153);
+  --color-primary-dark-2: rgb(43, 78, 104);
 
-  --primary-color: #007bff;
-  --disabled-color: #6c757d;
+  --text-color-1: black;
+  --text-color-2: white;
+
+  --bg-main:
+  --bg-color-1: white;
+  --bg-color-transparent-1: rgba(255, 255, 255, 0.8);
+  --bg-color-transparent-2: rgba(64, 116, 153, 0.8);
 }
 .dark-theme {
-  --primary-color: #000000;
-  --disabled-color: #4a4a4b;
-}
+  --color-primary: rgb(94, 170, 224);
+  --color-primary-dark-1: rgb(64, 116, 153);
+  --color-primary-dark-2: rgb(43, 78, 104);
+
+  --text-color-1: black;
+  --text-color-2: white;
+
+  --bg-color-1: black;
+  --bg-color-transparent-1: rgba(0, 0, 0, 0.8);
+  --bg-color-transparent-2: rgba(64, 116, 153, 0.8);
+} */

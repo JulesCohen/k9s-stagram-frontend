@@ -1,10 +1,39 @@
 .auth {
+  height: calc(100vh - 6rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.52),
+      rgba(43, 78, 104, 0.73)
+    ),
+    url("../../assets/signupBG.jpg");
+
+  /* background-image: url("../../assets/signupBG.jpg"); */
+  background-size: cover;
+  background-position: center;
+}
+
+.auth__header {
+  height: 5rem;
+  width: 52rem;
+  color: white;
+  background-color: var(--bg-color-transparent-2);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  font-size: 1.5rem;
+  font-weight: 500;
   display: flex;
   justify-content: center;
-  margin: 15rem 0;
+  align-items: center;
 }
 
 .auth-form__signin {
+  width: 100%;
   display: flex;
   justify-content: space-between;
 }
@@ -17,14 +46,18 @@
 }
 
 .auth-form {
-  background-color: white;
+  background-color: var(--bg-color-transparent-1);
   border-radius: 10px;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   padding: 2rem;
+
   min-height: 40rem;
   width: 52rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .auth-form__submit {
@@ -34,19 +67,29 @@
   font-size: 1.8rem;
   outline: none;
   border-radius: 20px;
-  background-color: tomato;
+  background-color: var(--primary-color);
   color: white;
   margin-top: 3rem;
 }
 
 .auth p {
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding-top: 4rem;
+  color: var(--text-color-1);
 }
 
 .signupSwitch {
-  color: tomato;
+  display: inline-block;
+  padding-left: 0.5rem;
+  color: var(--color-primary-dark-1);
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.signupSwitch:hover {
+  color: var(--color-primary);
+  transform: scale(1.1);
 }
 
 @media only screen and (max-width: 600px) {
