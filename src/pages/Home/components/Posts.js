@@ -21,6 +21,17 @@ const Posts = () => {
     fetchPosts();
   }, [sendRequest]);
 
+  // useEffect(() => {
+  //   console.log("USE EFFECT");
+  //   var pusher = new Pusher("c65d3bc16b3b7905efb1", {
+  //     cluster: "us2",
+  //   });
+  //   var channel = pusher.subscribe("user");
+  //   channel.bind("notification", function (data) {
+  //     alert("Notification: " + data.message);
+  //   });
+  // });
+
   const handleLike = (index) => {
     let updatedPosts = [...loadedPosts];
     updatedPosts[index].likes += 1;

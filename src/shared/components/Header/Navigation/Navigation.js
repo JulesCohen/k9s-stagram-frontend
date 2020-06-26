@@ -3,8 +3,9 @@ import React, { useContext } from "react";
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { AuthContext } from "../../../context/auth-context";
+import Notifications from "../Notifications";
+
 const Navigation = () => {
   const auth = useContext(AuthContext);
 
@@ -31,13 +32,7 @@ const Navigation = () => {
           <span className="tooltip">Post</span>
         </NavLink>
       )}
-      {auth.isLoggedIn && (
-        <NavLink to="/notification" className="notification-icon">
-          <div className={"notification-icon__badge"}>6</div>
-          <FontAwesomeIcon icon={["fas", "bell"]} size="3x" />
-          <span className="tooltip">Notifications</span>
-        </NavLink>
-      )}
+      {auth.isLoggedIn && <Notifications />}
       {auth.isLoggedIn && (
         <NavLink to={`/${auth.userId}/posts`}>
           <FontAwesomeIcon icon={["fas", "user"]} size="3x" />

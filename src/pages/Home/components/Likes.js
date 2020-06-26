@@ -5,7 +5,7 @@ import { AuthContext } from "../../../shared/context/auth-context";
 
 const Like = (props) => {
   const auth = useContext(AuthContext);
-  const { isLoading, sendRequest } = useHttpClient();
+  const { sendRequest } = useHttpClient();
   const [isLike, setIsLike] = useState(props.likes.users.includes(auth.userId));
 
   const onLike = async () => {
@@ -17,7 +17,7 @@ const Like = (props) => {
         "PATCH",
         JSON.stringify({
           likeAction: isLike ? "sub" : "add",
-          user: auth.userId,
+          userId: auth.userId,
         }),
         {
           "Content-Type": "application/json",

@@ -1,0 +1,18 @@
+.div-toast {
+  width: 100%;
+  color: white;
+  font-family: "Open-Sans", sans-serif;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.div-toast p {
+  font-weight: 500;
+}
+.div-toast img {
+  margin-right: 1rem;
+  width: 30%;
+  border: 1px solid var(--color-primary-dark-2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}

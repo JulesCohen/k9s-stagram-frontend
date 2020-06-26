@@ -1,11 +1,16 @@
-import { useState, useCallback, useEffect } from "react";
-
+import { useState, useCallback, useEffect, useRef } from "react";
+// import { usePusher } from "./pusher-hook";
+import Pusher from "pusher-js";
 let logoutTimer;
+// let pusher;
 
 export const useAuth = () => {
   const [token, setToken] = useState(null);
   const [userId, setUserId] = useState(false);
   const [tokenExpirationDate, setTokenExpirationDate] = useState();
+  const [notification, setnotification] = useState();
+
+  const ref = useRef();
 
   const login = useCallback((uid, token, expirationDate) => {
     setToken(token);
@@ -21,9 +26,31 @@ export const useAuth = () => {
         expiration: tokenExpirationDate.toISOString(),
       })
     );
+
+    console.log("LOGIN");
+
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher("c65d3bc16b3b7905efb1", {
+      cluster: "us2",
+      encrypted: true,
+    });
+
+    console.log(`user${uid}`);
+    var channel = pusher.subscribe(`user${uid}`);
+
+    channel.bind("notification", function (data) {
+      // console.log(data);
+      setnotification(data);
+      // setTimeout(setnotification(null), 1000);
+    });
+
+    ref.current = pusher;
   }, []);
 
   const logout = useCallback(() => {
+    ref.current.disconnect();
+    localStorage.removeItem("pusherTransportTLS");
     setToken(null);
     setTokenExpirationDate(null);
     setUserId(null);
@@ -54,5 +81,5 @@ export const useAuth = () => {
     }
   }, [login]);
 
-  return { token, login, logout, userId };
+  return { token, login, logout, userId, notification };
 };
