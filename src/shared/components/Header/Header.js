@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
 import Navigation from "./Navigation/Navigation";
 import NotifToast from "./NotifToast";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,9 +8,7 @@ import { AuthContext } from "../../context/auth-context";
 
 const Header = () => {
   const auth = useContext(AuthContext);
-  useEffect(() => {
-    console.log("HEADER RENDER");
-  }, []);
+
   return (
     <div className="header">
       <div className="header__title">

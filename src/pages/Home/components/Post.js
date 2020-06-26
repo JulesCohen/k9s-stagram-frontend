@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ReactHashtag from "react-hashtag";
+// import ReactHashtag from "react-hashtag";
 import PostComments from "./PostComments";
 import Likes from "./Likes";
 
@@ -71,7 +71,7 @@ const Post = (props) => {
           </NavLink>
 
           <p className="post-content__text-message">
-            <ReactHashtag
+            {/* <ReactHashtag
               renderHashtag={(hashtagValue) => (
                 <NavLink
                   to={`/explore/hashtag/${hashtagValue.substring(1)}`}
@@ -82,7 +82,8 @@ const Post = (props) => {
               )}
             >
               {props.post.description}
-            </ReactHashtag>
+            </ReactHashtag> */}
+            {props.post.description}
           </p>
         </div>
         <hr />

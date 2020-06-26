@@ -27,22 +27,17 @@ export const useAuth = () => {
       })
     );
 
-    console.log("LOGIN");
-
-    Pusher.logToConsole = true;
+    // Pusher.logToConsole = true;
 
     var pusher = new Pusher("c65d3bc16b3b7905efb1", {
       cluster: "us2",
       encrypted: true,
     });
 
-    console.log(`user${uid}`);
     var channel = pusher.subscribe(`user${uid}`);
 
     channel.bind("notification", function (data) {
-      // console.log(data);
       setnotification(data);
-      // setTimeout(setnotification(null), 1000);
     });
 
     ref.current = pusher;

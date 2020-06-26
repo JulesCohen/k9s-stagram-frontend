@@ -23,7 +23,6 @@ const Like = (props) => {
           "Content-Type": "application/json",
         }
       );
-      console.log(res.count);
       setIsLike(!isLike);
       props.handleLike(res.count);
     } catch (err) {
