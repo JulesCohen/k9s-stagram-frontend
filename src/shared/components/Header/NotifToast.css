@@ -1,3 +1,9 @@
+.Toastify {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .div-toast {
   width: 100%;
   color: white;

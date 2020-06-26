@@ -12,7 +12,9 @@ const Header = () => {
   return (
     <div className="header">
       <div className="header__title">
-        <FontAwesomeIcon icon={["fas", "paw"]} />
+        <div className="header__title-logo">
+          <FontAwesomeIcon icon={["fas", "paw"]} />
+        </div>
         <div className="header__title-text">
           <p className="header__title-text-main ">K9'STAGRAM </p>
           <p className="header__title-text-sub ">UNLEASH YOUR PICTURES!</p>
@@ -24,11 +26,11 @@ const Header = () => {
         </div>
         <input type="text" placeholder="Search..."></input>
       </div>
-      <div className="top-nav">
-        <Navigation />
-      </div>
+      {/* <div className="top-nav"> */}
+      <Navigation />
+      {/* </div> */}
 
-      {auth.isLoggedIn && auth.notification && <NotifToast />}
+      {/* {auth.isLoggedIn && auth.userId && <NotifToast userId={auth.userId} />} */}
     </div>
   );
 };

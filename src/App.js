@@ -23,7 +23,7 @@ import { Mode, useLightSwitch } from "use-light-switch";
 import "./App.css";
 const App = () => {
   const mode = useLightSwitch();
-  const { token, login, logout, userId, notification } = useAuth();
+  const { token, login, logout, userId } = useAuth();
 
   document.getElementsByTagName("body")[0].style.backgroundColor =
     mode === Mode.Dark ? "rgb(34, 34, 34)" : "rgb(250, 250, 250)";
@@ -70,7 +70,6 @@ const App = () => {
         isLoggedIn: !!token,
         token: token,
         userId: userId,
-        notification: notification,
         login: login,
         logout: logout,
       }}
@@ -84,7 +83,7 @@ const App = () => {
 
           <Header />
           <main>{routes}</main>
-          <BottomNav />
+          {/* <BottomNav /> */}
         </div>
       </Router>
     </AuthContext.Provider>

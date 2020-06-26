@@ -1,8 +1,8 @@
-import React, { useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import { AuthContext } from "../../context/auth-context";
-import "react-toastify/dist/ReactToastify.css";
+import Pusher from "pusher-js";
 
+import "react-toastify/dist/ReactToastify.css";
 import "./NotifToast.css";
 
 const DisplayToast = (props) => {
@@ -14,32 +14,39 @@ const DisplayToast = (props) => {
   );
 };
 
-const NotifToast = () => {
-  const auth = useContext(AuthContext);
+const NotifToast = (props) => {
+  const [count, setcount] = useState(0);
+  console.log("TOAST");
 
   useEffect(() => {
-    console.log(auth.notification.message);
+    console.log("TOAST EFFECT");
 
-    const notify = () => {
-      toast.info(
-        // auth.notification,
-        <DisplayToast
-          message={auth.notification.message}
-          image={auth.notification.image}
-        />,
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        }
-      );
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher("c65d3bc16b3b7905efb1", {
+      cluster: "us2",
+      encrypted: true,
+    });
+
+    var channel = pusher.subscribe(`user${props.userId}`);
+    channel.bind("notification", function (data) {
+      console.log(data);
+      toast.info(<DisplayToast message={data.message} image={data.image} />, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    });
+    return () => {
+      console.log("disconnect");
+      pusher.disconnect();
     };
-    notify();
-  }, [auth.notification]);
+  }, [props.userId]);
+
   return <ToastContainer style={{ fontSize: "1.6rem", color: "black" }} />;
 };
 
