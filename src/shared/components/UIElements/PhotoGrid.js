@@ -1,16 +1,16 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
+import "./PhotoGrid.css";
 const PhotoGrid = (props) => {
   return (
-    <div className="userpage__grid">
+    <div className="photoGrid">
       {props.posts.map((post, index) => (
-        <div className="userpage__grid-post" key={index}>
+        <div className="photoGrid__post" key={index}>
           <div
-            className="post-overlay"
+            className="postOverlay"
             onClick={() => props.handleDelete(post.id)}
           >
-            <div className="post-overlay-content">
+            <div className="postOverlay__content">
               <p>{post.likes.count}</p>
               <FontAwesomeIcon
                 icon={["fas", "bone"]}
@@ -18,7 +18,7 @@ const PhotoGrid = (props) => {
                 size="1x"
               />
             </div>
-            <div className="post-overlay-content">
+            <div className="postOverlay__content">
               <p>{post.comments.length} </p>
               <FontAwesomeIcon
                 icon={["fas", "comment"]}

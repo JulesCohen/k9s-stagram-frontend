@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Pusher from "pusher-js";
 
@@ -7,20 +7,22 @@ import "./NotifToast.css";
 
 const DisplayToast = (props) => {
   return (
-    <div className="div-toast">
-      <img src={props.image} alt="toast"></img>
-      <p>{props.message}</p>
+    <div className="toast">
+      <img className="toast__img" src={props.image} alt="toast"></img>
+      <p className="toast_msg">{props.message}</p>
     </div>
   );
 };
 
-const NotifToast = (props) => {
-  const [count, setcount] = useState(0);
-  console.log("TOAST");
+const NotifToast = ({ userId, handleNotification }) => {
+  const notif = () => {
+    handleNotification();
+  };
+
+  const refNotif = useRef();
+  refNotif.current = notif;
 
   useEffect(() => {
-    console.log("TOAST EFFECT");
-
     Pusher.logToConsole = true;
 
     var pusher = new Pusher("c65d3bc16b3b7905efb1", {
@@ -28,8 +30,9 @@ const NotifToast = (props) => {
       encrypted: true,
     });
 
-    var channel = pusher.subscribe(`user${props.userId}`);
+    var channel = pusher.subscribe(`user${userId}`);
     channel.bind("notification", function (data) {
+      refNotif.current();
       console.log(data);
       toast.info(<DisplayToast message={data.message} image={data.image} />, {
         position: "top-right",
@@ -41,13 +44,16 @@ const NotifToast = (props) => {
         progress: undefined,
       });
     });
+
     return () => {
       console.log("disconnect");
       pusher.disconnect();
     };
-  }, [props.userId]);
+  }, [userId]);
 
-  return <ToastContainer style={{ fontSize: "1.6rem", color: "black" }} />;
+  return (
+    <ToastContainer style={{ fontSize: "1.6rem", color: "black" }} limit={5} />
+  );
 };
 
 export default NotifToast;

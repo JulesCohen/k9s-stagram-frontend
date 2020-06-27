@@ -1,9 +1,6 @@
 .header {
   height: 6rem;
   width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
   z-index: 10;
   background-color: var(--bg-color-1);
   color: var(--text-color-1);
@@ -21,15 +18,15 @@
   justify-content: center;
   align-items: center;
 }
-.header__title-text {
+.title__text {
   padding-left: 2rem;
 }
-.header__title-text-main {
+.title__text-main {
   font-size: 2rem;
   font-weight: 500;
   letter-spacing: 10px;
 }
-.header__title-text-sub {
+.title__text-sub {
   font-size: 1.3rem;
   letter-spacing: 7px;
 }
@@ -38,18 +35,17 @@
   width: 33%;
   height: 33%;
   padding: 0 10rem;
-  /* background-color: white; */
   display: flex;
   justify-content: flex-start;
   align-items: center;
 }
 
-.header__search__icon {
+.search__icon {
   padding: 0 1rem;
   font-size: 2rem;
 }
 
-.header__search input {
+.search__input {
   width: 100%;
   height: 100%;
   padding-left: 2rem;
@@ -62,32 +58,24 @@
   font-size: 16px;
 }
 
-.top-nav {
-  width: 33%;
-}
-
 @media only screen and (max-width: 1100px) {
   .header__title {
     width: 40%;
     padding-left: 2rem;
   }
 
-  .header__title-text {
+  .title__text {
     padding-left: 2rem;
   }
-  .header__title-text-main {
+  .title__text-main {
     font-size: 2rem;
     font-weight: 500;
     letter-spacing: 8px;
   }
-  .header__title-text-sub {
+  .title__text-sub {
     font-size: 1.5rem;
     letter-spacing: 6px;
   }
-
-  /* .top-nav {
-    width: 60%;
-  } */
 
   .header__search {
     display: none;
@@ -104,28 +92,27 @@
   }
 
   .header__title {
-    /* width: 50%; */
     padding-left: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
 
-  .header__title-logo {
+  .header__logo {
     display: none;
   }
-  .header__title-text {
+  .title__text {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
   }
-  .header__title-text-main {
+  .title__text-main {
     font-size: 1.5rem;
     font-weight: 700;
     letter-spacing: 8px;
   }
-  .header__title-text-sub {
+  .title__text-sub {
     font-size: 0.7rem;
     letter-spacing: 5px;
   }
@@ -136,10 +123,10 @@
     width: 20%;
   }
 
-  .header__title-logo {
+  .header__logo {
     display: inline-block;
   }
-  .header__title-text {
+  .title__text {
     display: none;
   }
 }

@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import ReactHashtag from "react-hashtag";
 import PostComments from "./PostComments";
 import Likes from "./Likes";
-
 import Avatar from "../../../shared/components/UIElements/Avatar";
 import "./Post.css";
 
@@ -22,55 +21,55 @@ const Post = (props) => {
 
   return (
     <div className="post">
-      <div className="post-author">
+      <div className="post__author">
         <Avatar
           size="small"
           img={props.post.author.image}
           alt={props.post.author.userName}
         />
 
-        <div className="post-author__infos">
+        <div className="author__infos">
           <NavLink
-            className="post-author__infos-name"
+            className="author__name"
             to={`/${props.post.author.id}/posts`}
           >
             {props.post.author.userName}
           </NavLink>
 
-          <p className="post-author__infos-location">{props.post.location}</p>
+          <p className="author__location">{props.post.location}</p>
         </div>
       </div>
       {/* <div className="post-photo" onDoubleClick={changeColor}> */}
-      <div className="post-photo">
+      <div className="post__photo">
         <img src={props.post.image} alt="dog"></img>
       </div>
-      <div className="post-content">
-        <div className="post-content__icons">
-          <div className="post-content__icons-button">
+      <div className="post__content">
+        <div className="content__icons">
+          <div className="content__icon">
             <Likes
               likes={props.post.likes}
               postId={props.post.id}
               handleLike={handleLike}
             />
           </div>
-          <div className="post-content__icons-button">
+          <div className="content__icon">
             <button onClick={handleGoToComment} className="icon_style">
               <FontAwesomeIcon icon={["fas", "comment"]} size="2x" />
             </button>
           </div>
         </div>
-        <div className="post-content__like">
+        <div className="content__like">
           <p>{likesCount} Bones </p>
         </div>
-        <div className="post-content__text">
+        <div className="content__text">
           <NavLink
-            className="post-content__text-author"
+            className="content__author"
             to={`/${props.post.author.id}/posts`}
           >
             {props.post.author.userName}
           </NavLink>
 
-          <p className="post-content__text-message">
+          <p className="content__text">
             {/* <ReactHashtag
               renderHashtag={(hashtagValue) => (
                 <NavLink

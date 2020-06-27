@@ -7,13 +7,13 @@ const UserInfos = ({ userInfos, length }) => {
   const auth = useContext(AuthContext);
 
   return (
-    <div className="userpage__header">
-      <div className="userpage__header-avatar">
+    <div className="userHeader">
+      <div className="userHeader__avatar">
         <Avatar size={"big"} img={userInfos.image} alt={userInfos.firstName} />
       </div>
 
-      <div className="userpage__header-content">
-        <div className="userpage__header-content-user">
+      <div className="userHeader__content">
+        <div className="content__user">
           <p>{userInfos.userName}</p>
           {auth.userId === userInfos.id ? (
             <button>Profile settings</button>
@@ -21,7 +21,7 @@ const UserInfos = ({ userInfos, length }) => {
             <button>Follow</button>
           )}
         </div>
-        <div className="userpage__header-content-numbers">
+        <div className="content__numbers">
           <p>
             <span>{length} </span>
             posts
@@ -33,7 +33,7 @@ const UserInfos = ({ userInfos, length }) => {
             <span>{userInfos.followings.length}</span> following
           </p>
         </div>
-        <div className="userpage__header-content-description">
+        <div className="content__description">
           <p>
             {userInfos.firstName} {userInfos.lastName}
           </p>

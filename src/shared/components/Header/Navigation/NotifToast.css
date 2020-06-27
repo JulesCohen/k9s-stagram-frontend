@@ -1,10 +1,4 @@
-.Toastify {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-.div-toast {
+.toast {
   width: 100%;
   color: white;
   font-family: "Open-Sans", sans-serif;
@@ -13,10 +7,10 @@
   align-items: center;
 }
 
-.div-toast p {
+.toast__msg {
   font-weight: 500;
 }
-.div-toast img {
+.toast__img {
   margin-right: 1rem;
   width: 30%;
   border: 1px solid var(--color-primary-dark-2);

@@ -50,7 +50,7 @@ const NewPost = () => {
         <Controller
           as={
             <ImageUpload
-              styles={"image-upload__preview-square"}
+              styles={"preview-square"}
               error={errors.image}
               square
             />
@@ -62,7 +62,7 @@ const NewPost = () => {
           handleImage={handleChange}
         />
 
-        <div className={"newpost__form__input"}>
+        <div className={"newpost__inputs"}>
           {/* <Controller
             as={
               <Autocomplete
@@ -95,7 +95,7 @@ const NewPost = () => {
             error={errors.description}
           /> */}
 
-          <div className="text-area">
+          <div className="newpost__description">
             <p>Description</p>
             <TextareaAutosize
               name={"description"}
@@ -106,25 +106,9 @@ const NewPost = () => {
             {errors.description && "Description is required"}
           </div>
 
-          {/* <Controller
-            as={
-              <TextareaAutosize
-                // placeholder="Please leave a comment..."
-                // ref={props.refTA}
-                label={"test"}
-              />
-            }
-            control={control}
-            rules={{ required: true }}
-            name="description"
-            defaultValue=""
-          /> */}
-          {/* {errors.description && "Description is required"} */}
-
           <Button size="big" type="submit">
             POST
           </Button>
-          {/* <button className={""}>Post</button> */}
         </div>
       </form>
     </div>

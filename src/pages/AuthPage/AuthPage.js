@@ -77,12 +77,12 @@ const AuthPage = () => {
       {isLoading && <Spinner asOverlay />}
 
       <div className="auth__header">{loginMode ? "LOGIN" : "SIGNUP"}</div>
-      <form onSubmit={handleSubmit(onSubmit)} className={"auth-form"}>
-        <div className="auth-form__signin">
+      <form onSubmit={handleSubmit(onSubmit)} className={"auth__form"}>
+        <div className="signin">
           {!loginMode && (
             <>
               <Controller
-                as={<ImageUpload styles={"image-upload__preview-round"} />}
+                as={<ImageUpload styles={"preview-round"} />}
                 name={"image"}
                 control={control}
                 defaultValue=""
@@ -93,7 +93,7 @@ const AuthPage = () => {
             </>
           )}
 
-          <div className="auth-form__signin__input">
+          <div className="signin__inputs">
             {!loginMode && (
               <Input
                 name={"userName"}

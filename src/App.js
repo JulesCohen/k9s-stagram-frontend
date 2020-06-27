@@ -13,7 +13,6 @@ import UserPage from "./pages/UserPage/UserPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
 import NewPost from "./pages/NewPost/NewPost";
 import Explore from "./pages/Explore/Explore";
-import BottomNav from "./shared/components/Header/BottomNavigation/BottomNav";
 import SwitchMode from "./shared/components/UIElements/SwitchMode";
 
 import { useAuth } from "./shared/hooks/auth-hook";
@@ -76,13 +75,15 @@ const App = () => {
     >
       <Router>
         <div
-          className={mode === Mode.Dark ? "dark-theme" : "light-theme"}
+          className={`${
+            mode === Mode.Dark ? "dark-theme app" : "light-theme app"
+          }`}
           id="app"
         >
           <SwitchMode />
 
           <Header />
-          <main>{routes}</main>
+          {routes}
           {/* <BottomNav /> */}
         </div>
       </Router>

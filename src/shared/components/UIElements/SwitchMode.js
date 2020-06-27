@@ -14,15 +14,15 @@ const SwitchMode = () => {
   const replaceTheme = () => {
     setDarkMode(!darkMode);
     document.getElementById("app").className = darkMode
-      ? "light-theme"
-      : "dark-theme";
+      ? "light-theme app"
+      : "dark-theme app";
     document.getElementsByTagName("body")[0].style.backgroundColor = darkMode
       ? "rgb(250, 250, 250)"
       : "rgb(34, 34, 34)";
   };
 
   return (
-    <button className={"btn--switchMode"} onClick={replaceTheme}>
+    <button className={"switchMode__btn"} onClick={replaceTheme}>
       {darkMode ? "LIGHT " : "DARK "} MODE
     </button>
   );

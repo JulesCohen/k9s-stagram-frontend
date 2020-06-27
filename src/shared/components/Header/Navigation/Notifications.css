@@ -1,0 +1,76 @@
+.notification {
+  position: relative;
+  display: flex;
+}
+
+.notification__button {
+  position: relative;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  font-size: 0.9rem;
+  color: var(--text-color-1);
+  transition: all 0.2s ease-in-out;
+}
+
+.notification__button:hover,
+.notification__button:active,
+.notification__button.active {
+  transform: scale(1.4);
+  color: var(--color-primary);
+}
+
+.notification__button:hover .tooltip,
+.notification__button:active .tooltip {
+  visibility: visible;
+}
+.notification__badge {
+  min-width: 1.6rem;
+  height: 1.6rem;
+  font-size: 1.3rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 15;
+}
+
+.notification__list {
+  height: 10rem;
+  width: 30rem;
+  position: absolute;
+  top: 450%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-color-1);
+  border: 1px solid var(--color-primary-dark-1);
+  color: white;
+  border-radius: 8px;
+}
+
+.notification__list-enter {
+  transform: translate(-50%, -100%);
+  opacity: 0;
+}
+
+.notification__list-enter-active {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  transition: all 200ms ease-in;
+}
+
+.notification__list-exit {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+}
+
+.notification__list-exit-active {
+  transform: translate(-50%, -100%);
+  opacity: 0;
+  transition: all 200ms ease-out;
+}

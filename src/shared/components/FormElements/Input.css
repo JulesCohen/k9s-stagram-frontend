@@ -1,4 +1,4 @@
-.form__input {
+.form__control {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -6,12 +6,12 @@
   position: relative;
 }
 
-.form__input label {
+.form__control label {
   font-size: 1.7rem;
   font-weight: 500;
   color: var(--text-color-1);
 }
-.form__input input {
+.form__control input {
   width: 100%;
   height: 4rem;
   margin-top: 1rem;

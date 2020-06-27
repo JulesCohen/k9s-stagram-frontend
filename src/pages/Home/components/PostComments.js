@@ -98,16 +98,14 @@ const PostComments = (props) => {
             <div className="comments__comment" key={Math.random()}>
               {auth.userId === comment.author.id && (
                 <button
-                  className="comments__comment__delete"
+                  className="comments__delete"
                   onClick={() => onCommentDelete(comment.id)}
                 >
                   <FontAwesomeIcon icon={["fas", "trash-alt"]} />
                 </button>
               )}
-              <p className="comments__comment__author">
-                {comment.author.userName}
-              </p>
-              <p className="comments__comment__message">{comment.comment}</p>
+              <p className="comments__author">{comment.author.userName}</p>
+              <p className="comments__message">{comment.comment}</p>
             </div>
           );
         })}

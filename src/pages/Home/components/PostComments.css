@@ -17,26 +17,24 @@
 .comments__comment {
   width: 100%;
   display: flex;
-  padding: 1rem 0 0 0;
+  padding-bottom: 1rem;
   white-space: pre;
   font-size: 1.5rem;
-  margin-bottom: 2rem;
 }
-.comments__comment__author {
+.comments__author {
   font-weight: 600;
   margin: 0 2rem;
 }
 
-.comments__comment__delete {
+.comments__delete {
   background-color: transparent;
   border: 0;
   color: red;
   opacity: 0;
   transition: all 0.1s ease-in-out;
-  /* align-self: flex-start; */
 }
 
-.comments__comment:hover .comments__comment__delete {
+.comments__comment:hover .comments__delete {
   opacity: 1;
 }
 

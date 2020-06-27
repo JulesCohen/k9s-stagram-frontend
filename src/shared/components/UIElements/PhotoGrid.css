@@ -1,0 +1,74 @@
+.photoGrid {
+  width: 95rem;
+  /* min-height: 100%; */
+  /* background-color: lightblue; */
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-auto-rows: 1fr; */
+  grid-gap: 2rem;
+}
+
+.photoGrid__post {
+  width: 100%;
+  height: calc(95rem / 3 - 2 * 2rem);
+  position: relative;
+}
+
+.photoGrid__post img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.postOverlay {
+  width: 100%;
+  height: 100%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.1);
+  /* opacity: 0; */
+  font-size: 5rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.postOverlay__content {
+  color: white;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2rem;
+  opacity: 0;
+}
+.postOverlay__content p {
+  padding-right: 1rem;
+}
+
+.postOverlay:hover {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.postOverlay:hover > .postOverlay__content {
+  opacity: 1;
+}
+
+@media only screen and (max-width: 800px) {
+  .photoGrid {
+    width: 100vw;
+    grid-gap: 0.5rem;
+  }
+
+  .photoGrid__post {
+    width: 100%;
+    height: calc(100vw / 3 - 2 * 0.5rem);
+    position: relative;
+  }
+  .postOverlay {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-.btn--switchMode {
+.switchMode__btn {
   cursor: pointer;
   position: fixed;
   top: 8rem;
@@ -18,16 +18,18 @@
   transition: all 0.2s ease-in-out;
 }
 
-.btn--switchMode:hover {
+.switchMode__btn:hover {
   transform: scale(1.1);
 }
 
 @media only screen and (max-width: 700px) {
-  .btn--switchMode {
+  .switchMode__btn {
     position: fixed;
     top: 6rem;
-    right: 3rem;
-    width: 6rem;
-    height: 6rem;
+    left: auto;
+    right: 1.5rem;
+    width: 4rem;
+    height: 4rem;
+    font-size: 1rem;
   }
 }

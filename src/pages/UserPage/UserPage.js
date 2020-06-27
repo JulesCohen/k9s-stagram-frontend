@@ -61,7 +61,6 @@ const UserPage = (props) => {
 
   return (
     <div className="userpage">
-      {/* <div className="userpage-content"> */}
       {isLoading && <Spinner asOverlay />}
       {!isLoading && userInfos && loadedPosts && (
         <UserInfos userInfos={userInfos} length={loadedPosts.length} />
@@ -69,7 +68,6 @@ const UserPage = (props) => {
       {!isLoading && userInfos && loadedPosts && (
         <PhotoGrid posts={loadedPosts} handleDelete={handleDelete} />
       )}
-      {/* </div> */}
     </div>
   );
 };

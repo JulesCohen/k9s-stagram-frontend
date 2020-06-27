@@ -1,21 +1,17 @@
-.userpage__header {
+.userHeader {
   width: 95rem;
   color: var(--text-color-1);
   display: flex;
   padding-bottom: 10rem;
 }
 
-.userpage__header-avatar {
-  /* padding-left: 2rem; */
-  /* width: 33%; */
+.userHeader__avatar {
   flex: 1;
 }
-.userpage__header-content {
-  /* padding-left: 2rem; */
-  /* width: 66%; */
+.userHeader__content {
   flex: 2;
 }
-.userpage__header-content-user {
+.content__user {
   height: 4rem;
   margin-bottom: 2rem;
   display: flex;
@@ -23,7 +19,7 @@
   font-size: 2.8rem;
   font-weight: 300;
 }
-.userpage__header-content-user button {
+.content__user button {
   margin: 0 2rem;
   padding: 0 2rem;
   height: 100%;
@@ -36,11 +32,11 @@
   font-size: 1.8rem;
   transition: all 0.2s ease-in-out;
 }
-.userpage__header-content-user button:hover {
+.content__user button:hover {
   transform: scale(1.1);
 }
 
-.userpage__header-content-numbers {
+.content__numbers {
   height: 2rem;
   margin-bottom: 2rem;
   display: flex;
@@ -48,21 +44,21 @@
   font-weight: 400;
 }
 
-.userpage__header-content-numbers p {
+.content__numbers p {
   padding-right: 4rem;
 }
 
-.userpage__header-content-numbers span {
+.content__numbers span {
   font-weight: 600;
 }
-.userpage__header-content-description {
+.content__description {
   display: flex;
   flex-direction: column;
   font-size: 1.6rem;
 }
-.userpage__header-content-description p {
+.content__description p {
   font-weight: 700;
 }
-.userpage__header-content-description p:last-child {
+.content__description p:last-child {
   font-weight: 400;
 }
