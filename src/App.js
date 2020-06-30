@@ -59,7 +59,7 @@ const App = () => {
         <Route exact path="/auth">
           <AuthPage />
         </Route>
-        <Redirect to="/explore" />
+        <Redirect to="/explore/allPosts/all" />
       </Switch>
     );
   }

@@ -1,0 +1,22 @@
+.explore {
+  width: 100%;
+  /* padding-top: 3rem; */
+  padding-bottom: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  font-family: "Open-sans", sans-serif;
+  /* background-color: tomato; */
+}
+
+.explore__header {
+  font-size: 3rem;
+  color: var(--text-color-1);
+  /* background-color: lightgreen; */
+  margin: 10rem 0;
+}
+.explore__type {
+}
+.explore__query {
+}

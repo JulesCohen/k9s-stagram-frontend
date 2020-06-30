@@ -35,7 +35,7 @@
 
 .newpost__form {
   width: 100%;
-  /* height: 50rem; */
+  height: 100%;
   padding: 2rem;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
   background-color: var(--bg-color-transparent-1);
@@ -45,7 +45,7 @@
 
 .newpost_preview {
   width: 50%;
-  height: 50rem;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
