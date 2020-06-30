@@ -18,6 +18,7 @@ import SwitchMode from "./shared/components/UIElements/SwitchMode";
 import { useAuth } from "./shared/hooks/auth-hook";
 import { AuthContext } from "./shared/context/auth-context";
 import { Mode, useLightSwitch } from "use-light-switch";
+// import { CSSTransition } from "react-transition-group";
 
 import "./App.css";
 const App = () => {
@@ -83,8 +84,7 @@ const App = () => {
           <SwitchMode />
 
           <Header />
-          {routes}
-          {/* <BottomNav /> */}
+          <main>{routes}</main>
         </div>
       </Router>
     </AuthContext.Provider>

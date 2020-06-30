@@ -1,26 +1,27 @@
 .auth {
   height: calc(100vh - 6rem);
   display: flex;
-  flex-direction: column;
   justify-content: center;
-
   align-items: center;
-
   background-image: linear-gradient(
       to bottom,
       rgba(255, 255, 255, 0.52),
       rgba(43, 78, 104, 0.73)
     ),
     url("../../assets/signupBG.jpg");
-
-  /* background-image: url("../../assets/signupBG.jpg"); */
   background-size: cover;
   background-position: center;
 }
 
-.auth__header {
-  height: 5rem;
+.auth__container {
   width: 52rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__header {
+  min-height: 5rem;
+  width: 100%;
   color: white;
   background-color: var(--bg-color-transparent-2);
   border-top-right-radius: 10px;
@@ -32,6 +33,16 @@
   align-items: center;
 }
 
+.auth__form {
+  background-color: var(--bg-color-transparent-1);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  min-height: 40rem;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .signin {
   width: 100%;
   display: flex;
@@ -43,21 +54,6 @@
   padding-left: 2rem;
   display: flex;
   flex-direction: column;
-}
-
-.auth__form {
-  background-color: var(--bg-color-transparent-1);
-  border-radius: 10px;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-  padding: 2rem;
-
-  min-height: 40rem;
-  width: 52rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .auth p {
@@ -82,7 +78,16 @@
 
 @media only screen and (max-width: 600px) {
   .auth {
-    margin-top: 10rem;
+    height: 0;
+    align-items: flex-start;
+    background: none;
+    padding-bottom: 9rem;
+  }
+  .auth__container {
+    padding-bottom: 8rem;
+  }
+  .auth__header {
+    border-radius: 0;
   }
   .auth__form {
     align-items: center;
@@ -90,7 +95,6 @@
 
   .signin {
     width: 100%;
-    /* display: flex; */
     flex-direction: column;
     align-items: center;
   }
@@ -101,10 +105,6 @@
   }
 
   .auth-form__input {
-    width: 80%;
-  }
-
-  .auth-form__submit {
-    width: 15rem;
+    width: 100%;
   }
 }

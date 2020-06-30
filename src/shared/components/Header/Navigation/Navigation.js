@@ -26,6 +26,9 @@ const Navigation = () => {
         <FontAwesomeIcon icon={["fas", "compass"]} size="3x" />
         <span className="tooltip">Explore</span>
       </NavLink>
+
+      {!auth.isLoggedIn && <p className="navigation_welcome">Wellcome !</p>}
+
       {auth.isLoggedIn && (
         <NavLink to="/newpost">
           <FontAwesomeIcon icon={["fas", "plus-circle"]} size="3x" />

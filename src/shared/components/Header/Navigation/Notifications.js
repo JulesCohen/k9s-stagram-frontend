@@ -1,12 +1,12 @@
-import React, { useState, useContext, useRef } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useState, useContext } from "react";
+// import { NavLink } from "react-router-dom";
 import { AuthContext } from "../../../context/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import NotifToast from "./NotifToast";
+import NotificationToast from "./NotificationToast";
 import { CSSTransition } from "react-transition-group";
 
 import "./Notifications.css";
-import { cssTransition } from "react-toastify";
+// import { cssTransition } from "react-toastify";
 
 const Notifications = () => {
   const auth = useContext(AuthContext);
@@ -14,9 +14,9 @@ const Notifications = () => {
   const [count, setcount] = useState(0);
   const [showNotif, setshowNotif] = useState(false);
 
-  const listRef = useRef(
-    <div className="notification__list">{auth.notification}</div>
-  );
+  // const listRef = useRef(
+  //   <div className="notification__list">{auth.notification}</div>
+  // );
 
   const handleNotification = () => {
     setcount((prevState) => prevState + 1);
@@ -42,11 +42,12 @@ const Notifications = () => {
         timeout={200}
         classNames="notification__list"
       >
-        {listRef.current}
+        {/* {listRef.current} */}
+        <div className="notification__list">{auth.notification}</div>
       </CSSTransition>
 
       {auth.isLoggedIn && auth.userId && (
-        <NotifToast
+        <NotificationToast
           userId={auth.userId}
           handleNotification={handleNotification}
         />

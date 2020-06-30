@@ -3,18 +3,21 @@ import { ToastContainer, toast } from "react-toastify";
 import Pusher from "pusher-js";
 
 import "react-toastify/dist/ReactToastify.css";
-import "./NotifToast.css";
+import "./NotificationToast.css";
 
 const DisplayToast = (props) => {
   return (
     <div className="toast">
       <img className="toast__img" src={props.image} alt="toast"></img>
-      <p className="toast_msg">{props.message}</p>
+      <p className="toast_msg">
+        {props.author.userName}
+        {props.message}
+      </p>
     </div>
   );
 };
 
-const NotifToast = ({ userId, handleNotification }) => {
+const NotificationToast = ({ userId, handleNotification }) => {
   const notif = () => {
     handleNotification();
   };
@@ -34,15 +37,22 @@ const NotifToast = ({ userId, handleNotification }) => {
     channel.bind("notification", function (data) {
       refNotif.current();
       console.log(data);
-      toast.info(<DisplayToast message={data.message} image={data.image} />, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.info(
+        <DisplayToast
+          author={data.notifCreator}
+          message={data.message}
+          image={data.image}
+        />,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        }
+      );
     });
 
     return () => {
@@ -56,4 +66,4 @@ const NotifToast = ({ userId, handleNotification }) => {
   );
 };
 
-export default NotifToast;
+export default NotificationToast;

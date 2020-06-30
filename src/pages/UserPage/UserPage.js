@@ -23,7 +23,7 @@ const UserPage = (props) => {
     const fetchUser = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/users/${uid}`
+          `${process.env.REACT_APP_BACKEND_URL}/users/${uid}`
         );
         setUserInfos(responseData.user);
         setLoadedPosts(responseData.user.posts);

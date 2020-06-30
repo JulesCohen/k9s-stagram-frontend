@@ -67,10 +67,15 @@ html {
 
 body {
   background-color: rgb(250, 250, 250);
-  height: 100vh;
-  overflow: hidden;
+  /* height: 100vh; */
+  /* overflow-y: scroll; */
   /* padding-bottom: 10rem; */
   /* margin-top: 6rem; */
+}
+
+main {
+  /* overflow: auto; */
+  margin-top: 6rem;
 }
 
 .center {
@@ -80,8 +85,13 @@ body {
   align-items: center;
 }
 
-@media only screen and (max-width: 700px) {
-  .body {
+@media only screen and (max-width: 600px) {
+  /* .body {
     margin-top: 0rem;
+    height: 100%;
+  } */
+
+  main {
+    /* margin: 20rem 0; */
   }
 }

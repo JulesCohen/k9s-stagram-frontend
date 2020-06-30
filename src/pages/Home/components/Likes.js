@@ -13,7 +13,7 @@ const Like = (props) => {
 
     try {
       const res = await sendRequest(
-        `http://localhost:5000/api/posts/${props.postId}/likes`,
+        `${process.env.REACT_APP_BACKEND_URL}/posts/${props.postId}/likes`,
         "PATCH",
         JSON.stringify({
           likeAction: isLike ? "sub" : "add",

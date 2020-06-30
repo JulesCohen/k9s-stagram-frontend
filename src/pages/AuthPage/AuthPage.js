@@ -28,7 +28,7 @@ const AuthPage = () => {
     if (loginMode) {
       try {
         const res = await sendRequest(
-          "http://localhost:5000/api/users/login",
+          `${process.env.REACT_APP_BACKEND_URL}/users/login`,
           "POST",
           JSON.stringify({
             email: data.email,
@@ -57,7 +57,7 @@ const AuthPage = () => {
         formData.append("password", data.password);
         formData.append("image", data.image);
         const res = await sendRequest(
-          "http://localhost:5000/api/users/signup",
+          `${process.env.REACT_APP_BACKEND_URL}/users/signup`,
           "POST",
           formData
         );
@@ -75,93 +75,94 @@ const AuthPage = () => {
   return (
     <div className={"auth"}>
       {isLoading && <Spinner asOverlay />}
+      <div className="auth__container">
+        <div className="auth__header">{loginMode ? "LOGIN" : "SIGNUP"}</div>
+        <form onSubmit={handleSubmit(onSubmit)} className={"auth__form"}>
+          <div className="signin">
+            {!loginMode && (
+              <>
+                <Controller
+                  as={<ImageUpload styles={"preview-round"} />}
+                  name={"image"}
+                  control={control}
+                  defaultValue=""
+                  rules={{ required: true }}
+                  handleImage={handleChange}
+                />
+                {errors.image && "image is required"}
+              </>
+            )}
 
-      <div className="auth__header">{loginMode ? "LOGIN" : "SIGNUP"}</div>
-      <form onSubmit={handleSubmit(onSubmit)} className={"auth__form"}>
-        <div className="signin">
-          {!loginMode && (
-            <>
-              <Controller
-                as={<ImageUpload styles={"preview-round"} />}
-                name={"image"}
-                control={control}
-                defaultValue=""
-                rules={{ required: true }}
-                handleImage={handleChange}
-              />
-              {errors.image && "image is required"}
-            </>
-          )}
-
-          <div className="signin__inputs">
-            {!loginMode && (
-              <Input
-                name={"userName"}
-                label={"Username"}
-                type={"text"}
-                register={register}
-                required={{ required: true, minLength: 2 }}
-                error={errors.userName}
-              />
-            )}
-            {!loginMode && (
-              <Input
-                name={"firstName"}
-                label={"First Name"}
-                type={"text"}
-                register={register}
-                required={{ required: true, minLength: 2 }}
-                error={errors.firstName}
-              />
-            )}
-            {!loginMode && (
-              <Input
-                name={"lastName"}
-                label={"Last Name"}
-                type={"text"}
-                register={register}
-                required={{ required: true, minLength: 2 }}
-                error={errors.lastName}
-              />
-            )}
+            <div className="signin__inputs">
+              {!loginMode && (
+                <Input
+                  name={"userName"}
+                  label={"Username"}
+                  type={"text"}
+                  register={register}
+                  required={{ required: true, minLength: 2 }}
+                  error={errors.userName}
+                />
+              )}
+              {!loginMode && (
+                <Input
+                  name={"firstName"}
+                  label={"First Name"}
+                  type={"text"}
+                  register={register}
+                  required={{ required: true, minLength: 2 }}
+                  error={errors.firstName}
+                />
+              )}
+              {!loginMode && (
+                <Input
+                  name={"lastName"}
+                  label={"Last Name"}
+                  type={"text"}
+                  register={register}
+                  required={{ required: true, minLength: 2 }}
+                  error={errors.lastName}
+                />
+              )}
+            </div>
           </div>
-        </div>
 
-        <Input
-          name={"email"}
-          label={"Email"}
-          type={"email"}
-          register={register}
-          required={{ required: true, minLength: 2 }}
-          error={errors.email}
-        />
-        <Input
-          name={"password"}
-          label={"Password"}
-          type={"password"}
-          register={register}
-          required={{ required: true, minLength: 6 }}
-          error={errors.password}
-        />
+          <Input
+            name={"email"}
+            label={"Email"}
+            type={"email"}
+            register={register}
+            required={{ required: true, minLength: 2 }}
+            error={errors.email}
+          />
+          <Input
+            name={"password"}
+            label={"Password"}
+            type={"password"}
+            register={register}
+            required={{ required: true, minLength: 6 }}
+            error={errors.password}
+          />
 
-        <Button size="big">{loginMode ? "LOGIN" : "SIGNUP"}</Button>
+          <Button size="big">{loginMode ? "LOGIN" : "SIGNUP"}</Button>
 
-        {loginMode ? (
-          <p>
-            You don't have an account? Please{" "}
-            <span onClick={switchMode} className={"signupSwitch"}>
-              SIGNUP.
-            </span>
-          </p>
-        ) : (
-          <p>
-            Already have an account? Please{" "}
-            <span onClick={switchMode} className={"signupSwitch"}>
-              LOGIN.
-            </span>
-          </p>
-        )}
-      </form>
+          {loginMode ? (
+            <p>
+              You don't have an account? Please{" "}
+              <span onClick={switchMode} className={"signupSwitch"}>
+                SIGNUP.
+              </span>
+            </p>
+          ) : (
+            <p>
+              Already have an account? Please{" "}
+              <span onClick={switchMode} className={"signupSwitch"}>
+                LOGIN.
+              </span>
+            </p>
+          )}
+        </form>
+      </div>
     </div>
   );
 };

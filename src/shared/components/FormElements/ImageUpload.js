@@ -35,7 +35,7 @@ const ImageUpload = (props) => {
   };
 
   return (
-    <div>
+    <div className="upload">
       <input
         id={props.id}
         ref={filePickerRef}

@@ -53,7 +53,7 @@ const Post = (props) => {
             />
           </div>
           <div className="content__icon">
-            <button onClick={handleGoToComment} className="icon_style">
+            <button onClick={handleGoToComment}>
               <FontAwesomeIcon icon={["fas", "comment"]} size="2x" />
             </button>
           </div>

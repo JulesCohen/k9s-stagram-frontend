@@ -14,7 +14,7 @@ const Explore = () => {
   useEffect(() => {
     let request;
     if (type === "hashtag") {
-      request = `http://localhost:5000/api/posts/hashtag/${query}`;
+      request = `${process.env.REACT_APP_BACKEND_URL}/posts/hashtag/${query}`;
     }
     // if (type === "allPosts") {
     //   request = `http://localhost:5000/api/posts/hashtag/${query}`

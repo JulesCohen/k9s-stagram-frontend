@@ -1,8 +1,8 @@
 .userHeader {
-  width: 95rem;
+  max-width: 95rem;
   color: var(--text-color-1);
   display: flex;
-  padding-bottom: 10rem;
+  padding-bottom: 5rem;
 }
 
 .userHeader__avatar {
@@ -22,7 +22,7 @@
 .content__user button {
   margin: 0 2rem;
   padding: 0 2rem;
-  height: 100%;
+  height: 4rem;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -61,4 +61,39 @@
 }
 .content__description p:last-child {
   font-weight: 400;
+}
+
+@media only screen and (max-width: 700px) {
+  .userHeader {
+    max-width: 95rem;
+    color: var(--text-color-1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding-bottom: 10rem; */
+  }
+
+  .content__user {
+    height: 9rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 2.8rem;
+    font-weight: 300;
+  }
+
+  .content__numbers {
+    height: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    /* justify-content: space-evenly; */
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+
+  .content__numbers p {
+    padding: 0 2rem;
+  }
 }

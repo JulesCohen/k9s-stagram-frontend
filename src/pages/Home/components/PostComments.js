@@ -21,7 +21,7 @@ const PostComments = (props) => {
   const onSubmit = async (data) => {
     try {
       const res = await sendRequest(
-        `http://localhost:5000/api/posts/${props.postId}/comments`,
+        `${process.env.REACT_APP_BACKEND_URL}/posts/${props.postId}/comments`,
         "POST",
         JSON.stringify({
           userId: auth.userId,
@@ -47,7 +47,7 @@ const PostComments = (props) => {
   const onCommentDelete = async (commentId) => {
     try {
       await sendRequest(
-        `http://localhost:5000/api/posts/${props.postId}/comments`,
+        `${process.env.REACT_APP_BACKEND_URL}/posts/${props.postId}/comments`,
         "DELETE",
         JSON.stringify({
           commentId: commentId,
@@ -75,17 +75,9 @@ const PostComments = (props) => {
             <span className="comments__show" onClick={handleShowComment}>
               {showComment ? "See less.." : "See more.."}
               {showComment ? (
-                <FontAwesomeIcon
-                  icon={["fas", "arrow-up"]}
-                  style={{ color: "black" }}
-                  size="sm"
-                />
+                <FontAwesomeIcon icon={["fas", "arrow-up"]} size="sm" />
               ) : (
-                <FontAwesomeIcon
-                  icon={["fas", "arrow-down"]}
-                  style={{ color: "black" }}
-                  size="sm"
-                />
+                <FontAwesomeIcon icon={["fas", "arrow-down"]} size="sm" />
               )}
             </span>
           )}

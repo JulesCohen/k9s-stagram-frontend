@@ -36,7 +36,11 @@ const NewPost = () => {
       formData.append("location", data.location);
       formData.append("description", data.description);
       formData.append("image", data.image);
-      await sendRequest("http://localhost:5000/api/posts", "POST", formData);
+      await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/posts`,
+        "POST",
+        formData
+      );
       history.push(`/${auth.userId}/posts`);
     } catch (err) {
       alert(err);
@@ -46,24 +50,28 @@ const NewPost = () => {
   return (
     <div className="newpost">
       {isLoading && <Spinner asOverlay />}
-      <form onSubmit={handleSubmit(onSubmit)} className={"newpost__form"}>
-        <Controller
-          as={
-            <ImageUpload
-              styles={"preview-square"}
-              error={errors.image}
-              square
+      <div className="newpost_container">
+        <div className="newpost_header">New Post</div>
+        <form onSubmit={handleSubmit(onSubmit)} className={"newpost__form"}>
+          <div className="newpost_preview">
+            <Controller
+              as={
+                <ImageUpload
+                  styles={"preview-square"}
+                  error={errors.image}
+                  square
+                />
+              }
+              name={"image"}
+              control={control}
+              defaultValue=""
+              rules={{ required: true }}
+              handleImage={handleChange}
             />
-          }
-          name={"image"}
-          control={control}
-          defaultValue=""
-          rules={{ required: true }}
-          handleImage={handleChange}
-        />
+          </div>
 
-        <div className={"newpost__inputs"}>
-          {/* <Controller
+          <div className={"newpost__inputs"}>
+            {/* <Controller
             as={
               <Autocomplete
                 onSelect={handleSelect}
@@ -77,16 +85,16 @@ const NewPost = () => {
             defaultValue=""
           /> */}
 
-          <Input
-            name={"location"}
-            label={"Location"}
-            type={"text"}
-            register={register}
-            required={{ required: true, minLength: 2 }}
-            error={errors.description}
-          />
+            <Input
+              name={"location"}
+              label={"Location"}
+              type={"text"}
+              register={register}
+              required={{ required: true, minLength: 2 }}
+              error={errors.description}
+            />
 
-          {/* <Input
+            {/* <Input
             name={"description"}
             label={"Description"}
             type={"text"}
@@ -95,22 +103,23 @@ const NewPost = () => {
             error={errors.description}
           /> */}
 
-          <div className="newpost__description">
-            <p>Description</p>
-            <TextareaAutosize
-              name={"description"}
-              label={"Description"}
-              // type={"text"}
-              ref={register({ required: true, minLength: 2 })}
-            />
-            {errors.description && "Description is required"}
-          </div>
+            <div className="newpost__description">
+              <p>Description</p>
+              <TextareaAutosize
+                name={"description"}
+                label={"Description"}
+                // type={"text"}
+                ref={register({ required: true, minLength: 2 })}
+              />
+              {errors.description && "Description is required"}
+            </div>
 
-          <Button size="big" type="submit">
-            POST
-          </Button>
-        </div>
-      </form>
+            <Button size="big" type="submit">
+              POST
+            </Button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
