@@ -53,7 +53,6 @@ const Post = (props) => {
           <p className="author__location">{props.post.location}</p>
         </div>
       </div>
-      {/* <div className="post-photo" onDoubleClick={changeColor}> */}
       <div className="post__photo">
         <img src={props.post.image} alt="dog"></img>
       </div>
@@ -84,19 +83,6 @@ const Post = (props) => {
           </NavLink>
 
           <p className="content__text">
-            {/* <ReactHashtag
-              renderHashtag={(hashtagValue) => (
-                <NavLink
-                  to={`/explore/hashtag/${hashtagValue.substring(1)}`}
-                  key={hashtagValue.substring(1)}
-                >
-                  {hashtagValue}
-                </NavLink>
-              )}
-            >
-              {props.post.description}
-            </ReactHashtag> */}
-            {/* {props.post.description} */}
             {parseHashtag(props.post.description)}
           </p>
         </div>
@@ -104,7 +90,6 @@ const Post = (props) => {
         <PostComments
           comments={props.post.comments}
           refTA={textArea}
-          // onComment={props.post.onComment}
           index={props.post.index}
           postId={props.post.id}
         />

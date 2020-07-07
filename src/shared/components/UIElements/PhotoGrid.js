@@ -3,33 +3,40 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./PhotoGrid.css";
 const PhotoGrid = (props) => {
   return (
-    <div className="photoGrid">
-      {props.posts.map((post, index) => (
-        <div className="photoGrid__post" key={index}>
-          <div
-            className="postOverlay"
-            onClick={() => props.handleDelete(post.id)}
-          >
-            <div className="postOverlay__content">
-              <p>{post.likes.count}</p>
-              <FontAwesomeIcon
-                icon={["fas", "bone"]}
-                style={{ color: "white" }}
-                size="1x"
-              />
-            </div>
-            <div className="postOverlay__content">
-              <p>{post.comments.length} </p>
-              <FontAwesomeIcon
-                icon={["fas", "comment"]}
-                style={{ color: "white" }}
-                size="1x"
-              />
+    <div className="photogrid">
+      {props.posts.map((post, index) => {
+        var postStyle = {
+          backgroundImage: `url(${post.image})`,
+        };
+
+        return (
+          <div className="photogrid__post" key={index} style={postStyle}>
+            <div
+              className="postoverlay"
+              onClick={() => props.handleDelete(post.id)}
+            >
+              <div className="postoverlay__content">
+                <div className="content_numbers">
+                  <p>{post.likes.count}</p>
+                  <FontAwesomeIcon
+                    icon={["fas", "bone"]}
+                    style={{ color: "white" }}
+                    size="1x"
+                  />
+                </div>
+                <div className="content_numbers">
+                  <p>{post.comments.length} </p>
+                  <FontAwesomeIcon
+                    icon={["fas", "comment"]}
+                    style={{ color: "white" }}
+                    size="1x"
+                  />
+                </div>
+              </div>
             </div>
           </div>
-          <img src={post.image} alt="post" />
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };

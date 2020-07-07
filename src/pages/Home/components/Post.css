@@ -14,11 +14,12 @@
   /* AUTHOR */
 }
 .post__author {
-  height: 6rem;
+  /* height: 6rem; */
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-content: space-between;
+  padding: 0.5rem 0;
+  /* flex-direction: row; */
+  /* justify-content: flex-start;
+  align-content: space-between; */
 }
 .author__infos {
   padding-left: 1rem;
@@ -128,13 +129,14 @@
 }
 
 hr {
-  border: 1px solid var(--color-primary-dark-1);
+  border: 1px solid var(--bg-color-transparent-2);
 }
 
 /* PHOTO */
 
 @media only screen and (max-width: 700px) {
   .post {
+    width: 100vw;
     margin-top: 0;
     margin-bottom: 1rem;
     box-shadow: none;

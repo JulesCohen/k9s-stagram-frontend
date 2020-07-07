@@ -61,13 +61,15 @@ const UserPage = (props) => {
 
   return (
     <div className="userpage">
-      {isLoading && <Spinner asOverlay />}
-      {!isLoading && userInfos && loadedPosts && (
-        <UserInfos userInfos={userInfos} length={loadedPosts.length} />
-      )}
-      {!isLoading && userInfos && loadedPosts && (
-        <PhotoGrid posts={loadedPosts} handleDelete={handleDelete} />
-      )}
+      <div className="userpage__container">
+        {isLoading && <Spinner asOverlay />}
+        {!isLoading && userInfos && loadedPosts && (
+          <UserInfos userInfos={userInfos} length={loadedPosts.length} />
+        )}
+        {!isLoading && userInfos && loadedPosts && (
+          <PhotoGrid posts={loadedPosts} handleDelete={handleDelete} />
+        )}
+      </div>
     </div>
   );
 };

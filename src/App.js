@@ -18,7 +18,6 @@ import SwitchMode from "./shared/components/UIElements/SwitchMode";
 import { useAuth } from "./shared/hooks/auth-hook";
 import { AuthContext } from "./shared/context/auth-context";
 import { Mode, useLightSwitch } from "use-light-switch";
-// import { CSSTransition } from "react-transition-group";
 
 import "./App.css";
 const App = () => {
@@ -29,8 +28,6 @@ const App = () => {
     mode === Mode.Dark ? "rgb(34, 34, 34)" : "rgb(250, 250, 250)";
 
   let routes;
-
-  // console.log("APP RENDER");
 
   if (token) {
     routes = (
@@ -55,6 +52,9 @@ const App = () => {
       <Switch>
         <Route exact path="/explore/:type/:query">
           <Explore />
+        </Route>
+        <Route exact path="/:uid/posts">
+          <UserPage />
         </Route>
         <Route exact path="/auth">
           <AuthPage />

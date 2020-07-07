@@ -4,6 +4,8 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import PhotoGrid from "../../shared/components/UIElements/PhotoGrid";
 import Spinner from "../../shared/components/UIElements/Spinner";
+import { useMediaQuery } from "react-responsive";
+import Search from "../../shared/components/Header/Search";
 import "./Explore.css";
 
 const Explore = () => {
@@ -11,7 +13,7 @@ const Explore = () => {
   const [loadedPosts, setLoadedPosts] = useState();
   const auth = useContext(AuthContext);
   const { isLoading, sendRequest } = useHttpClient();
-
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1100px)" });
   useEffect(() => {
     let request;
     if (type === "hashtag") {
@@ -35,14 +37,18 @@ const Explore = () => {
   return (
     <div className="explore">
       {isLoading && <Spinner asOverlay />}
-      <div className="explore__header">
-        {auth.isLoggedIn ? (
-          <h2>Your result for : {query} </h2>
-        ) : (
-          <h2>Wellcome on K9'stagram !</h2>
-        )}
+      {/* {isTabletOrMobile && <Search />} */}
+      {/* <Search /> */}
+      <div className="explore__container">
+        <div className="explore__header">
+          {auth.isLoggedIn ? (
+            <p>Your result for : {query} </p>
+          ) : (
+            <p>Wellcome on K9'stagram !</p>
+          )}
+        </div>
+        {!isLoading && loadedPosts && <PhotoGrid posts={loadedPosts} />}
       </div>
-      {!isLoading && loadedPosts && <PhotoGrid posts={loadedPosts} />}
     </div>
   );
 };

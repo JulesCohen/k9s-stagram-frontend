@@ -8,7 +8,9 @@ import "./NotificationToast.css";
 const DisplayToast = (props) => {
   return (
     <div className="toast">
-      <img className="toast__img" src={props.image} alt="toast"></img>
+      <div className="toast__img">
+        <img src={props.image} alt="toast"></img>
+      </div>
       <p className="toast_msg">
         {props.author.userName}
         {props.message}

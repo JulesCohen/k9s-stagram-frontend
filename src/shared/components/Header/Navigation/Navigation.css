@@ -1,5 +1,5 @@
 .navigation {
-  width: 33%;
+  width: 35%;
   padding: 3rem 0;
   display: flex;
   justify-content: space-evenly;
@@ -16,30 +16,30 @@
   outline: none;
   color: var(--text-color-1);
   background-color: transparent;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   transition: all 0.2s ease-in-out;
 }
 
-.navigation a,
-.navigation a:visited {
+.navigation > a,
+.navigation > a:visited {
   width: 3.5rem;
   border: 0;
   outline: none;
   color: var(--text-color-1);
   text-decoration: none;
   background-color: transparent;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   transition: all 0.2s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.navigation a:hover,
-.navigation a:active,
-.navigation a.active,
+.navigation > a:hover,
+.navigation > a:active,
+.navigation > a.active,
 .navigation__logout:hover {
-  transform: scale(1.4);
+  transform: scale(1.2);
   color: var(--color-primary);
 }
 
@@ -47,6 +47,7 @@
   visibility: hidden;
   background-color: var(--text-color-1);
   color: var(--text-color-2);
+  font-size: 0.9rem;
   font-weight: 400;
   padding: 0.5rem 0.5rem;
   border-radius: 10px;
@@ -55,8 +56,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.navigation a:hover .tooltip,
-.navigation a:active .tooltip,
+.navigation > a:hover .tooltip,
+.navigation > a:active .tooltip,
 .navigation__logout:hover .tooltip {
   visibility: visible;
 }

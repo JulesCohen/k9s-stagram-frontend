@@ -1,10 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "../../../shared/components/UIElements/Avatar";
-
 import { AuthContext } from "../../../shared/context/auth-context";
 import "./UserInfos.css";
+import { useHttpClient } from "../../../shared/hooks/http-hook";
 const UserInfos = ({ userInfos, length }) => {
   const auth = useContext(AuthContext);
+  const { sendRequest } = useHttpClient();
+  const [followed, setfollowed] = useState(
+    userInfos.followers.includes(auth.userId)
+  );
+
+  const handleFollow = async () => {
+    const action = followed ? "unfollow" : "follow";
+
+    try {
+      const res = await sendRequest(
+        `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userId}/${action}`,
+        "PATCH",
+        JSON.stringify({
+          followUserId: userInfos.id,
+        }),
+        {
+          "Content-Type": "application/json",
+        }
+      );
+
+      setfollowed(!followed);
+
+      console.log(res.message);
+    } catch (err) {
+      alert(err);
+    }
+  };
 
   return (
     <div className="userHeader">
@@ -15,10 +42,13 @@ const UserInfos = ({ userInfos, length }) => {
       <div className="userHeader__content">
         <div className="content__user">
           <p>{userInfos.userName}</p>
-          {auth.userId === userInfos.id ? (
-            <button>Profile settings</button>
-          ) : (
-            <button>Follow</button>
+          {auth.userId !== userInfos.id && (
+            <button
+              className={`user__button ${followed && "user__button--followed"}`}
+              onClick={handleFollow}
+            >
+              {followed ? "Followed" : "Follow"}{" "}
+            </button>
           )}
         </div>
         <div className="content__numbers">

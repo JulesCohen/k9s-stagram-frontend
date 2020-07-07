@@ -32,7 +32,7 @@ const PostComments = (props) => {
         }
       );
       let updatedComments = [...comments];
-      updatedComments.push(res.comment);
+      updatedComments.push(res.data);
       setcomments(updatedComments);
       reset();
     } catch (err) {

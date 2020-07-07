@@ -1,0 +1,140 @@
+.search {
+  width: 30%;
+  /* height: 33%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: tomato; */
+}
+
+.search__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search__icon {
+  padding: 0 1rem;
+  font-size: 2rem;
+}
+
+.search__input {
+  /* width: 15rem; */
+  width: 100%;
+  height: 100%;
+  padding-left: 1rem;
+  background-color: var(--bg-main);
+  outline: none;
+  border: 1px solid var(--light-border);
+  border-radius: 8px;
+  color: var(--text-color-1);
+  font-family: "Open-Sans", sans-serif;
+  font-size: 1.6rem;
+}
+
+.search_results {
+  width: 38rem;
+  border: 1px solid black;
+  background-color: white;
+  position: absolute;
+  top: 8rem;
+  font-size: 1.6rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.react-autosuggest__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.react-autosuggest__input--focused {
+  outline: none;
+}
+
+.react-autosuggest__input--open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.react-autosuggest__suggestions-container {
+  display: none;
+}
+
+.react-autosuggest__suggestions-container--open {
+  display: block;
+  position: absolute;
+  top: 51px;
+  width: 280px;
+  border: 1px solid var(--color-primary-dark-2);
+  background-color: var(--bg-color-1);
+  font-family: Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  z-index: 2;
+}
+
+.react-autosuggest__suggestions-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.react-autosuggest__suggestion {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.suggestion__author {
+  margin-left: 1rem;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: var(--text-color-1);
+  cursor: pointer;
+}
+
+.react-autosuggest__suggestion--highlighted {
+  background-color: var(--color-primary-dark-1);
+}
+.react-autosuggest__suggestion--highlighted .suggestion__author {
+  color: white;
+}
+
+/* @media only screen and (max-width: 1100px) {
+  .search {
+    display: none;
+  }
+}*/
+
+@media only screen and (max-width: 600px) {
+  .search {
+    width: 40%;
+    justify-content: flex-start;
+    order: -1;
+  }
+
+  .search__input {
+    width: 0rem;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+  }
+  .search__input:focus {
+    opacity: 1;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .search {
+    width: 80%;
+    justify-content: flex-start;
+    order: -1;
+  }
+}

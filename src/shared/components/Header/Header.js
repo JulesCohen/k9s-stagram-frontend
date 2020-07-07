@@ -1,9 +1,14 @@
 import React from "react";
 import Navigation from "./Navigation/Navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useMediaQuery } from "react-responsive";
+
+import Search from "./Search";
 import "./Header.css";
 
 const Header = () => {
+  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1100px)" });
+
   return (
     <div className="header">
       <div className="header__title">
@@ -15,16 +20,8 @@ const Header = () => {
           <p className="title__text-sub ">UNLEASH YOUR PICTURES!</p>
         </div>
       </div>
-      <div className="header__search">
-        <div className="search__icon">
-          <FontAwesomeIcon icon={["fas", "search"]} />
-        </div>
-        <input
-          className="search__input"
-          type="text"
-          placeholder="Search..."
-        ></input>
-      </div>
+      {/* {!isTabletOrMobile && <Search />} */}
+      <Search />
       <Navigation />
     </div>
   );
