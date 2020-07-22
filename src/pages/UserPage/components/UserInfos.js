@@ -3,6 +3,7 @@ import Avatar from "../../../shared/components/UIElements/Avatar";
 import { AuthContext } from "../../../shared/context/auth-context";
 import "./UserInfos.css";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
+
 const UserInfos = ({ userInfos, length }) => {
   const auth = useContext(AuthContext);
   const { sendRequest } = useHttpClient();

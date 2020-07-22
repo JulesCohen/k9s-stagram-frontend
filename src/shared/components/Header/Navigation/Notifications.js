@@ -6,8 +6,8 @@ import NotificationToast from "./NotificationToast";
 import { CSSTransition } from "react-transition-group";
 
 import "./Notifications.css";
-// import { cssTransition } from "react-toastify";
 import { useHttpClient } from "../../../hooks/http-hook";
+import SideDrawer from "../../UIElements/SideDrawer";
 
 const Notifications = () => {
   const auth = useContext(AuthContext);
@@ -15,10 +15,6 @@ const Notifications = () => {
   const [count, setcount] = useState(0);
   const [notifications, setnotifications] = useState(false);
   const [showNotif, setshowNotif] = useState(false);
-
-  // const listRef = useRef(
-  //   <div className="notification__list">{auth.notification}</div>
-  // );
 
   useEffect(() => {
     console.log("LOAD NOTIF");
@@ -53,28 +49,18 @@ const Notifications = () => {
         <span className="tooltip">Notifications</span>
       </button>
 
-      <CSSTransition
-        in={showNotif}
-        mountOnEnter
-        unmountOnExit
-        timeout={200}
-        classNames="notifications__container"
-      >
-        {/* {listRef.current} */}
+      <SideDrawer show={showNotif} onClick={handleShowNotif}>
         <div className="notifications__container">
           {notifications && (
             <ul className="notifications__list">
-              {notifications.map((notif) => (
-                <li className="notifications__item">
+              {notifications.map((notif, index) => (
+                <li className="notifications__item" key={index}>
                   <div className="notification__image">
                     <img src={notif.image} alt="notif" />
                   </div>
 
                   <div className="notification__text">
-                    <NavLink
-                      // className="notification__author"
-                      to={`/${notif.notifCreator._id}/posts`}
-                    >
+                    <NavLink to={`/${notif.notifCreator._id}/posts`}>
                       {notif.notifCreator.userName}
                     </NavLink>
                     <p>{notif.message}</p>
@@ -84,7 +70,7 @@ const Notifications = () => {
             </ul>
           )}
         </div>
-      </CSSTransition>
+      </SideDrawer>
 
       {auth.isLoggedIn && auth.userId && (
         <NotificationToast
