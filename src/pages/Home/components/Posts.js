@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import Post from "./Post";
 import Spinner from "../../../shared/components/UIElements/Spinner";
 import "./Posts.css";
 
 const Posts = () => {
-  const [loadedPosts, setLoadedPosts] = useState();
+  const [loadedPosts, setLoadedPosts] = useState(false);
   const { isLoading, sendRequest } = useHttpClient();
 
   useEffect(() => {
@@ -44,6 +44,7 @@ const Posts = () => {
               post={post}
               onLike={handleLike}
               onDislike={handleDislike}
+              // scrollRef={index === 3 ? myRef : null}
             />
           );
         })}

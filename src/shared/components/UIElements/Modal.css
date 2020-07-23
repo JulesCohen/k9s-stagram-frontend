@@ -1,58 +1,61 @@
 .modal {
   z-index: 100;
   position: fixed;
-  top: 22vh;
-  left: 10%;
-  width: 80%;
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 8px;
-}
-
-.modal__header {
-  width: 100%;
-  padding: 1rem 0.5rem;
-  background: #2a006e;
-  color: white;
-}
-
-.modal__header h2 {
-  margin: 0.5rem;
+  top: 30vh;
+  /* left: 0; */
+  width: 70%;
+  max-height: 30rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 }
 
 .modal__content {
-  padding: 1rem 0.5rem;
+  width: 100%;
+  border: 1px solid rgb(219, 217, 217, 0.4);
 }
 
 .modal__footer {
   padding: 1rem 0.5rem;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 1000px) {
   .modal {
-    left: calc(50% - 20rem);
-    width: 40rem;
+    width: 100vw;
+  }
+}
+
+@media (max-width: 600px) {
+  .modal {
+    left: 0;
+    /* top: 30vh; */
+    width: 100vw;
+    flex-direction: column;
+    margin-top: 6rem;
+
+    /* overflow: scroll; */
   }
 }
 
 .modal-enter {
-  transform: translateY(-10rem);
+  transform: translateX(-100rem);
   opacity: 0;
 }
 
 .modal-enter-active {
-  transform: translateY(0);
+  transform: translateX(0);
   opacity: 1;
-  transition: all 200ms;
+  transition: all 0.3s ease-in-out;
 }
 
 .modal-exit {
-  transform: translateY(0);
+  transform: translateX(10rem);
   opacity: 1;
 }
 
 .modal-exit-active {
-  transform: translateY(-10rem);
+  transform: translateX(-100rem);
   opacity: 0;
-  transition: all 200ms;
+  transition: all 0.3s ease-in-out;
 }

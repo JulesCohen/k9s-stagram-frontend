@@ -11,6 +11,8 @@ const UserInfos = ({ userInfos, length }) => {
     userInfos.followers.includes(auth.userId)
   );
 
+  const [nbFollowers, setnbFollowers] = useState(userInfos.followers.length);
+
   const handleFollow = async () => {
     const action = followed ? "unfollow" : "follow";
 
@@ -27,7 +29,7 @@ const UserInfos = ({ userInfos, length }) => {
       );
 
       setfollowed(!followed);
-
+      setnbFollowers((prevState) => (followed ? prevState - 1 : prevState + 1));
       console.log(res.message);
     } catch (err) {
       alert(err);
@@ -43,7 +45,7 @@ const UserInfos = ({ userInfos, length }) => {
       <div className="userHeader__content">
         <div className="content__user">
           <p>{userInfos.userName}</p>
-          {auth.userId !== userInfos.id && (
+          {auth.isLoggedIn && auth.userId !== userInfos.id && (
             <button
               className={`user__button ${followed && "user__button--followed"}`}
               onClick={handleFollow}
@@ -58,7 +60,7 @@ const UserInfos = ({ userInfos, length }) => {
             posts
           </p>
           <p>
-            <span>{userInfos.followers.length}</span> followers
+            <span>{nbFollowers}</span> followers
           </p>
           <p>
             <span>{userInfos.followings.length}</span> following
@@ -68,7 +70,7 @@ const UserInfos = ({ userInfos, length }) => {
           <p>
             {userInfos.firstName} {userInfos.lastName}
           </p>
-          <p>Dog Lover !!</p>
+          {/* <p>Dog Lover !!</p> */}
         </div>
       </div>
     </div>

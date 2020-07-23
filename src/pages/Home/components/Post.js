@@ -1,12 +1,10 @@
 import React, { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import ReactHashtag from "react-hashtag";
 import PostComments from "./PostComments";
 import Likes from "./Likes";
 import Avatar from "../../../shared/components/UIElements/Avatar";
 import "./Post.css";
-// import parse from "html-react-parser";
 import reactStringReplace from "react-string-replace";
 const Post = (props) => {
   const textArea = useRef(null);
@@ -21,8 +19,6 @@ const Post = (props) => {
   };
 
   const parseHashtag = (description) => {
-    // const reHash = /(?:\s|^)?#[A-Za-z0-9\-\.\_]+(?:\s|$)/g;
-
     const des = reactStringReplace(description, /#(\w+)/g, (match, i) => (
       <NavLink to={`/explore/hashtag/${match}`} key={i}>
         {" "}
@@ -34,7 +30,7 @@ const Post = (props) => {
   };
 
   return (
-    <div className="post">
+    <div className="post" ref={props.scrollRef}>
       <div className="post__author">
         <Avatar
           size="small"

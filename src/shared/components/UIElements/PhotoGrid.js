@@ -10,11 +10,13 @@ const PhotoGrid = (props) => {
         };
 
         return (
-          <div className="photogrid__post" key={index} style={postStyle}>
-            <div
-              className="postoverlay"
-              onClick={() => props.handleDelete(post.id)}
-            >
+          <div
+            className="photogrid__post"
+            key={index}
+            style={postStyle}
+            onClick={() => props.showPost(index)}
+          >
+            <div className="postoverlay" onClick={() => props.showPost(index)}>
               <div className="postoverlay__content">
                 <div className="content_numbers">
                   <p>{post.likes.count}</p>

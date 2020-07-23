@@ -84,46 +84,50 @@ const PostComments = (props) => {
         </p>
       </div>
 
-      {showComment &&
-        comments.map((comment) => {
-          return (
-            <div className="comments__comment" key={Math.random()}>
-              {auth.userId === comment.author.id && (
-                <button
-                  className="comments__delete"
-                  onClick={() => onCommentDelete(comment.id)}
-                >
-                  <FontAwesomeIcon icon={["fas", "trash-alt"]} />
-                </button>
-              )}
-              <p className="comments__author">{comment.author.userName}</p>
-              <p className="comments__message">{comment.comment}</p>
-            </div>
-          );
-        })}
+      <div className="comments__container">
+        {showComment &&
+          comments.map((comment) => {
+            return (
+              <div className="comments__comment" key={Math.random()}>
+                {auth.userId === comment.author.id && (
+                  <button
+                    className="comments__delete"
+                    onClick={() => onCommentDelete(comment.id)}
+                  >
+                    <FontAwesomeIcon icon={["fas", "trash-alt"]} />
+                  </button>
+                )}
+                <p className="comments__author">{comment.author.userName}</p>
+                <p className="comments__message">{comment.comment}</p>
+              </div>
+            );
+          })}
+      </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className={"comments__form"}>
-        <Controller
-          as={
-            <TextareaAutosize
-              placeholder="Please leave a comment..."
-              ref={props.refTA}
-            />
-          }
-          control={control}
-          rules={{ required: true }}
-          name="comment"
-          defaultValue=""
-        />
+      {auth.isLoggedIn && (
+        <form onSubmit={handleSubmit(onSubmit)} className={"comments__form"}>
+          <Controller
+            as={
+              <TextareaAutosize
+                placeholder="Please leave a comment..."
+                ref={props.refTA}
+              />
+            }
+            control={control}
+            rules={{ required: true }}
+            name="comment"
+            defaultValue=""
+          />
 
-        {isLoading ? (
-          <Spinner asOverlay />
-        ) : (
-          <button>
-            <FontAwesomeIcon icon={["fas", "paper-plane"]} size="lg" />
-          </button>
-        )}
-      </form>
+          {isLoading ? (
+            <Spinner asOverlay />
+          ) : (
+            <button>
+              <FontAwesomeIcon icon={["fas", "paper-plane"]} size="lg" />
+            </button>
+          )}
+        </form>
+      )}
     </div>
   );
 };

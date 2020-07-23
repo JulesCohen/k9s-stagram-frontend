@@ -18,6 +18,8 @@ import {
   faArrowUp,
   faCompass,
   faTrashAlt,
+  faPortrait,
+  faTh,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -36,5 +38,7 @@ library.add(
   faArrowDown,
   faArrowUp,
   faCompass,
-  faTrashAlt
+  faTrashAlt,
+  faPortrait,
+  faTh
 );

@@ -64,7 +64,7 @@ const Search = () => {
   };
 
   const inputProps = {
-    placeholder: "Search...",
+    placeholder: "Search for a user..",
     value,
     onChange: onChange,
     className: "search__input",

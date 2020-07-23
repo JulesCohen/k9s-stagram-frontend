@@ -16,7 +16,7 @@
   outline: none;
   color: var(--text-color-1);
   background-color: transparent;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   transition: all 0.2s ease-in-out;
 }
 
@@ -28,7 +28,7 @@
   color: var(--text-color-1);
   text-decoration: none;
   background-color: transparent;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   transition: all 0.2s ease-in-out;
   display: flex;
   justify-content: center;
@@ -47,12 +47,12 @@
   visibility: hidden;
   background-color: var(--text-color-1);
   color: var(--text-color-2);
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 400;
   padding: 0.5rem 0.5rem;
   border-radius: 10px;
   position: absolute;
-  top: 150%;
+  top: 200%;
   left: 50%;
   transform: translate(-50%, -50%);
 }

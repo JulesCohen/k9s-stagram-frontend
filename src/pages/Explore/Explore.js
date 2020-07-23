@@ -1,19 +1,26 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import PhotoGrid from "../../shared/components/UIElements/PhotoGrid";
 import Spinner from "../../shared/components/UIElements/Spinner";
-import { useMediaQuery } from "react-responsive";
-import Search from "../../shared/components/Header/Search";
+import Post from "../Home/components/Post";
+
 import "./Explore.css";
 
 const Explore = () => {
+  const auth = useContext(AuthContext);
   const { type, query } = useParams();
   const [loadedPosts, setLoadedPosts] = useState();
-  const auth = useContext(AuthContext);
   const { isLoading, sendRequest } = useHttpClient();
-  const isTabletOrMobile = useMediaQuery({ query: "(max-width: 1100px)" });
+
+  const [chosenPost, setchosenPost] = useState();
+  const [showPost, setshowPost] = useState(false);
+
+  const startRef = useRef(null);
+
   useEffect(() => {
     let request;
     if (type === "hashtag") {
@@ -32,22 +39,86 @@ const Explore = () => {
     };
 
     fetchPosts();
+    setshowPost(false);
   }, [sendRequest, query, type]);
 
+  const handleShowPost = (index) => {
+    setchosenPost(index);
+    console.log(loadedPosts[chosenPost]);
+    setshowPost(true);
+  };
+
+  const handleLike = (index) => {
+    let updatedPosts = [...loadedPosts];
+    updatedPosts[index].likes += 1;
+    setLoadedPosts(updatedPosts);
+  };
+  const handleDislike = (index) => {
+    let updatedPosts = [...loadedPosts];
+    updatedPosts[index].likes -= 1;
+    setLoadedPosts(updatedPosts);
+  };
+
+  const postRef = useRef(null);
+
+  useEffect(() => {
+    if (postRef.current) {
+      window.scrollTo(0, postRef.current.offsetTop - 60);
+    }
+  });
   return (
     <div className="explore">
       {isLoading && <Spinner asOverlay />}
-      {/* {isTabletOrMobile && <Search />} */}
-      {/* <Search /> */}
+
       <div className="explore__container">
-        <div className="explore__header">
-          {auth.isLoggedIn ? (
+        <div className="explore__header" ref={startRef}>
+          {auth.isLoggedIn && query !== "all" ? (
             <p>Your result for : {query} </p>
           ) : (
             <p>Wellcome on K9'stagram !</p>
           )}
         </div>
-        {!isLoading && loadedPosts && <PhotoGrid posts={loadedPosts} />}
+        <div className="grid-switch">
+          <button
+            onClick={() => {
+              setchosenPost(null);
+              setshowPost(false);
+              window.scrollTo(0, startRef.current.offsetTop - 100);
+            }}
+          >
+            <FontAwesomeIcon icon={["fas", "th"]} size="2x" />
+          </button>
+          <button
+            onClick={() => {
+              setshowPost(true);
+              !chosenPost &&
+                window.scrollTo(0, startRef.current.offsetTop - 100);
+            }}
+          >
+            <FontAwesomeIcon icon={["fas", "portrait"]} size="2x" />
+          </button>
+        </div>
+        {!isLoading && loadedPosts && showPost === false && (
+          <PhotoGrid posts={loadedPosts} showPost={handleShowPost} />
+        )}
+        {showPost === true && (
+          <div className="posts">
+            {isLoading && <Spinner asOverlay />}
+            {!isLoading &&
+              loadedPosts &&
+              loadedPosts.map((post, index) => {
+                return (
+                  <Post
+                    key={post.id}
+                    post={post}
+                    onLike={handleLike}
+                    onDislike={handleDislike}
+                    scrollRef={index === chosenPost ? postRef : null}
+                  />
+                );
+              })}
+          </div>
+        )}
       </div>
     </div>
   );
