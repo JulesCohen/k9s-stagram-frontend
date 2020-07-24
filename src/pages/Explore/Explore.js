@@ -73,7 +73,7 @@ const Explore = () => {
       <div className="explore__container">
         <div className="explore__header" ref={startRef}>
           {auth.isLoggedIn && query !== "all" ? (
-            <p>Your result for : {query} </p>
+            <p>#{query} </p>
           ) : (
             <p>Wellcome on K9'stagram !</p>
           )}

@@ -70,7 +70,6 @@ const UserInfos = ({ userInfos, length }) => {
           <p>
             {userInfos.firstName} {userInfos.lastName}
           </p>
-          {/* <p>Dog Lover !!</p> */}
         </div>
       </div>
     </div>

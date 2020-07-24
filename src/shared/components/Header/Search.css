@@ -113,6 +113,13 @@
   }
 }*/
 
+.select {
+  font-size: 1.6rem;
+  outline: none;
+  width: 9rem;
+  /* height: 3rem; */
+}
+
 @media only screen and (max-width: 600px) {
   .search {
     width: 40%;

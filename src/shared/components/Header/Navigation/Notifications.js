@@ -65,6 +65,7 @@ const Notifications = () => {
       );
       setnotifications(updatedNotifications);
       setcount(updatedNotifications.length);
+      setshowNotif(true);
     } catch (err) {
       alert(err);
     }
@@ -102,7 +103,7 @@ const Notifications = () => {
                     onClick={() => handleDeleteNotif(index)}
                   >
                     <FontAwesomeIcon icon={["fas", "trash-alt"]} />
-                  </button>{" "}
+                  </button>
                 </li>
               ))}
             </ul>
