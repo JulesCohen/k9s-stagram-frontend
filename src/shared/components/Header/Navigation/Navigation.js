@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 
-import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthContext } from "../../../context/auth-context";
 import Notifications from "./Notifications";
+import "./Navigation.css";
 
 const Navigation = () => {
   const auth = useContext(AuthContext);
+  let history = useHistory();
 
   return (
     <div className="navigation">
@@ -49,7 +51,13 @@ const Navigation = () => {
         </NavLink>
       )}
       {auth.isLoggedIn && (
-        <button className="navigation__logout" onClick={() => auth.logout()}>
+        <button
+          className="navigation__logout"
+          onClick={() => {
+            auth.logout();
+            history.push("explore/allPosts/all");
+          }}
+        >
           <FontAwesomeIcon icon={["fas", "sign-out-alt"]} size="3x" />
           <span className="tooltip">Logout</span>
         </button>

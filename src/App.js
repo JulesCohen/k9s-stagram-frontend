@@ -20,6 +20,7 @@ import { AuthContext } from "./shared/context/auth-context";
 import { Mode, useLightSwitch } from "use-light-switch";
 
 import "./App.css";
+
 const App = () => {
   const mode = useLightSwitch();
   const { token, login, logout, userId } = useAuth();

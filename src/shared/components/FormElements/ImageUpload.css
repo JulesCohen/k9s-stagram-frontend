@@ -3,7 +3,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* justify-content: ce; */
   align-items: center;
 }
 
@@ -31,8 +30,6 @@
 .preview-square {
   width: 100%;
   height: 100%;
-  /* width: 50rem;
-  height: 50rem; */
   display: flex;
   border: 1px solid var(--light-border);
   justify-content: center;
@@ -43,7 +40,6 @@
 
 .preview-square img {
   display: block;
-  /* border-radius: 50%; */
   width: 100%;
   height: 100%;
   object-fit: contain;

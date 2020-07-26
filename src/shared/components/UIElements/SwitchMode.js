@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./SwitchMode.css";
-
 import { Mode, useLightSwitch } from "use-light-switch";
+
+import "./SwitchMode.css";
 
 const SwitchMode = () => {
   const mode = useLightSwitch();

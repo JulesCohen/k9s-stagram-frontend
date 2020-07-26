@@ -1,13 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
-
-import "./ImageUpload.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Button from "./Button";
 import Avatar from "../UIElements/Avatar";
+import "./ImageUpload.css";
+
 const ImageUpload = (props) => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
-
   const filePickerRef = useRef();
 
   useEffect(() => {

@@ -1,23 +1,28 @@
-import React, { useContext, useState } from "react";
-import Avatar from "../../../shared/components/UIElements/Avatar";
+import React, { useContext, useState, useEffect } from "react";
 import { AuthContext } from "../../../shared/context/auth-context";
-import "./UserInfos.css";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
+import Avatar from "../../../shared/components/UIElements/Avatar";
+import ErrorModal from "../../../shared/components/UIElements/ErrorModal";
+import Modal from "../../../shared/components/UIElements/Modal";
+import UsersList from "../../../shared/components/UIElements/UsersList";
+import Button from "../../../shared/components/FormElements/Button";
+import "./UserInfos.css";
 
 const UserInfos = ({ userInfos, length }) => {
   const auth = useContext(AuthContext);
-  const { sendRequest } = useHttpClient();
+  const { sendRequest, error, clearError } = useHttpClient();
   const [followed, setfollowed] = useState(
     userInfos.followers.includes(auth.userId)
   );
-
+  const [showUserList, setshowUserList] = useState(false);
+  const [followList, setfollowList] = useState();
   const [nbFollowers, setnbFollowers] = useState(userInfos.followers.length);
 
   const handleFollow = async () => {
     const action = followed ? "unfollow" : "follow";
 
     try {
-      const res = await sendRequest(
+      await sendRequest(
         `${process.env.REACT_APP_BACKEND_URL}/users/${auth.userId}/${action}`,
         "PATCH",
         JSON.stringify({
@@ -30,14 +35,42 @@ const UserInfos = ({ userInfos, length }) => {
 
       setfollowed(!followed);
       setnbFollowers((prevState) => (followed ? prevState - 1 : prevState + 1));
-      console.log(res.message);
     } catch (err) {
       alert(err);
     }
   };
 
+  const handleShowUserList = (who) => {
+    setfollowList(who);
+    setshowUserList(true);
+  };
+
+  useEffect(() => {
+    setfollowed(userInfos.followers.includes(auth.userId));
+    setnbFollowers(userInfos.followers.length);
+  }, [userInfos, auth.userId]);
+
   return (
     <div className="userHeader">
+      <ErrorModal error={error} onClear={clearError} />
+      <Modal
+        show={showUserList}
+        onCancel={() => {
+          setshowUserList(false);
+        }}
+        header={""}
+        footer={
+          <Button
+            onClick={() => {
+              setshowUserList(false);
+            }}
+          >
+            CLOSE
+          </Button>
+        }
+      >
+        <UsersList userId={userInfos.id} who={followList} />
+      </Modal>
       <div className="userHeader__avatar">
         <Avatar size={"big"} img={userInfos.image} alt={userInfos.firstName} />
       </div>
@@ -59,10 +92,16 @@ const UserInfos = ({ userInfos, length }) => {
             <span>{length} </span>
             posts
           </p>
-          <p>
+          <p
+            className="button__show-list"
+            onClick={() => handleShowUserList("followers")}
+          >
             <span>{nbFollowers}</span> followers
           </p>
-          <p>
+          <p
+            className="button__show-list"
+            onClick={() => handleShowUserList("followings")}
+          >
             <span>{userInfos.followings.length}</span> following
           </p>
         </div>

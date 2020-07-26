@@ -4,13 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import { AuthContext } from "../../../shared/context/auth-context";
 import TextareaAutosize from "react-textarea-autosize";
-import "./PostComments.css";
 import Spinner from "../../../shared/components/UIElements/Spinner";
+import ErrorModal from "../../../shared/components/UIElements/ErrorModal";
+import "./PostComments.css";
 
 const PostComments = (props) => {
   const auth = useContext(AuthContext);
   const [comments, setcomments] = useState(props.comments);
-  const { isLoading, sendRequest } = useHttpClient();
+  const { isLoading, sendRequest, error, clearError } = useHttpClient();
   const { handleSubmit, reset, control } = useForm();
   const [showComment, setshowComment] = useState(false);
 
@@ -41,7 +42,6 @@ const PostComments = (props) => {
     if (showComment === false) {
       handleShowComment();
     }
-    console.log(data);
   };
 
   const onCommentDelete = async (commentId) => {
@@ -68,6 +68,7 @@ const PostComments = (props) => {
 
   return (
     <div className="comments">
+      <ErrorModal error={error} onClear={clearError} />
       <div className="comments__count">
         <p>
           Comments ({comments.length})

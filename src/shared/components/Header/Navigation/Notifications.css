@@ -48,9 +48,7 @@
   background-color: var(--bg-color-1);
   border: 1px solid var(--color-primary-dark-1);
   color: var(--text-color-1);
-  /* border-radius: 8px; */
   font-size: 1.6rem;
-  /* padding: 1rem; */
   overflow-y: scroll;
 }
 
@@ -58,22 +56,25 @@
   list-style: none;
 }
 
-.notifications__list {
-  /* display: flex; */
-}
-
 .notifications__item {
-  display: flex;
-  align-items: center;
   padding: 1.5rem;
   font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   border-bottom: 1px solid var(--text-color-1);
+}
+
+.notifications__item-content {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
 }
 
 .notification__image {
   width: 4rem;
   height: 4rem;
-  /* background-color: blue; */
 }
 
 .notifications__item a,
@@ -81,7 +82,6 @@
 .notifications__item a:active,
 .notifications__item a.active {
   display: inline-block;
-  /* width: 100%; */
   font-size: 1.5rem;
   color: var(--text-color-1);
   text-decoration: none;
@@ -97,7 +97,6 @@
 }
 
 .notifications__item a:hover {
-  /* color: var(--color-primary-dark-2); */
   text-decoration: underline;
 }
 
@@ -117,6 +116,7 @@
   color: white;
   opacity: 0;
   cursor: pointer;
+  font-size: 2rem;
 }
 
 .notifications__item:hover .notification__delete {
@@ -124,4 +124,8 @@
 }
 
 @media only screen and (max-width: 600px) {
+  .notification__delete {
+    opacity: 1;
+    color: var(--text-color-1);
+  }
 }

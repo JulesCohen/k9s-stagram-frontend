@@ -1,14 +1,11 @@
 .explore {
   width: 100%;
-  /* padding-top: 3rem; */
   padding-bottom: 10rem;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   color: black;
   font-family: "Open-sans", sans-serif;
-  /* background-color: tomato; */
 }
 
 .explore__container {
@@ -23,14 +20,10 @@
 .explore__header {
   font-size: 3rem;
   color: var(--text-color-1);
-  /* background-color: lightgreen; */
   margin: 5rem 0;
   display: flex;
   justify-content: center;
-}
-.explore__type {
-}
-.explore__query {
+  text-align: center;
 }
 
 .grid-switch {
@@ -40,19 +33,15 @@
   width: 20rem;
   display: flex;
   justify-content: space-around;
-  /* margin-bottom: 3rem; */
   position: sticky;
   top: 6rem;
   z-index: 10;
   border: 1px solid var(--light-border);
-  /* border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px; */
   z-index: 1;
 }
 
 .grid-switch button {
   color: var(--text-color-1);
-
   border: none;
   background-color: transparent;
   cursor: pointer;

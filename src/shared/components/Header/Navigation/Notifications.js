@@ -1,23 +1,23 @@
 import React, { useState, useContext, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../../context/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useHttpClient } from "../../../hooks/http-hook";
 import NotificationToast from "./NotificationToast";
-import { CSSTransition } from "react-transition-group";
+import SideDrawer from "../../UIElements/SideDrawer";
+import Spinner from "../../UIElements/Spinner";
 
 import "./Notifications.css";
-import { useHttpClient } from "../../../hooks/http-hook";
-import SideDrawer from "../../UIElements/SideDrawer";
 
 const Notifications = () => {
   const auth = useContext(AuthContext);
-  const { sendRequest } = useHttpClient();
+  const history = useHistory();
+  const { sendRequest, isLoading } = useHttpClient();
   const [count, setcount] = useState(0);
   const [notifications, setnotifications] = useState(false);
   const [showNotif, setshowNotif] = useState(false);
 
   useEffect(() => {
-    console.log("LOAD NOTIF");
     const fetchNotifications = async () => {
       try {
         const responseData = await sendRequest(
@@ -25,7 +25,6 @@ const Notifications = () => {
         );
         setnotifications(responseData.user.reverse());
         setcount(responseData.user.length);
-        console.log(responseData.user);
       } catch (error) {}
     };
 
@@ -37,12 +36,12 @@ const Notifications = () => {
   };
 
   const handleShowNotif = () => {
-    console.log("SHOW NOTIF");
     setshowNotif(!showNotif);
   };
 
-  const handleReadNotif = (index) => {
-    console.log(notifications[index]._id);
+  const handleReadNotif = (userId) => {
+    history.push(`/${userId}/posts`);
+    setshowNotif(false);
   };
 
   const handleDeleteNotif = async (index) => {
@@ -65,7 +64,6 @@ const Notifications = () => {
       );
       setnotifications(updatedNotifications);
       setcount(updatedNotifications.length);
-      setshowNotif(true);
     } catch (err) {
       alert(err);
     }
@@ -84,19 +82,20 @@ const Notifications = () => {
           {notifications && (
             <ul className="notifications__list">
               {notifications.map((notif, index) => (
-                <li
-                  className="notifications__item"
-                  key={index}
-                  onClick={() => handleReadNotif(index)}
-                >
-                  <div className="notification__image">
-                    <img src={notif.image} alt="notif" />
-                  </div>
-                  <div className="notification__text">
-                    <NavLink to={`/${notif.notifCreator._id}/posts`}>
-                      {notif.notifCreator.userName}
-                    </NavLink>
-                    <p>{notif.message}</p>
+                <li className="notifications__item" key={index}>
+                  {isLoading && <Spinner asOverlay />}
+                  <div
+                    className="notifications__item-content"
+                    onClick={() => handleReadNotif(notif.notifCreator._id)}
+                  >
+                    <div className="notification__image">
+                      <img src={notif.image} alt="notif" />
+                    </div>
+                    <div className="notification__text">
+                      <p>
+                        {notif.notifCreator.userName} {notif.message}
+                      </p>
+                    </div>
                   </div>
                   <button
                     className="notification__delete"

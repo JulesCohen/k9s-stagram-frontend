@@ -3,18 +3,17 @@ import { useParams } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import PhotoGrid from "../../shared/components/UIElements/PhotoGrid";
 import Spinner from "../../shared/components/UIElements/Spinner";
 import Post from "../Home/components/Post";
-
+import ErrorModal from "../../shared/components/UIElements/ErrorModal";
 import "./Explore.css";
 
 const Explore = () => {
   const auth = useContext(AuthContext);
   const { type, query } = useParams();
   const [loadedPosts, setLoadedPosts] = useState();
-  const { isLoading, sendRequest } = useHttpClient();
+  const { isLoading, sendRequest, error, clearError } = useHttpClient();
 
   const [chosenPost, setchosenPost] = useState();
   const [showPost, setshowPost] = useState(false);
@@ -33,8 +32,7 @@ const Explore = () => {
     const fetchPosts = async () => {
       try {
         const responseData = await sendRequest(request);
-        setLoadedPosts(responseData.posts);
-        console.log(responseData.posts);
+        setLoadedPosts(responseData.posts.reverse());
       } catch (error) {}
     };
 
@@ -44,7 +42,6 @@ const Explore = () => {
 
   const handleShowPost = (index) => {
     setchosenPost(index);
-    console.log(loadedPosts[chosenPost]);
     setshowPost(true);
   };
 
@@ -66,9 +63,25 @@ const Explore = () => {
       window.scrollTo(0, postRef.current.offsetTop - 60);
     }
   });
+
+  const handleDelete = async (deletedPostId) => {
+    try {
+      await sendRequest(
+        `http://localhost:5000/api/posts/${deletedPostId}`,
+        "DELETE",
+        null,
+        { Authorization: "Bearer " + auth.token }
+      );
+      setLoadedPosts((prevPosts) =>
+        prevPosts.filter((post) => post.id !== deletedPostId)
+      );
+    } catch (err) {}
+  };
+
   return (
     <div className="explore">
       {isLoading && <Spinner asOverlay />}
+      <ErrorModal error={error} onClear={clearError} />
 
       <div className="explore__container">
         <div className="explore__header" ref={startRef}>
@@ -114,6 +127,7 @@ const Explore = () => {
                     onLike={handleLike}
                     onDislike={handleDislike}
                     scrollRef={index === chosenPost ? postRef : null}
+                    onDelete={handleDelete}
                   />
                 );
               })}

@@ -1,26 +1,39 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { AuthContext } from "../../../shared/context/auth-context";
 import PostComments from "./PostComments";
 import Likes from "./Likes";
 import Avatar from "../../../shared/components/UIElements/Avatar";
-import "./Post.css";
 import reactStringReplace from "react-string-replace";
+import ErrorModal from "../../../shared/components/UIElements/ErrorModal";
+import "./Post.css";
+
 const Post = (props) => {
+  const auth = useContext(AuthContext);
   const textArea = useRef(null);
   const [likesCount, setLikesCount] = useState(props.post.likes.count);
+  const [goToLogin, setgoToLogin] = useState();
 
   const handleLike = (count) => {
     setLikesCount(count);
   };
 
   const handleGoToComment = () => {
-    textArea.current.focus();
+    if (!auth.isLoggedIn) {
+      setgoToLogin("Please login to comment a post.");
+    } else {
+      textArea.current.focus();
+    }
   };
 
   const parseHashtag = (description) => {
     const des = reactStringReplace(description, /#(\w+)/g, (match, i) => (
-      <NavLink to={`/explore/hashtag/${match}`} key={i}>
+      <NavLink
+        to={`/explore/hashtag/${match}`}
+        key={i}
+        className="content__hashtags"
+      >
         {" "}
         #{match}
       </NavLink>
@@ -31,23 +44,38 @@ const Post = (props) => {
 
   return (
     <div className="post" ref={props.scrollRef}>
-      <div className="post__author">
-        <Avatar
-          size="small"
-          img={props.post.author.image}
-          alt={props.post.author.userName}
-        />
+      <ErrorModal
+        error={goToLogin}
+        onClear={() => {
+          setgoToLogin(null);
+        }}
+      />
+      <div className="post__header">
+        <div className="post__author">
+          <Avatar
+            size="small"
+            img={props.post.author.image}
+            alt={props.post.author.userName}
+          />
 
-        <div className="author__infos">
-          <NavLink
-            className="author__name"
-            to={`/${props.post.author.id}/posts`}
-          >
-            {props.post.author.userName}
-          </NavLink>
+          <div className="author__infos">
+            <NavLink
+              className="author__name"
+              to={`/${props.post.author.id}/posts`}
+            >
+              {props.post.author.userName}
+            </NavLink>
 
-          <p className="author__location">{props.post.location}</p>
+            <p className="author__location">{props.post.location}</p>
+          </div>
         </div>
+        {auth.isLoggedIn && auth.userId === props.post.author.id && (
+          <div className="post__delete">
+            <button onClick={() => props.onDelete(props.post.id)}>
+              <FontAwesomeIcon icon={["fas", "trash-alt"]} />
+            </button>
+          </div>
+        )}
       </div>
       <div className="post__photo">
         <img src={props.post.image} alt="dog"></img>
@@ -78,7 +106,7 @@ const Post = (props) => {
             {props.post.author.userName}
           </NavLink>
 
-          <p className="content__text">
+          <p className="content__text content__hashtags">
             {parseHashtag(props.post.description)}
           </p>
         </div>

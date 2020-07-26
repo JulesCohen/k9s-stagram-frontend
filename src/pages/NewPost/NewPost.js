@@ -8,10 +8,9 @@ import Spinner from "../../shared/components/UIElements/Spinner";
 import Button from "../../shared/components/FormElements/Button";
 import ImageUpload from "../../shared/components/FormElements/ImageUpload";
 import TextareaAutosize from "react-textarea-autosize";
-
+// import Autocomplete from "../../shared/components/FormElements/Autocomplete";
 import "./NewPost.css";
 
-// import Autocomplete from "./Autocomplete";
 const NewPost = () => {
   let history = useHistory();
   const auth = useContext(AuthContext);
@@ -19,7 +18,6 @@ const NewPost = () => {
   const { isLoading, sendRequest } = useHttpClient();
 
   const handleChange = (event, image) => {
-    console.log(event.target.files[0]);
     setValue("image", image, true);
   };
   // const handleSelect = (address) => {
@@ -29,8 +27,6 @@ const NewPost = () => {
   const onSubmit = async (data) => {
     try {
       const formData = new FormData();
-
-      // console.log(formData);
 
       formData.append("userId", auth.userId);
       formData.append("location", data.location);
@@ -72,18 +68,18 @@ const NewPost = () => {
 
           <div className={"newpost__inputs"}>
             {/* <Controller
-            as={
-              <Autocomplete
-                onSelect={handleSelect}
-                onInput={handleSelect}
-                error={errors.location}
-              />
-            }
-            control={control}
-            rules={{ required: true, minLength: 3 }}
-            name="location"
-            defaultValue=""
-          /> */}
+              as={
+                <Autocomplete
+                  onSelect={handleSelect}
+                  onInput={handleSelect}
+                  error={errors.location}
+                />
+              }
+              control={control}
+              rules={{ required: true, minLength: 3 }}
+              name="location"
+              defaultValue=""
+            /> */}
 
             <Input
               name={"location"}
@@ -94,21 +90,11 @@ const NewPost = () => {
               error={errors.description}
             />
 
-            {/* <Input
-            name={"description"}
-            label={"Description"}
-            type={"text"}
-            register={register}
-            required={{ required: true, minLength: 2 }}
-            error={errors.description}
-          /> */}
-
             <div className="newpost__description">
-              <p>Description</p>
+              <label>Description</label>
               <TextareaAutosize
                 name={"description"}
                 label={"Description"}
-                // type={"text"}
                 ref={register({ required: true, minLength: 2 })}
               />
               {errors.description && "Description is required"}

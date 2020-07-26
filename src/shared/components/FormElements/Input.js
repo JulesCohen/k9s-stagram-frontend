@@ -1,6 +1,6 @@
 import React from "react";
-
 import "./Input.css";
+
 const Input = ({ label, name, type, register, required, error }) => {
   return (
     <div className={"form__control"}>

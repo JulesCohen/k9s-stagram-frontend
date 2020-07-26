@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./Autocomplete.css";
 import PlacesAutocomplete from "react-places-autocomplete";
+import "./Autocomplete.css";
 
 const Autocomplete = (props) => {
   const [address, setaddress] = useState("");
@@ -60,7 +60,6 @@ const Autocomplete = (props) => {
         </div>
       )}
     </PlacesAutocomplete>
-    // </div>
   );
 };
 

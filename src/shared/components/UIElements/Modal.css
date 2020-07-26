@@ -12,20 +12,35 @@
 .modal__header {
   width: 100%;
   padding: 1rem 0.5rem;
-  background: #2a006e;
+  background: rgb(43, 78, 104);
   color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 .modal__header h2 {
   margin: 0.5rem;
+  font-size: 1.8rem;
 }
 
 .modal__content {
   padding: 1rem 0.5rem;
+  font-size: 1.6rem;
+  color: black;
+  max-height: 40rem;
+  overflow: auto;
 }
 
 .modal__footer {
   padding: 1rem 0.5rem;
+}
+
+.modal__footer button {
+  background: rgb(43, 78, 104);
+  font-size: 1.4rem;
+}
+.modal__footer button:hover {
+  background: rgb(64, 116, 153);
 }
 
 @media (min-width: 768px) {

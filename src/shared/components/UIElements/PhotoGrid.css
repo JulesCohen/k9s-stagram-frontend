@@ -1,6 +1,5 @@
 .photogrid {
   width: 100%;
-  /* background-color: tomato; */
 }
 
 .photogrid__post {
@@ -13,14 +12,6 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
-
-/* .photogrid__post img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  cursor: pointer;
-  transition: all 0.2s ease-in-out;
-} */
 
 .postoverlay {
   width: 100%;
@@ -66,17 +57,8 @@
 @media only screen and (max-width: 800px) {
   .photogrid {
     width: 100vw;
-    /* grid-gap: 0.5rem; */
   }
 
-  .photogrid__post {
-    /* width: 100%;
-    height: calc(100vw / 3 - 2 * 0.5rem);
-    position: relative; */
-    /* width: 10rem;
-    height: 10rem; */
-    /* margin: 0.5rem; */
-  }
   .postoverlay {
     display: none;
   }

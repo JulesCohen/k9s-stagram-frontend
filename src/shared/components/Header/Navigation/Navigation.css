@@ -70,7 +70,6 @@
   .navigation {
     width: 60%;
     display: flex;
-    /* justify-content: space-evenly; */
     align-content: center;
   }
 
@@ -91,19 +90,14 @@
     padding: 2rem 2rem 3rem 2rem;
     background-color: var(--bg-color-1);
     border-top: 1px solid var(--light-border);
-
     display: flex;
     justify-content: space-between;
     align-content: center;
   }
-  /* .navigation__logout {
-    font-size: 0.7rem;
-  } */
 
   .navigation a,
   .navigation a:visited {
     background-color: transparent;
-    /* font-size: 0.9rem; */
     transition: all 0.3s ease-in-out;
   }
 

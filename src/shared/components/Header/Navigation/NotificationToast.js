@@ -28,9 +28,9 @@ const NotificationToast = ({ userId, handleNotification }) => {
   refNotif.current = notif;
 
   useEffect(() => {
-    Pusher.logToConsole = true;
+    // Pusher.logToConsole = true;
 
-    var pusher = new Pusher("c65d3bc16b3b7905efb1", {
+    var pusher = new Pusher(`${process.env.REACT_APP_PUSHER_KEY}`, {
       cluster: "us2",
       encrypted: true,
     });
@@ -38,7 +38,7 @@ const NotificationToast = ({ userId, handleNotification }) => {
     var channel = pusher.subscribe(`user${userId}`);
     channel.bind("notification", function (data) {
       refNotif.current();
-      console.log(data);
+
       toast.info(
         <DisplayToast
           author={data.notifCreator}
@@ -58,7 +58,6 @@ const NotificationToast = ({ userId, handleNotification }) => {
     });
 
     return () => {
-      console.log("disconnect");
       pusher.disconnect();
     };
   }, [userId]);

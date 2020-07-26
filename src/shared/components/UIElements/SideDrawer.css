@@ -7,7 +7,6 @@
   width: 35rem;
   margin-top: 6rem;
   background-color: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 
 .slide-in-right-enter {
@@ -35,5 +34,7 @@
   .side-drawer {
     width: 100vw;
     height: 40rem;
+    bottom: 7rem;
+    top: auto;
   }
 }

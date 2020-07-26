@@ -1,19 +1,12 @@
 import React, { useState, useRef } from "react";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
-import { NavLink } from "react-router-dom";
-import Autosuggest from "react-autosuggest";
-import Avatar from "../UIElements/Avatar";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Select from "react-select";
-
+import Autosuggest from "react-autosuggest";
+import Avatar from "../UIElements/Avatar";
 import "./Search.css";
-const Search = () => {
-  const options = [
-    { value: "user", label: "User" },
-    { value: "hashtag", label: "#" },
-  ];
 
+const Search = () => {
   const [selectedOption, setselectedOption] = useState("user");
   const { sendRequest } = useHttpClient();
   const [value, setvalue] = useState("");
@@ -28,17 +21,11 @@ const Search = () => {
       );
 
       if (selectedOption === "user") {
-        console.log(responseData.users);
-
         setresults(responseData.users);
       } else {
-        console.log(responseData.hashtags);
-
         setresults(responseData.hashtags);
       }
-    } catch (error) {
-      console.log(error);
-    }
+    } catch (error) {}
   };
 
   const onChange = (event, { newValue, method }) => {
@@ -66,10 +53,8 @@ const Search = () => {
   };
 
   const getSuggestionValue = (suggestion) => {
-    console.log(suggestion);
     return suggestion.userName;
   };
-
   const renderSuggestion = (suggestion) => {
     let content;
 
@@ -95,9 +80,6 @@ const Search = () => {
   };
 
   const inputProps = {
-    // placeholder: `Search for a ${
-    //   selectedOption === "user" ? "User" : "Hashtag"
-    // }`,
     placeholder: `Search..`,
     value,
     onChange: onChange,
@@ -111,7 +93,6 @@ const Search = () => {
 
   const handleChange = (event) => {
     setselectedOption(event.target.value);
-    console.log(`Option selected:`, event.target.value);
   };
 
   return (
