@@ -29,7 +29,7 @@ const Navigation = () => {
         <span className="tooltip">Explore</span>
       </NavLink>
 
-      {!auth.isLoggedIn && <p className="navigation_welcome">Wellcome !</p>}
+      {!auth.isLoggedIn && <p className="navigation_welcome">Welcome !</p>}
 
       {auth.isLoggedIn && (
         <NavLink to="/newpost">

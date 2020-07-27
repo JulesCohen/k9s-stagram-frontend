@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthContext } from "../../shared/context/auth-context";
@@ -7,10 +7,13 @@ import Spinner from "../../shared/components/UIElements/Spinner";
 import PhotoGrid from "../../shared/components/UIElements/PhotoGrid";
 import UserInfos from "./components/UserInfos";
 import Post from "../Home/components/Post";
+
+import Button from "../../shared/components/FormElements/Button";
 import "./UserPage.css";
 
 const UserPage = (props) => {
   const auth = useContext(AuthContext);
+  const history = useHistory();
   const { uid } = useParams();
   const [chosenPost, setchosenPost] = useState();
   const [showPost, setshowPost] = useState(false);
@@ -83,26 +86,49 @@ const UserPage = (props) => {
         {!isLoading && userInfos && loadedPosts && (
           <UserInfos userInfos={userInfos} length={loadedPosts.length} />
         )}
-        <div className="grid-switch">
-          <button
-            onClick={() => {
-              setchosenPost(null);
-              setshowPost(false);
-              window.scrollTo(0, startRef.current.offsetTop - 100);
-            }}
-          >
-            <FontAwesomeIcon icon={["fas", "th"]} size="2x" />
-          </button>
-          <button
-            onClick={() => {
-              setshowPost(true);
-              !chosenPost &&
-                window.scrollTo(0, startRef.current.offsetTop - 100);
-            }}
-          >
-            <FontAwesomeIcon icon={["fas", "portrait"]} size="2x" />
-          </button>
-        </div>
+
+        {!isLoading && userInfos && loadedPosts && (
+          <>
+            <div className="posts__header">
+              {auth.userId === userInfos.id && loadedPosts.length === 0 && (
+                <p>Start posting !! </p>
+              )}
+              {auth.userId === userInfos.id && (
+                <Button
+                  onClick={() => {
+                    history.push("/newPost");
+                  }}
+                >
+                  New Post
+                </Button>
+              )}
+            </div>
+
+            {loadedPosts.length > 0 && (
+              <div className="grid-switch">
+                <button
+                  onClick={() => {
+                    setchosenPost(null);
+                    setshowPost(false);
+                    window.scrollTo(0, startRef.current.offsetTop - 100);
+                  }}
+                >
+                  <FontAwesomeIcon icon={["fas", "th"]} size="2x" />
+                </button>
+                <button
+                  onClick={() => {
+                    setshowPost(true);
+                    !chosenPost &&
+                      window.scrollTo(0, startRef.current.offsetTop - 100);
+                  }}
+                >
+                  <FontAwesomeIcon icon={["fas", "portrait"]} size="2x" />
+                </button>
+              </div>
+            )}
+          </>
+        )}
+
         {!isLoading && userInfos && loadedPosts && !showPost && (
           <PhotoGrid posts={loadedPosts} showPost={handleShowPost} />
         )}

@@ -166,11 +166,17 @@ hr {
   text-decoration: none;
   font-weight: 600;
   transition: all 0.2s ease-in-out;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
+}
+
+.content__hashtags {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .content__hashtags a:hover {
-  transform: scale(1.1);
+  transform: scale(1.04);
+  color: var(--color-primary-dark-1);
 }
 
 /* PHOTO */

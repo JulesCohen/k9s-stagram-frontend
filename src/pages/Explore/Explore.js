@@ -88,7 +88,7 @@ const Explore = () => {
           {auth.isLoggedIn && query !== "all" ? (
             <p>#{query} </p>
           ) : (
-            <p>Wellcome on K9'stagram !</p>
+            <p>Welcome on K9'stagram !</p>
           )}
         </div>
         <div className="grid-switch">
