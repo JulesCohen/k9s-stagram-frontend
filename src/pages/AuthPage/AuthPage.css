@@ -56,7 +56,18 @@
   flex-direction: column;
 }
 
-.auth p {
+.signin__image {
+  display: flex;
+  flex-direction: column;
+}
+
+/* .auth p {
+  font-size: 1.6rem;
+  padding-top: 4rem;
+  color: var(--text-color-1);
+} */
+
+.auth_switchMode {
   font-size: 1.6rem;
   padding-top: 4rem;
   color: var(--text-color-1);

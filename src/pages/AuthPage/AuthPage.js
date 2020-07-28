@@ -13,7 +13,14 @@ import "./AuthPage.css";
 const AuthPage = () => {
   const auth = useContext(AuthContext);
   const [loginMode, setloginMode] = useState(true);
-  const { register, handleSubmit, errors, control, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    errors,
+    control,
+    setValue,
+    reset,
+  } = useForm();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
   const handleChange = (event, image) => {
@@ -53,14 +60,13 @@ const AuthPage = () => {
           formData
         );
         auth.login(res.userId, res.token);
-      } catch (err) {
-        alert(err);
-      }
+      } catch (err) {}
     }
   };
 
   const switchMode = () => {
     setloginMode(!loginMode);
+    reset();
   };
 
   return (
@@ -74,17 +80,21 @@ const AuthPage = () => {
           <form onSubmit={handleSubmit(onSubmit)} className={"auth__form"}>
             <div className="signin">
               {!loginMode && (
-                <>
+                <div className="signin__image">
                   <Controller
-                    as={<ImageUpload styles={"preview-round"} />}
+                    as={
+                      <ImageUpload
+                        styles={"preview-round"}
+                        error={errors.image}
+                      />
+                    }
                     name={"image"}
                     control={control}
                     defaultValue=""
                     rules={{ required: true }}
                     handleImage={handleChange}
                   />
-                  {errors.image && "image is required"}
-                </>
+                </div>
               )}
 
               <div className="signin__inputs">
@@ -96,6 +106,7 @@ const AuthPage = () => {
                     register={register}
                     required={{ required: true, minLength: 2 }}
                     error={errors.userName}
+                    placeholder={"Min. 2 characters"}
                   />
                 )}
                 {!loginMode && (
@@ -106,6 +117,7 @@ const AuthPage = () => {
                     register={register}
                     required={{ required: true, minLength: 2 }}
                     error={errors.firstName}
+                    placeholder={"Ex: John, Min. 2 characters"}
                   />
                 )}
                 {!loginMode && (
@@ -116,6 +128,7 @@ const AuthPage = () => {
                     register={register}
                     required={{ required: true, minLength: 2 }}
                     error={errors.lastName}
+                    placeholder={"Ex: Doe, Min. 2 characters"}
                   />
                 )}
               </div>
@@ -128,6 +141,7 @@ const AuthPage = () => {
               register={register}
               required={{ required: true, minLength: 2 }}
               error={errors.email}
+              placeholder={!loginMode && "Ex: johndoe@example.com"}
             />
             <Input
               name={"password"}
@@ -136,19 +150,20 @@ const AuthPage = () => {
               register={register}
               required={{ required: true, minLength: 6 }}
               error={errors.password}
+              placeholder={!loginMode && "Min. 6 characters"}
             />
 
             <Button size="big">{loginMode ? "LOGIN" : "SIGNUP"}</Button>
 
             {loginMode ? (
-              <p>
+              <p className="auth_switchMode">
                 You don't have an account? Please{" "}
                 <span onClick={switchMode} className={"signupSwitch"}>
                   SIGNUP.
                 </span>
               </p>
             ) : (
-              <p>
+              <p className="auth_switchMode">
                 Already have an account? Please{" "}
                 <span onClick={switchMode} className={"signupSwitch"}>
                   LOGIN.

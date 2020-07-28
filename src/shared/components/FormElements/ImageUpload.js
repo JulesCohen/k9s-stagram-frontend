@@ -54,7 +54,9 @@ const ImageUpload = (props) => {
           {!previewUrl && !props.error && (
             <FontAwesomeIcon icon={["fas", "camera"]} size="5x" />
           )}
-          {!previewUrl && props.error && "Image is required"}
+          {!previewUrl && props.error && (
+            <p className="form__error">An image is required</p>
+          )}
         </div>
 
         <Button type="button" onClick={pickImageHandler} size="big">

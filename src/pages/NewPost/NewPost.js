@@ -97,7 +97,9 @@ const NewPost = () => {
                 label={"Description"}
                 ref={register({ required: true, minLength: 2 })}
               />
-              {errors.description && "Description is required"}
+              {errors.description && (
+                <p className="form__error">Description is required</p>
+              )}
             </div>
 
             <Button size="big" type="submit">

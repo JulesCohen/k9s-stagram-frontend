@@ -15,16 +15,30 @@
   color: var(--text-color-1);
 }
 
+.comments__container {
+  max-height: 20rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+
 .comments__comment {
   width: 100%;
   display: flex;
   padding-bottom: 1rem;
-  white-space: pre;
   font-size: 1.5rem;
 }
 .comments__author {
   font-weight: 600;
   margin: 0 2rem;
+}
+
+.comments__message {
+  width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
 
 .comments__delete {

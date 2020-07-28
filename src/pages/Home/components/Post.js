@@ -106,7 +106,7 @@ const Post = (props) => {
             {props.post.author.userName}
           </NavLink>
 
-          <p className="content__text content__hashtags">
+          <p className="content__hashtags">
             {parseHashtag(props.post.description)}
           </p>
         </div>

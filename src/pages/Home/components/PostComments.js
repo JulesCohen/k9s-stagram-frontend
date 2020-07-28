@@ -89,6 +89,7 @@ const PostComments = (props) => {
         {showComment &&
           comments.map((comment) => {
             return (
+              // <div className="content_text" key={Math.random()}>
               <div className="comments__comment" key={Math.random()}>
                 {auth.userId === comment.author.id && (
                   <button

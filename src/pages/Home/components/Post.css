@@ -153,11 +153,6 @@ hr {
   border: 1px solid var(--bg-color-transparent-2);
 }
 
-.comments__container {
-  max-height: 20rem;
-  overflow-y: scroll;
-}
-
 .content__hashtags a,
 .content__hashtags a:visited,
 .content__hashtags a:active,
