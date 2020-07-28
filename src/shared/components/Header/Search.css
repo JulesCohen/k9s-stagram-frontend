@@ -14,6 +14,11 @@
 .search__icon {
   padding: 0 1rem;
   font-size: 2rem;
+  cursor: pointer;
+}
+
+.search__inputs {
+  display: flex;
 }
 
 .search__input {
@@ -104,13 +109,14 @@
   color: white;
 }
 
-.search__content select {
+.search__select {
   border: 1px solid var(--light-border);
   border-radius: 8px;
   outline: none;
   font-family: "Open-Sans", sans-serif;
   background-color: var(--bg-main);
   color: var(--text-color-1);
+  cursor: pointer;
 }
 
 @media only screen and (max-width: 600px) {
@@ -120,15 +126,16 @@
     order: -1;
   }
 
-  .search__input {
+  /* .search__inputs {
     width: 0rem;
     opacity: 0;
     transition: all 0.3s ease-in-out;
   }
-  .search__input:focus {
+
+  .search__inputs:focus {
     opacity: 1;
     width: 100%;
-  }
+  } */
 }
 
 @media only screen and (max-width: 320px) {

@@ -2,12 +2,18 @@ import React, { useEffect, useRef } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import Pusher from "pusher-js";
 
+import { useHistory } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import "./NotificationToast.css";
 
 const DisplayToast = (props) => {
+  const history = useHistory();
+
   return (
-    <div className="toast">
+    <div
+      className="toast"
+      onClick={() => history.push(`/${props.author.id}/posts`)}
+    >
       <div className="toast__img">
         <img src={props.image} alt="toast"></img>
       </div>
@@ -38,7 +44,7 @@ const NotificationToast = ({ userId, handleNotification }) => {
     var channel = pusher.subscribe(`user${userId}`);
     channel.bind("notification", function (data) {
       refNotif.current();
-
+      console.log(data);
       toast.info(
         <DisplayToast
           author={data.notifCreator}

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useHttpClient } from "../../../shared/hooks/http-hook";
 import { useHistory } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -11,6 +11,7 @@ const Search = () => {
   const { sendRequest } = useHttpClient();
   const [value, setvalue] = useState("");
   const [results, setresults] = useState([]);
+  const [showSelect, setshowSelect] = useState(false);
   const searchRef = useRef();
   let history = useHistory();
 
@@ -30,6 +31,7 @@ const Search = () => {
 
   const onChange = (event, { newValue, method }) => {
     setvalue(newValue);
+    setshowSelect(true);
   };
 
   const onSuggestionsFetchRequested = ({ value }) => {
@@ -76,15 +78,18 @@ const Search = () => {
   };
 
   const focusInput = () => {
-    searchRef.current.focus();
+    // searchRef.current.focus();
+    setshowSelect(!showSelect);
   };
 
   const inputProps = {
-    placeholder: `Search..`,
+    placeholder: `Search by`,
     value,
     onChange: onChange,
+
     className: "search__input",
-    ref: searchRef,
+    type: "search",
+    // ref: searchRef,
   };
 
   const renderSuggestionsContainer = ({ containerProps, children, query }) => {
@@ -93,7 +98,12 @@ const Search = () => {
 
   const handleChange = (event) => {
     setselectedOption(event.target.value);
+    searchRef.current.focus();
   };
+
+  useEffect(() => {
+    searchRef.current.focus();
+  }, [showSelect]);
 
   return (
     <div className="search">
@@ -101,20 +111,31 @@ const Search = () => {
         <div className="search__icon" onClick={focusInput}>
           <FontAwesomeIcon icon={["fas", "search"]} />
         </div>
-        <Autosuggest
-          suggestions={results}
-          onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={onSuggestionsClearRequested}
-          getSuggestionValue={getSuggestionValue}
-          renderSuggestion={renderSuggestion}
-          inputProps={inputProps}
-          renderSuggestionsContainer={renderSuggestionsContainer}
-          onSuggestionSelected={onSuggestionSelected}
-        />
-        <select name="query" id="query" onChange={handleChange}>
-          <option value="user">User</option>
-          <option value="hashtags">#</option>
-        </select>
+
+        <div className="search__inputs" ref={searchRef}>
+          <>
+            <Autosuggest
+              suggestions={results}
+              onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+              onSuggestionsClearRequested={onSuggestionsClearRequested}
+              getSuggestionValue={getSuggestionValue}
+              renderSuggestion={renderSuggestion}
+              inputProps={inputProps}
+              renderSuggestionsContainer={renderSuggestionsContainer}
+              onSuggestionSelected={onSuggestionSelected}
+            />
+
+            <select
+              name="query"
+              id="query"
+              onChange={handleChange}
+              className="search__select"
+            >
+              <option value="user">User</option>
+              <option value="hashtags">#</option>
+            </select>
+          </>
+        </div>
       </div>
     </div>
   );

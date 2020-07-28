@@ -12,6 +12,7 @@
   align-items: center;
   font-style: italic;
   padding: 2rem;
+  color: var(--text-color-1);
 }
 .posts__header p {
   font-size: 3rem;

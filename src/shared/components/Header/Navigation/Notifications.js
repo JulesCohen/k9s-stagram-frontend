@@ -72,7 +72,7 @@ const Notifications = () => {
   return (
     <div className="notification">
       <button className="notification__button" onClick={handleShowNotif}>
-        <div className={"notification__badge"}>{count}</div>
+        {count > 0 && <div className={"notification__badge"}>{count}</div>}
         <FontAwesomeIcon icon={["fas", "bell"]} size="3x" />
         <span className="tooltip">Notifications</span>
       </button>
