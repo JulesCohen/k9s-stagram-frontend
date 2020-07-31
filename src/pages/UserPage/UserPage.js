@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useHttpClient } from "../../shared/hooks/http-hook";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { AuthContext } from "../../shared/context/auth-context";
 import Spinner from "../../shared/components/UIElements/Spinner";
+import GridSwitch from "../../shared/components/UIElements/GridSwitch";
 import PhotoGrid from "../../shared/components/UIElements/PhotoGrid";
+import Posts from "../Home/components/Posts";
 import UserInfos from "./components/UserInfos";
-import Post from "../Home/components/Post";
-
 import Button from "../../shared/components/FormElements/Button";
 import "./UserPage.css";
 
@@ -20,8 +19,8 @@ const UserPage = (props) => {
   const [userInfos, setUserInfos] = useState();
   const [loadedPosts, setLoadedPosts] = useState();
   const { isLoading, sendRequest } = useHttpClient();
-
   const startRef = useRef(null);
+  const postRef = useRef(null);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -44,39 +43,6 @@ const UserPage = (props) => {
   const handleShowPost = (index) => {
     setchosenPost(index);
     setshowPost(true);
-  };
-
-  const handleLike = (index) => {
-    let updatedPosts = [...loadedPosts];
-    updatedPosts[index].likes += 1;
-    setLoadedPosts(updatedPosts);
-  };
-  const handleDislike = (index) => {
-    let updatedPosts = [...loadedPosts];
-    updatedPosts[index].likes -= 1;
-    setLoadedPosts(updatedPosts);
-  };
-
-  const myRef = useRef(null);
-
-  useEffect(() => {
-    if (myRef.current) {
-      window.scrollTo(0, myRef.current.offsetTop - 60);
-    }
-  });
-
-  const handleDelete = async (deletedPostId) => {
-    try {
-      await sendRequest(
-        `http://localhost:5000/api/posts/${deletedPostId}`,
-        "DELETE",
-        null,
-        { Authorization: "Bearer " + auth.token }
-      );
-      setLoadedPosts((prevPosts) =>
-        prevPosts.filter((post) => post.id !== deletedPostId)
-      );
-    } catch (err) {}
   };
 
   return (
@@ -105,26 +71,12 @@ const UserPage = (props) => {
             </div>
 
             {loadedPosts.length > 0 && (
-              <div className="grid-switch">
-                <button
-                  onClick={() => {
-                    setchosenPost(null);
-                    setshowPost(false);
-                    window.scrollTo(0, startRef.current.offsetTop - 100);
-                  }}
-                >
-                  <FontAwesomeIcon icon={["fas", "th"]} size="2x" />
-                </button>
-                <button
-                  onClick={() => {
-                    setshowPost(true);
-                    !chosenPost &&
-                      window.scrollTo(0, startRef.current.offsetTop - 100);
-                  }}
-                >
-                  <FontAwesomeIcon icon={["fas", "portrait"]} size="2x" />
-                </button>
-              </div>
+              <GridSwitch
+                chosenPost={chosenPost}
+                setchosenPost={setchosenPost}
+                setshowPost={setshowPost}
+                startRef={startRef}
+              />
             )}
           </>
         )}
@@ -133,23 +85,13 @@ const UserPage = (props) => {
           <PhotoGrid posts={loadedPosts} showPost={handleShowPost} />
         )}
         {showPost && (
-          <div className="posts">
-            {isLoading && <Spinner asOverlay />}
-            {!isLoading &&
-              loadedPosts &&
-              loadedPosts.map((post, index) => {
-                return (
-                  <Post
-                    key={post.id}
-                    post={post}
-                    onLike={handleLike}
-                    onDislike={handleDislike}
-                    scrollRef={index === chosenPost ? myRef : null}
-                    onDelete={handleDelete}
-                  />
-                );
-              })}
-          </div>
+          <Posts
+            loadedPosts={loadedPosts}
+            setLoadedPosts={setLoadedPosts}
+            isLoading={isLoading}
+            chosenPost={chosenPost ? chosenPost : -1}
+            postRef={postRef}
+          ></Posts>
         )}
       </div>
     </div>
