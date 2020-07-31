@@ -28,8 +28,10 @@ const Posts = ({
   };
 
   useEffect(() => {
-    if (postRef.current) {
-      window.scrollTo(0, postRef.current.offsetTop - 60);
+    if (postRef) {
+      if (postRef.current) {
+        window.scrollTo(0, postRef.current.offsetTop - 60);
+      }
     }
   });
 
